@@ -5,7 +5,7 @@ import { SITE } from '../data/site';
 
 <Legal
   title="Política de privacidad | Kalmaa"
-  description="Cómo trata Kalmaa los datos que dejas en la lista de espera de kalmaa.io: responsable, finalidad, base legal, conservación y derechos."
+  description="Cómo trata Kalmaa los datos que dejas en la lista de espera de kalmaa.io: responsable, finalidad, base legal, conservación, proveedores y derechos."
   h1="Política de privacidad"
   updated="10 de noviembre de 2026"
 >
@@ -17,41 +17,72 @@ import { SITE } from '../data/site';
   <h2>Responsable</h2>
   <ul>
     <li><strong>Responsable:</strong> {SITE.company}</li>
-    <li><strong>NIF:</strong> <span class="verify">[COMPLETAR]</span></li>
-    <li><strong>Domicilio:</strong> <span class="verify">[COMPLETAR]</span></li>
+    <li><strong>NIF:</strong> {SITE.legal.nif}</li>
+    <li><strong>Domicilio:</strong> {SITE.legal.address}</li>
     <li><strong>Contacto:</strong> <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a></li>
   </ul>
+  <p>
+    No hemos designado un delegado de protección de datos porque no estamos obligados a ello. Para cualquier cuestión
+    sobre tus datos, escríbenos a <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
+  </p>
 
   <h2>Qué datos tratamos</h2>
   <ul>
-    <li>Tu email.</li>
-    <li>Tu cuenta de Instagram, si decides indicarla.</li>
+    <li>Tu email. Es obligatorio: sin él no podemos avisarte.</li>
+    <li>Tu cuenta de Instagram, solo si decides indicarla.</li>
     <li>La plantilla que elegiste y de dónde llegaste a la web, si aplica.</li>
+    <li>La fecha en que te apuntaste y la versión del texto que aceptaste, para poder demostrar tu consentimiento.</li>
   </ul>
+  <p>Para apuntarte tienes que tener al menos 14 años.</p>
 
   <h2>Para qué</h2>
   <p>
-    Para avisarte cuando puedas usar Kalmaa y para enviarte información sobre su lanzamiento, incluido el precio de
-    fundadores. No vendemos tus datos ni los usamos para otra cosa.
+    Para avisarte cuando puedas usar Kalmaa y para enviarte por email información sobre su lanzamiento y ofertas como el
+    precio de fundadores. No vendemos tus datos, no los usamos para otra cosa y no tomamos decisiones automatizadas ni
+    hacemos perfiles con ellos.
   </p>
 
   <h2>Base legal</h2>
   <p>
     Tu consentimiento, que das al marcar la casilla del formulario. Puedes retirarlo cuando quieras escribiéndonos o con
-    el enlace de baja de nuestros emails.
+    el enlace de baja que llevan todos nuestros emails. Retirarlo no afecta a lo que hicimos antes con tu permiso.
   </p>
 
   <h2>Cuánto tiempo los guardamos</h2>
+  <p>Mientras sigas en la lista de espera. Los borramos cuando ocurra lo primero de esto:</p>
+  <ul>
+    <li>te das de baja o retiras tu consentimiento;</li>
+    <li>pasan 12 meses desde que abrimos el acceso a Kalmaa;</li>
+    <li>pasan 18 meses desde que te apuntaste sin que hayamos lanzado.</li>
+  </ul>
   <p>
-    Hasta que abramos el acceso y como mucho 12 meses después, o hasta que nos pidas que los borremos.
-    <span class="verify">[CONFIRMAR] plazo</span>
+    Al borrarlos guardamos bloqueados solo tu email, la fecha y el texto que aceptaste, durante un máximo de 3 años y
+    únicamente para poder demostrar que nos diste tu permiso. También guardamos tu email en una lista de bajas para no
+    volver a escribirte.
   </p>
 
   <h2>Quién más los ve</h2>
   <p>
-    Proveedores que nos ayudan a prestar el servicio, como encargados del tratamiento: alojamiento web (Vercel) y base de
-    datos (Supabase). <span class="verify">[VERIFICAR] región de los servidores y garantías de transferencia
-    internacional</span>
+    No cedemos tus datos a terceros salvo obligación legal. Los tratan, como encargados del tratamiento y con un contrato
+    conforme al artículo 28 del RGPD, estos proveedores:
+  </p>
+  <ul>
+    <li>
+      <strong>Vercel Inc.</strong> (Estados Unidos): alojamiento de la web y del formulario. La función que recibe tus
+      datos se ejecuta en Fráncfort (Unión Europea), pero Vercel es una empresa estadounidense y puede acceder a ellos
+      desde Estados Unidos. Garantías: Vercel está adherida al Marco de Privacidad de Datos UE-EE. UU. (decisión de
+      adecuación de la Comisión Europea de 10 de julio de 2023; puedes comprobarlo en dataprivacyframework.gov) y ha
+      firmado además las cláusulas contractuales tipo de la Comisión Europea.
+    </li>
+    <li>
+      <strong>Supabase Pte. Ltd.</strong> (Singapur): base de datos, alojada en Fráncfort (Unión Europea). Su soporte y
+      algunos de sus subencargados están en Estados Unidos. Garantía: cláusulas contractuales tipo de la Comisión Europea
+      (Decisión 2021/914).
+    </li>
+  </ul>
+  <p>
+    Si más adelante usamos un proveedor para enviar los emails, lo añadiremos aquí antes de hacerlo. Puedes pedirnos una
+    copia de las garantías escribiendo a <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
   </p>
 
   <h2>Tus derechos</h2>

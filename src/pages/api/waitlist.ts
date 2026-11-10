@@ -45,11 +45,13 @@ export const POST: APIRoute = async ({ request }) => {
       template: clean(form.get('template'), 40) || null,
       source: clean(form.get('source'), 200) || null,
       consent: true,
+      consent_version: clean(form.get('consent_version'), 20) || null,
     }),
   });
 
   if (!res.ok && res.status !== 409) {
-    console.error('waitlist insert failed', res.status, await res.text());
+    // Solo el código de estado: el cuerpo de la respuesta podría contener datos personales.
+    console.error('waitlist insert failed', res.status);
     return json(502, { error: 'No hemos podido apuntarte. Inténtalo de nuevo en un momento.' });
   }
   return json(200, { ok: true });

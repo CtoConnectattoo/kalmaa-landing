@@ -19,12 +19,18 @@
   <label class="wl__consent">
     <input type="checkbox" name="consent" value="yes" required />
     <span
-      >Acepto que Kalmaa me escriba cuando abra el acceso. He leído la <a href="/privacidad">política de privacidad</a
-      >.</span
+      >Acepto recibir emails de Kalmaa sobre el lanzamiento, el acceso y ofertas como el precio de fundadores. Puedo
+      darme de baja cuando quiera.</span
     >
   </label>
+  <input type="hidden" name="consent_version" value="2026-11-10" />
   <button type="submit" class="btn btn--lime">Apúntame a la lista</button>
   <p class="wl__status" role="status" aria-live="polite" data-status></p>
+  <p class="wl__legal">
+    Responsable: Connectattoo S.L. Finalidad: avisarte del lanzamiento y enviarte información de Kalmaa. Base legal: tu
+    consentimiento. Derechos: acceso, rectificación, supresión y otros, en hola@kalmaa.io. Más información en la
+    <a href="/privacidad">política de privacidad</a>.
+  </p>
 </form>
 
 <script>
@@ -114,6 +120,14 @@
   .wl__hp {
     position: absolute;
     left: -9999px;
+  }
+  .wl__legal {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--k-muted);
+  }
+  .wl__legal a {
+    color: inherit;
   }
   .wl__status {
     min-height: 1.5em;
