@@ -16,12 +16,18 @@ import { SITE } from '../data/site';
   </p>
   <ul>
     <li><strong>Razón social:</strong> {SITE.company}</li>
-    <li><strong>NIF:</strong> <span class="verify">[COMPLETAR]</span></li>
-    <li><strong>Domicilio social:</strong> <span class="verify">[COMPLETAR]</span></li>
-    <li><strong>Datos registrales:</strong> <span class="verify">[COMPLETAR] Registro Mercantil, tomo, folio y hoja</span></li>
+    <li><strong>NIF:</strong> {SITE.legal.nif}</li>
+    <li><strong>Domicilio social:</strong> {SITE.legal.address}</li>
+    <li><strong>Datos registrales:</strong> {SITE.legal.registry}</li>
     <li><strong>Email de contacto:</strong> <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a></li>
   </ul>
   <p>Kalmaa es una marca comercial de {SITE.company}.</p>
+
+  <h2>Precios</h2>
+  <p>
+    Los precios de Kalmaa que aparecen en este sitio no incluyen el IVA ni otros impuestos aplicables, que se añaden al
+    pagar según tu país.
+  </p>
 
   <h2>Uso del sitio</h2>
   <p>

@@ -10,11 +10,11 @@ const faqs = [
   },
   {
     q: '¿Cuánto cuesta ManyChat al mes?',
-    a: 'Desde 17 $/mes con el plan Essential (250 contactos). Los planes suben a 39 $, 99 $ y 199 $ al mes, y el exceso de contactos se paga aparte.',
+    a: 'Desde 17 $/mes con el plan Essential (250 contactos). Los planes suben a 39 $, 99 $ y 199 $ al mes (algo menos pagando el año), y el exceso de contactos se paga aparte.',
   },
   {
     q: '¿Qué pasa si paso del límite de contactos?',
-    a: 'Se cobra el exceso por contacto: 0,10 $, 0,05 $ o 0,025 $ según el plan. Una cuenta Essential con 1.000 contactos paga unos 92 $ ese mes.',
+    a: 'Tus automatizaciones siguen funcionando y se cobra cada contacto extra: 0,10 $ en Essential, 0,05 $ en Pro y 0,025 $ en Business, con tarifas más bajas en Advanced. Una cuenta Essential con 1.000 contactos paga unos 92 $ ese mes, o tendría que pasar a Pro (39 $/mes, 2.500 contactos).',
   },
 ];
 ---
@@ -24,7 +24,7 @@ const faqs = [
   description="Cuánto cuesta ManyChat en 2026: planes Free, Essential, Pro, Business y Advanced, límite de contactos, coste por exceso y un ejemplo real con 1.000 contactos."
   eyebrow="Comparativa · Precio de ManyChat"
   h1="Precio de ManyChat en 2026"
-  answer="Desde marzo de 2026, ManyChat cobra por contactos activos: Free 0 $ (25 contactos), Essential 17 $/mes (250), Pro 39 $/mes (2.500), Business 99 $/mes (7.500) y Advanced 199 $/mes. Si te pasas, pagas cada contacto extra: con 1.000 contactos en Essential, la factura de ese mes ronda los 92 $."
+  answer="Desde marzo de 2026, ManyChat cobra por contactos activos: Free 0 $ (25 contactos), Essential 17 $/mes (250), Pro 39 $/mes (2.500), Business 99 $/mes (7.500) y Advanced 199 $/mes (25.000). Si te pasas, pagas cada contacto extra: con 1.000 contactos en Essential, la factura de ese mes ronda los 92 $."
   updated="2026-11-10"
   faqs={faqs}
 >
@@ -35,16 +35,21 @@ const faqs = [
       {MANYCHAT_PLANS.map((p) => <tr><td><strong>{p.plan}</strong></td><td>{p.price}</td><td>{p.contacts}</td></tr>)}
     </tbody>
   </table>
-  <p>Precios en dólares, según las fuentes de abajo. El plan Advanced: <span class="verify">[VERIFICAR] contactos incluidos</span>.</p>
+  <p>
+    Precios mensuales en dólares y sin impuestos, según la web oficial de ManyChat. Pagando el año salen a 14 $, 29 $, 69 $
+    y 139 $ al mes. Un contacto activo es cada persona con la que tu cuenta interactúa en el mes; el contador se reinicia
+    cada mes.
+  </p>
 
   <h2>El coste que no se ve: el exceso de contactos</h2>
   <p>
-    Cada contacto por encima del límite de tu plan se paga aparte: 0,10 $, 0,05 $ o 0,025 $ por contacto, según el plan.
+    Cada contacto por encima del límite de tu plan se paga aparte: 0,10 $ en Essential, 0,05 $ en Pro y 0,025 $ en
+    Business; en Advanced la tarifa es más baja.
     Un Reel que funciona puede traerte cientos de contactos nuevos en un día, y con ellos sube la factura.
   </p>
   <p>
     <strong>Ejemplo:</strong> una cuenta Essential (17 $, 250 contactos) que llega a 1.000 contactos paga unos 92 $ ese
-    mes.
+    mes (17 $ + 750 contactos × 0,10 $). Para evitarlo tendría que subir a Pro, 39 $/mes con 2.500 contactos.
   </p>
 
   <h2>La alternativa con precio fijo</h2>
