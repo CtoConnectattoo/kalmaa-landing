@@ -1,34 +1,41 @@
 ---
 import Article from '../../layouts/Article.astro';
+import Sources from '../../components/Sources.astro';
+import { CHATFUEL_SOURCES } from '../../data/sources';
 
 const faqs = [
   {
     q: '¿Qué es Chatfuel?',
-    a: 'Una plataforma para crear chatbots y automatizar conversaciones en canales de mensajería como Instagram, Facebook Messenger y WhatsApp.',
+    a: 'Una plataforma de agentes de IA que responden por ti en Instagram, Facebook Messenger, WhatsApp, TikTok y el chat de tu web. Le das la información de tu negocio y su IA contesta a tus clientes.',
+  },
+  {
+    q: '¿Chatfuel tiene plan gratis?',
+    a: 'No. Ofrece una prueba de 7 días que pide tarjeta; después, el plan Business cuesta 20 $/mes (18 $/mes pagando el año) e incluye 20 $ al mes en créditos para las respuestas de su IA.',
   },
   {
     q: '¿Kalmaa sirve como alternativa a Chatfuel?',
-    a: 'Si lo que necesitas es responder comentarios, historias y DMs de Instagram con palabra clave y llevar clientes a WhatsApp, sí. Si necesitas chatbots en varios canales, Chatfuel cubre más.',
+    a: 'Si lo que necesitas es responder comentarios, historias y DMs de Instagram con palabra clave, llevar clientes a tu WhatsApp y manejarlo desde tu ChatGPT o Claude, sí, con plan gratis y sin créditos. Si quieres una IA que conteste sola en varios canales, Chatfuel cubre más.',
   },
 ];
 
 const rows = [
-  ['Cómo se cobra', '[VERIFICAR]', 'Precio fijo, sin pagar por contacto'],
-  ['Plan gratis', '[VERIFICAR]', '2 automatizaciones y 1.000 DMs al mes, sin tarjeta'],
-  ['Primer plan de pago', '[VERIFICAR]', '12 €/mes o 9 €/mes en anual'],
-  ['Cómo se crea una automatización', 'Constructor de bots', 'Plantilla en un minuto o pidiéndoselo a tu IA'],
-  ['ChatGPT y Claude', '[VERIFICAR]', 'Se conecta a tu ChatGPT o Claude'],
-  ['Paso a WhatsApp', '[VERIFICAR]', 'Botón a tu WhatsApp, gratis'],
-  ['Canales', 'Instagram, Messenger y WhatsApp [VERIFICAR]', 'Solo Instagram'],
+  ['Cómo se cobra', 'Suscripción + créditos por uso de su IA', 'Precio fijo, sin pagar por contacto ni por la IA'],
+  ['Plan gratis', 'No; prueba de 7 días con tarjeta', '2 automatizaciones y 1.000 DMs al mes, sin tarjeta'],
+  ['Primer plan de pago', '20 $/mes (18 $/mes en anual), con 20 $ en créditos', '12 €/mes o 9 €/mes en anual'],
+  ['Cómo se crea una automatización', 'Agente de IA con la información de tu negocio', 'Plantilla en un minuto o pidiéndoselo a tu IA'],
+  ['Quién responde', 'Su IA (modelos de OpenAI), con créditos', 'Tus automatizaciones por palabra clave; tu IA, cuando se lo pides'],
+  ['ChatGPT y Claude', 'App en ChatGPT y conector en Claude para configurarlo', 'Se conecta a tu ChatGPT o Claude para responder y crear automatizaciones'],
+  ['Paso a WhatsApp', 'API oficial de WhatsApp; Meta cobra por mensaje', 'Botón a tu WhatsApp de siempre, gratis'],
+  ['Canales', 'Instagram, Messenger, WhatsApp, TikTok y web', 'Solo Instagram'],
 ];
 ---
 
 <Article
-  title="Alternativa a Chatfuel para Instagram, con ChatGPT y Claude | Kalmaa"
-  description="Kalmaa vs. Chatfuel para Instagram: cómo se crean las automatizaciones, IA, WhatsApp y precio. Una alternativa a Chatfuel con plantillas, tu propia IA y precio fijo."
+  title="Alternativa a Chatfuel para Instagram, con plan gratis y tu propia IA | Kalmaa"
+  description="Kalmaa vs. Chatfuel para Instagram: precio, plan gratis, IA, WhatsApp y canales. Una alternativa a Chatfuel con plantillas, tu ChatGPT o Claude y precio fijo, sin créditos."
   eyebrow="Comparativa · Alternativa a Chatfuel"
   h1="Alternativa a Chatfuel para Instagram"
-  answer="Si usas Chatfuel sobre todo para Instagram, Kalmaa cubre lo esencial sin montar un bot: comentario, historia o DM con palabra clave → DM automático, paso gratis a WhatsApp y la posibilidad de pedírselo todo a ChatGPT o Claude. Precio fijo, sin pagar por contacto."
+  answer="Chatfuel es hoy un agente de IA de pago (desde 20 $/mes más créditos) que responde en varios canales. Si usas Chatfuel sobre todo para Instagram, Kalmaa cubre lo esencial con plan gratis: comentario, historia o DM con palabra clave → DM automático, paso gratis a WhatsApp y la posibilidad de pedírselo todo a tu ChatGPT o Claude. Precio fijo, sin pagar créditos por cada respuesta."
   updated="2026-11-10"
   faqs={faqs}
 >
@@ -40,7 +47,7 @@ const rows = [
         rows.map(([k, f, c]) => (
           <tr>
             <td><strong>{k}</strong></td>
-            <td>{f.includes('[VERIFICAR]') ? <span class="verify">{f}</span> : f}</td>
+            <td>{f}</td>
             <td>{c}</td>
           </tr>
         ))
@@ -48,25 +55,27 @@ const rows = [
     </tbody>
   </table>
   <p>
-    Los datos de Chatfuel están pendientes de comprobar en su web oficial antes de publicar:
-    <span class="verify">[VERIFICAR] precios y canales en chatfuel.com</span>.
+    Precios de Chatfuel en dólares y sin impuestos, según su web oficial. Su IA consume créditos del saldo de tu cuenta;
+    si se acaban, deja de responder hasta que recargas o cambias de plan.
   </p>
 
   <h2>Cuándo elegir Kalmaa</h2>
   <ul>
     <li>Tu canal principal es Instagram.</li>
+    <li>Quieres empezar gratis y sin tarjeta.</li>
     <li>Quieres activar respuestas automáticas en un minuto, con plantillas.</li>
     <li>
-      Ya usas <a href="/chatgpt-instagram">ChatGPT</a> o <a href="/claude-instagram">Claude</a> y quieres manejar tu
-      Instagram desde ahí.
+      Prefieres usar tu propio <a href="/chatgpt-instagram">ChatGPT</a> o <a href="/claude-instagram">Claude</a> en
+      lugar de pagar créditos por cada respuesta de IA.
     </li>
     <li>Quieres un precio fijo aunque te hagas viral.</li>
   </ul>
 
   <h2>Cuándo seguir con Chatfuel</h2>
   <ul>
-    <li>Necesitas chatbots en varios canales a la vez.</li>
-    <li>Tienes flujos de conversación largos y complejos ya montados.</li>
+    <li>Quieres una IA que conteste sola a tus clientes, sin que tú se lo pidas.</li>
+    <li>Necesitas atender varios canales a la vez: WhatsApp, Messenger, TikTok o el chat de tu web.</li>
+    <li>Usas la API de WhatsApp para enviar plantillas o campañas.</li>
   </ul>
 
   <p>
@@ -74,4 +83,6 @@ const rows = [
     <a href="/precios">precios de Kalmaa</a>, o la guía de
     <a href="/respuesta-automatica-instagram">respuesta automática en Instagram</a>.
   </p>
+
+  <Sources sources={CHATFUEL_SOURCES} />
 </Article>

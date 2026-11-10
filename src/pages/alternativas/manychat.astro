@@ -23,10 +23,10 @@ const rows = [
   ['Plan gratis', '25 contactos, sin tarjeta', '2 automatizaciones y 1.000 DMs al mes, sin tarjeta'],
   ['Primer plan de pago', '17 $/mes (250 contactos)', '12 €/mes o 9 €/mes en anual, contactos ilimitados'],
   ['Cómo se crea una automatización', 'Constructor de flujos con bloques', 'Plantilla en un minuto o pidiéndoselo a tu IA'],
-  ['ChatGPT y Claude', '[VERIFICAR]', 'Se conecta a tu ChatGPT o Claude; no cobramos por usar tu IA'],
-  ['Paso a WhatsApp', '[VERIFICAR] modelo de coste', 'Botón a tu WhatsApp, gratis, sin pagar por mensaje'],
-  ['Canales', 'Instagram y otros canales de mensajería', 'Solo Instagram'],
-  ['Secuencias de varios días, envíos masivos', '[VERIFICAR]', 'No'],
+  ['ChatGPT y Claude', 'Desde Pro, con tu propia clave de API (la pagas aparte); sin MCP oficial', 'Se conecta a tu ChatGPT o Claude; no cobramos por usar tu IA'],
+  ['Paso a WhatsApp', 'Canal de WhatsApp desde Pro; Meta cobra por mensaje', 'Botón a tu WhatsApp, gratis, sin pagar por mensaje'],
+  ['Canales', 'Instagram, Messenger, TikTok, Telegram, WhatsApp, SMS y email', 'Solo Instagram'],
+  ['Secuencias de varios días, envíos masivos', 'Secuencias, sí; envíos masivos desde Pro y no por Instagram', 'No'],
 ];
 ---
 
@@ -48,7 +48,7 @@ const rows = [
         rows.map(([k, m, c]) => (
           <tr>
             <td><strong>{k}</strong></td>
-            <td>{m.startsWith('[VERIFICAR]') ? <span class="verify">{m}</span> : m}</td>
+            <td>{m}</td>
             <td>{c}</td>
           </tr>
         ))
@@ -63,7 +63,7 @@ const rows = [
     <li><strong>WhatsApp incluido:</strong> lleva a tus clientes a tu WhatsApp sin pagar por mensaje.</li>
     <li>
       <strong>Precio fijo:</strong> en ManyChat, cada Reel que funciona sube la factura. Una cuenta Essential con 1.000
-      contactos paga unos 92 $ ese mes.
+      contactos paga unos 92 $ ese mes, o tiene que pasar a Pro (39 $/mes).
     </li>
   </ul>
 

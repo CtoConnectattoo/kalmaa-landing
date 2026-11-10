@@ -3,7 +3,13 @@ export const SITE = {
   url: 'https://kalmaa.io',
   entity: 'Respuestas automáticas en Instagram con ChatGPT y Claude',
   company: 'Connectattoo S.L.',
-  contactEmail: 'hola@kalmaa.io', // [CONFIRMAR] buzón de contacto
+  contactEmail: 'hola@kalmaa.io', // kalmaa.io tiene MX de Google Workspace; el buzón o alias debe existir
+  legal: {
+    nif: 'B05270608',
+    address: 'Calle Marie Curie, 8, Edificio B, 29590 Málaga (España)',
+    registry:
+      'Registro Mercantil de Málaga, tomo 6027, libro 4934, folio 44, sección 8, hoja MA-160523',
+  },
   ctaLabel: 'Conecta tu Instagram',
   ctaHref: '/lista-de-espera',
 };
