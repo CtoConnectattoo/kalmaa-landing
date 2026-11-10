@@ -1,0 +1,59 @@
+---
+import Article from '../layouts/Article.astro';
+import Sources from '../components/Sources.astro';
+import { MANYCHAT_PLANS, MANYCHAT_SOURCES } from '../data/sources';
+
+const faqs = [
+  {
+    q: '¿ManyChat es gratis?',
+    a: 'Tiene un plan gratis, sin tarjeta, limitado a 25 contactos desde marzo de 2026. Antes el límite era de 1.000 contactos.',
+  },
+  {
+    q: '¿Cuánto cuesta ManyChat al mes?',
+    a: 'Desde 17 $/mes con el plan Essential (250 contactos). Los planes suben a 39 $, 99 $ y 199 $ al mes, y el exceso de contactos se paga aparte.',
+  },
+  {
+    q: '¿Qué pasa si paso del límite de contactos?',
+    a: 'Se cobra el exceso por contacto: 0,10 $, 0,05 $ o 0,025 $ según el plan. Una cuenta Essential con 1.000 contactos paga unos 92 $ ese mes.',
+  },
+];
+---
+
+<Article
+  title="Precio de ManyChat en 2026: planes, contactos y lo que pagas de verdad | Kalmaa"
+  description="Cuánto cuesta ManyChat en 2026: planes Free, Essential, Pro, Business y Advanced, límite de contactos, coste por exceso y un ejemplo real con 1.000 contactos."
+  eyebrow="Comparativa · Precio de ManyChat"
+  h1="Precio de ManyChat en 2026"
+  answer="Desde marzo de 2026, ManyChat cobra por contactos activos: Free 0 $ (25 contactos), Essential 17 $/mes (250), Pro 39 $/mes (2.500), Business 99 $/mes (7.500) y Advanced 199 $/mes. Si te pasas, pagas cada contacto extra: con 1.000 contactos en Essential, la factura de ese mes ronda los 92 $."
+  updated="2026-11-10"
+  faqs={faqs}
+>
+  <h2>Planes de ManyChat</h2>
+  <table>
+    <thead><tr><th>Plan</th><th>Precio</th><th>Incluye</th></tr></thead>
+    <tbody>
+      {MANYCHAT_PLANS.map((p) => <tr><td><strong>{p.plan}</strong></td><td>{p.price}</td><td>{p.contacts}</td></tr>)}
+    </tbody>
+  </table>
+  <p>Precios en dólares, según las fuentes de abajo. El plan Advanced: <span class="verify">[VERIFICAR] contactos incluidos</span>.</p>
+
+  <h2>El coste que no se ve: el exceso de contactos</h2>
+  <p>
+    Cada contacto por encima del límite de tu plan se paga aparte: 0,10 $, 0,05 $ o 0,025 $ por contacto, según el plan.
+    Un Reel que funciona puede traerte cientos de contactos nuevos en un día, y con ellos sube la factura.
+  </p>
+  <p>
+    <strong>Ejemplo:</strong> una cuenta Essential (17 $, 250 contactos) que llega a 1.000 contactos paga unos 92 $ ese
+    mes.
+  </p>
+
+  <h2>La alternativa con precio fijo</h2>
+  <p>
+    Kalmaa cobra lo mismo tengas 50 o 5.000 personas escribiéndote: gratis con 2 automatizaciones y 1.000 DMs al mes, o
+    Pro por 12 €/mes (9 €/mes pagando el año) con DMs y contactos ilimitados. Mira la <a href="/alternativas/manychat"
+      >comparativa completa con ManyChat</a
+    > o los <a href="/precios">precios de Kalmaa</a>.
+  </p>
+
+  <Sources sources={MANYCHAT_SOURCES} />
+</Article>

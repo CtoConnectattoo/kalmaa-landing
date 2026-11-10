@@ -1,0 +1,28 @@
+---
+import Legal from '../layouts/Legal.astro';
+import { SITE } from '../data/site';
+---
+
+<Legal
+  title="Política de cookies | Kalmaa"
+  description="kalmaa.io no usa cookies de seguimiento ni de publicidad. Qué guardamos en tu navegador y por qué."
+  h1="Política de cookies"
+  updated="10 de noviembre de 2026"
+>
+  <h2>No usamos cookies de seguimiento</h2>
+  <p>
+    Ahora mismo kalmaa.io no instala cookies de análisis, de publicidad ni de redes sociales. Las tipografías se sirven
+    desde nuestro propio dominio, sin llamar a servicios de terceros. Por eso no te mostramos un banner de cookies.
+  </p>
+
+  <h2>Si esto cambia</h2>
+  <p>
+    Si en el futuro añadimos herramientas de medición o publicidad que usen cookies, actualizaremos esta página y te
+    pediremos permiso antes de instalarlas.
+  </p>
+
+  <h2>Contacto</h2>
+  <p>
+    Para cualquier duda, escríbenos a <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
+  </p>
+</Legal>

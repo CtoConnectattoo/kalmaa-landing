@@ -1,0 +1,70 @@
+---
+import Article from '../layouts/Article.astro';
+import { SITE } from '../data/site';
+
+const faqs = [
+  {
+    q: '¿Necesito una cuenta profesional?',
+    a: 'Sí. Las respuestas automáticas por la API oficial de Instagram funcionan con cuentas profesionales (de empresa o de creador). Se cambia gratis en los ajustes de Instagram.',
+  },
+  {
+    q: '¿Cuánto tarda en estar funcionando?',
+    a: 'Con una plantilla, un minuto: eliges la palabra clave, revisas el mensaje y la activas.',
+  },
+  {
+    q: '¿Por qué no ha saltado mi mensaje automático?',
+    a: 'Las causas más habituales son que la palabra clave no coincide, que la publicación no está incluida, que han pasado más de 7 días desde el comentario o que la persona ya recibió una respuesta privada a ese comentario. Kalmaa te enseña el motivo en su diagnóstico.',
+  },
+];
+---
+
+<Article
+  title="Cómo poner un mensaje automático en Instagram (paso a paso) | Kalmaa"
+  description="Paso a paso para poner un mensaje automático en Instagram cuando alguien comenta, responde a tu historia o te escribe una palabra clave. Gratis y en un minuto."
+  eyebrow="Guía · Paso a paso"
+  h1="Cómo poner un mensaje automático en Instagram"
+  answer="Para poner un mensaje automático en Instagram: pasa tu cuenta a profesional, conéctala a Kalmaa con el inicio de sesión oficial, elige una plantilla (por ejemplo, «Comenta PRECIO»), escribe tu mensaje y actívala. Desde ese momento, cada comentario, respuesta a historia o DM con esa palabra recibe tu mensaje, las 24 horas."
+  updated="2026-11-10"
+  faqs={faqs}
+>
+  <h2>Paso a paso</h2>
+  <ol>
+    <li>
+      <strong>Pasa tu cuenta a profesional.</strong> En Instagram: Configuración → Tipo de cuenta y herramientas → Cambiar
+      a cuenta profesional <span class="verify">[VERIFICAR] ruta exacta del menú</span>. Es gratis.
+    </li>
+    <li><strong>Conecta Instagram a Kalmaa</strong> con el inicio de sesión oficial de Instagram.</li>
+    <li>
+      <strong>Elige qué quieres conseguir.</strong> Enviar una guía, dar precios, llevar a WhatsApp, entregar un código…
+      Cada objetivo trae su plantilla rellena.
+    </li>
+    <li>
+      <strong>Elige la palabra clave y dónde salta:</strong> en un post concreto, en todos, en respuestas a historias o
+      en DMs.
+    </li>
+    <li><strong>Revisa el mensaje y el botón</strong> (enlace, PDF o WhatsApp) y actívala.</li>
+    <li>
+      <strong>Pruébala.</strong> Comenta la palabra desde otra cuenta y comprueba que llega el DM.
+    </li>
+  </ol>
+
+  <h2>Más rápido: pídeselo a tu IA</h2>
+  <p>
+    Si tienes Kalmaa conectado a <a href="/chatgpt-instagram">ChatGPT</a> o a <a href="/claude-instagram">Claude</a>,
+    basta con escribir: «Si alguien comenta PRECIO en mis Reels, envíale mi tarifa y un botón a mi WhatsApp».
+  </p>
+
+  <h2>Ideas de mensajes que funcionan</h2>
+  <ul>
+    <li>«¡Hola! Aquí tienes la guía que pediste: [enlace]. ¿Me dejas tu email para enviarte la próxima?»</li>
+    <li>«Estos son mis precios: [enlace]. Si quieres reservar, escríbeme por WhatsApp aquí abajo.»</li>
+    <li>«Tu código es BIENVENIDA10. Vale hasta el domingo.»</li>
+  </ul>
+
+  <p>
+    Más detalle sobre disparadores y reglas en la guía de <a href="/respuesta-automatica-instagram"
+      >respuesta automática en Instagram</a
+    >.
+  </p>
+  <p><a href={SITE.ctaHref}>Apúntate y pon tu primer mensaje automático</a>.</p>
+</Article>

@@ -1,0 +1,64 @@
+---
+import Article from '../layouts/Article.astro';
+import { SITE } from '../data/site';
+
+const faqs = [
+  {
+    q: '¿Funciona con el plan gratis de Claude?',
+    a: 'Sí. Claude permite añadir un conector propio también en su plan gratis, así que puedes usar Kalmaa sin pagar Claude.',
+  },
+  {
+    q: '¿Claude responde solo a mis clientes?',
+    a: 'Claude responde cuando se lo pides. Lo que funciona solo, las 24 horas, son tus automatizaciones por palabra clave.',
+  },
+  {
+    q: '¿Puedo usar Claude y ChatGPT a la vez?',
+    a: 'Sí. Kalmaa se conecta a tu Instagram y puedes usarlo desde las dos.',
+  },
+];
+---
+
+<Article
+  title="Claude e Instagram: responde comentarios y DMs con Claude | Kalmaa"
+  description="Cómo usar Claude con Instagram para responder comentarios, historias y DMs y crear mensajes automáticos. Funciona también en el plan gratis de Claude."
+  eyebrow="Guía · Claude + Instagram"
+  h1="Claude e Instagram: responde Instagram con Claude"
+  answer="Claude puede trabajar con tu Instagram a través de un conector. Con Kalmaa, conectas tu cuenta profesional de Instagram, añades Kalmaa como conector en Claude y le pides que responda comentarios, historias y DMs o que cree automatizaciones por palabra clave. Funciona también en el plan gratis de Claude."
+  updated="2026-11-10"
+  faqs={faqs}
+>
+  <h2>Qué le puedes pedir a Claude</h2>
+  <ul>
+    <li>«Responde a quien ha comentado PRECIO en mi último Reel y pásales el enlace de reservas.»</li>
+    <li>«¿Qué me han preguntado hoy por DM?»</li>
+    <li>«Si alguien responde a mi historia, envíale el código de descuento.»</li>
+    <li>«Resume las preguntas que más se repiten esta semana.»</li>
+    <li>«¿A quién tengo que contestar primero hoy?»</li>
+  </ul>
+
+  <h2>Cómo se conecta</h2>
+  <ol>
+    <li>
+      <strong>Conecta tu Instagram a Kalmaa</strong> con tu cuenta profesional y el inicio de sesión oficial de
+      Instagram.
+    </li>
+    <li><strong>Añade Kalmaa como conector en Claude.</strong> Te guiamos paso a paso.</li>
+    <li><strong>Pídeselo a Claude</strong> con tus palabras.</li>
+  </ol>
+
+  <h2>Por qué Claude es buena opción para empezar</h2>
+  <p>
+    En Claude, los conectores propios funcionan también en el plan gratis (uno). Si todavía no pagas ninguna IA, es la
+    forma más sencilla de probar Kalmaa. Si ya usas ChatGPT, mira la guía de <a href="/chatgpt-instagram"
+      >ChatGPT e Instagram</a
+    >.
+  </p>
+
+  <h2>Dentro de las reglas de Instagram</h2>
+  <p>
+    Kalmaa solo responde a quien te comenta o te escribe, nunca envía mensajes masivos y respeta los límites de
+    Instagram. No funciona con TikTok.
+  </p>
+
+  <p><a href={SITE.ctaHref}>Apúntate para conectar tu Instagram con Claude</a>.</p>
+</Article>

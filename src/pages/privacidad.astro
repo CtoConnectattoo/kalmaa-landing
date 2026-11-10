@@ -1,0 +1,63 @@
+---
+import Legal from '../layouts/Legal.astro';
+import { SITE } from '../data/site';
+---
+
+<Legal
+  title="Política de privacidad | Kalmaa"
+  description="Cómo trata Kalmaa los datos que dejas en la lista de espera de kalmaa.io: responsable, finalidad, base legal, conservación y derechos."
+  h1="Política de privacidad"
+  updated="10 de noviembre de 2026"
+>
+  <p>
+    Esta política explica cómo tratamos los datos que nos das en kalmaa.io mientras Kalmaa está en lista de espera. Cuando
+    abramos la app, la actualizaremos con el tratamiento de los datos de tu cuenta de Instagram.
+  </p>
+
+  <h2>Responsable</h2>
+  <ul>
+    <li><strong>Responsable:</strong> {SITE.company}</li>
+    <li><strong>NIF:</strong> <span class="verify">[COMPLETAR]</span></li>
+    <li><strong>Domicilio:</strong> <span class="verify">[COMPLETAR]</span></li>
+    <li><strong>Contacto:</strong> <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a></li>
+  </ul>
+
+  <h2>Qué datos tratamos</h2>
+  <ul>
+    <li>Tu email.</li>
+    <li>Tu cuenta de Instagram, si decides indicarla.</li>
+    <li>La plantilla que elegiste y de dónde llegaste a la web, si aplica.</li>
+  </ul>
+
+  <h2>Para qué</h2>
+  <p>
+    Para avisarte cuando puedas usar Kalmaa y para enviarte información sobre su lanzamiento, incluido el precio de
+    fundadores. No vendemos tus datos ni los usamos para otra cosa.
+  </p>
+
+  <h2>Base legal</h2>
+  <p>
+    Tu consentimiento, que das al marcar la casilla del formulario. Puedes retirarlo cuando quieras escribiéndonos o con
+    el enlace de baja de nuestros emails.
+  </p>
+
+  <h2>Cuánto tiempo los guardamos</h2>
+  <p>
+    Hasta que abramos el acceso y como mucho 12 meses después, o hasta que nos pidas que los borremos.
+    <span class="verify">[CONFIRMAR] plazo</span>
+  </p>
+
+  <h2>Quién más los ve</h2>
+  <p>
+    Proveedores que nos ayudan a prestar el servicio, como encargados del tratamiento: alojamiento web (Vercel) y base de
+    datos (Supabase). <span class="verify">[VERIFICAR] región de los servidores y garantías de transferencia
+    internacional</span>
+  </p>
+
+  <h2>Tus derechos</h2>
+  <p>
+    Puedes acceder a tus datos, rectificarlos, suprimirlos, oponerte a su tratamiento, limitarlo y pedir su portabilidad
+    escribiendo a <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>. Si crees que no los tratamos bien,
+    puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).
+  </p>
+</Legal>

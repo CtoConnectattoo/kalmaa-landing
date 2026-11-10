@@ -1,0 +1,90 @@
+---
+import Article from '../../layouts/Article.astro';
+import Sources from '../../components/Sources.astro';
+import { MANYCHAT_SOURCES } from '../../data/sources';
+
+const faqs = [
+  {
+    q: '¿Cuál es la mejor alternativa a ManyChat en español?',
+    a: 'Depende de lo que necesites. Si quieres responder comentarios, historias y DMs con palabra clave, con plantillas, tu propia IA y precio fijo, Kalmaa encaja. Si necesitas flujos muy complejos o muchos canales, ManyChat sigue siendo más completo.',
+  },
+  {
+    q: '¿Puedo pasar mis automatizaciones de ManyChat a Kalmaa?',
+    a: 'No hay importación automática. Lo más rápido es activar la plantilla equivalente (GUÍA, PRECIO, CITA…) o pedirle a tu IA que la cree con el mismo mensaje.',
+  },
+  {
+    q: '¿Kalmaa es más barato que ManyChat?',
+    a: 'Kalmaa cobra un precio fijo: gratis con 1.000 DMs al mes o Pro por 12 €/mes (9 €/mes anual) sin límite de contactos. ManyChat empieza en 17 $/mes con 250 contactos y cobra el exceso por contacto.',
+  },
+];
+
+const rows = [
+  ['Cómo se cobra', 'Por contactos activos', 'Precio fijo, sin pagar por contacto'],
+  ['Plan gratis', '25 contactos, sin tarjeta', '2 automatizaciones y 1.000 DMs al mes, sin tarjeta'],
+  ['Primer plan de pago', '17 $/mes (250 contactos)', '12 €/mes o 9 €/mes en anual, contactos ilimitados'],
+  ['Cómo se crea una automatización', 'Constructor de flujos con bloques', 'Plantilla en un minuto o pidiéndoselo a tu IA'],
+  ['ChatGPT y Claude', '[VERIFICAR]', 'Se conecta a tu ChatGPT o Claude; no cobramos por usar tu IA'],
+  ['Paso a WhatsApp', '[VERIFICAR] modelo de coste', 'Botón a tu WhatsApp, gratis, sin pagar por mensaje'],
+  ['Canales', 'Instagram y otros canales de mensajería', 'Solo Instagram'],
+  ['Secuencias de varios días, envíos masivos', '[VERIFICAR]', 'No'],
+];
+---
+
+<Article
+  title="Alternativa a ManyChat: más sencilla, con tu IA y precio fijo | Kalmaa"
+  description="Kalmaa vs. ManyChat: precio, plan gratis, cómo se crean las automatizaciones, IA y WhatsApp. Una alternativa a ManyChat con plantillas, ChatGPT o Claude y sin pagar por contacto."
+  eyebrow="Comparativa · Alternativa a ManyChat"
+  h1="La alternativa a ManyChat que funciona con tu IA"
+  answer="Si buscas una alternativa a ManyChat para Instagram, Kalmaa hace lo esencial (comentario, historia o DM con palabra clave → DM automático, y paso a WhatsApp) sin constructor de flujos: activas una plantilla o se lo pides a ChatGPT o Claude. Y cobra un precio fijo, sin pagar por contacto."
+  updated="2026-11-10"
+  faqs={faqs}
+  ctaTitle="Sin constructor de flujos. Con tu IA."
+>
+  <h2>Kalmaa vs. ManyChat</h2>
+  <table>
+    <thead><tr><th></th><th>ManyChat</th><th>Kalmaa</th></tr></thead>
+    <tbody>
+      {
+        rows.map(([k, m, c]) => (
+          <tr>
+            <td><strong>{k}</strong></td>
+            <td>{m.startsWith('[VERIFICAR]') ? <span class="verify">{m}</span> : m}</td>
+            <td>{c}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+
+  <h2>Dónde gana Kalmaa</h2>
+  <ul>
+    <li><strong>Nada que aprender:</strong> lo que antes montabas con bloques, ahora se lo pides a tu IA.</li>
+    <li><strong>Plantillas listas:</strong> los casos de uso que más funcionan, activos en un minuto.</li>
+    <li><strong>WhatsApp incluido:</strong> lleva a tus clientes a tu WhatsApp sin pagar por mensaje.</li>
+    <li>
+      <strong>Precio fijo:</strong> en ManyChat, cada Reel que funciona sube la factura. Una cuenta Essential con 1.000
+      contactos paga unos 92 $ ese mes.
+    </li>
+  </ul>
+
+  <h2>Dónde gana ManyChat</h2>
+  <ul>
+    <li>Flujos muy complejos y a medida, con condiciones y ramas.</li>
+    <li>Más canales que solo Instagram.</li>
+    <li>Más años en el mercado y un ecosistema grande de plantillas y expertos.</li>
+  </ul>
+
+  <h2>Cómo cambiar en 10 minutos</h2>
+  <ol>
+    <li>Apunta las palabras clave y los mensajes que tienes activos en ManyChat.</li>
+    <li>Conecta tu Instagram a Kalmaa con el inicio de sesión oficial.</li>
+    <li>Activa la plantilla equivalente o pídele a tu IA: «crea una automatización: si comentan GUÍA, envía este enlace».</li>
+    <li>Pausa la automatización en ManyChat para que no respondan las dos.</li>
+  </ol>
+
+  <p>
+    Más contexto: <a href="/que-es-manychat">qué es ManyChat</a> y <a href="/manychat-precio">precio de ManyChat</a>.
+  </p>
+
+  <Sources sources={MANYCHAT_SOURCES} />
+</Article>

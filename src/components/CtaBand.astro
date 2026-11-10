@@ -1,0 +1,36 @@
+---
+import { SITE } from '../data/site';
+interface Props {
+  title?: string;
+  text?: string;
+}
+const { title = 'Tu Instagram, desde tu ChatGPT.', text = 'Gratis para empezar · Pro desde 9 €/mes' } = Astro.props;
+---
+
+<section class="cta">
+  <div class="wrap cta__inner">
+    <h2>{title}</h2>
+    <a href={SITE.ctaHref} class="btn btn--lime">{SITE.ctaLabel}</a>
+    <p>{text} · <a href="/precios">Ver precios</a></p>
+  </div>
+</section>
+
+<style>
+  .cta {
+    padding: 96px 0;
+    text-align: center;
+  }
+  .cta__inner {
+    display: grid;
+    justify-items: center;
+    gap: 24px;
+  }
+  .cta h2 {
+    font-size: clamp(2.2rem, 6vw, 4.4rem);
+    letter-spacing: -0.04em;
+    max-width: 900px;
+  }
+  .cta p {
+    color: var(--k-muted);
+  }
+</style>

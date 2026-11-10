@@ -1,0 +1,79 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../data/site';
+
+interface Faq {
+  q: string;
+  a: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  /** Esquemas JSON-LD extra de la página (SoftwareApplication, Article…) */
+  schema?: Record<string, unknown>[];
+  /** Preguntas frecuentes: genera FAQPage */
+  faqs?: Faq[];
+  noindex?: boolean;
+}
+
+const { title, description, schema = [], faqs, noindex = false } = Astro.props;
+const path = Astro.url.pathname === '/' ? '/' : Astro.url.pathname.replace(/\/$/, '');
+const canonical = new URL(path, SITE.url).toString();
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: SITE.name,
+  url: SITE.url,
+  logo: `${SITE.url}/favicon.svg`,
+  description: SITE.entity,
+  legalName: SITE.company,
+};
+
+const faqSchema = faqs?.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    }
+  : null;
+
+const allSchema = [organization, ...schema, ...(faqSchema ? [faqSchema] : [])];
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#0E0E10" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Kalmaa" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    {allSchema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+  </head>
+  <body>
+    <a class="skip" href="#contenido">Saltar al contenido</a>
+    <Header />
+    <main id="contenido">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

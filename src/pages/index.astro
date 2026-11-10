@@ -1,0 +1,502 @@
+---
+import Base from '../layouts/Base.astro';
+import AiChatMock from '../components/AiChatMock.astro';
+import WhatsappMock from '../components/WhatsappMock.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE, PRICING } from '../data/site';
+
+const faqs = [
+  {
+    q: '¿Qué es Kalmaa?',
+    a: 'La conexión entre tu ChatGPT o tu Claude y tu Instagram. Le pides a tu IA lo que quieres hacer con tus comentarios, historias y DMs, y Kalmaa lo ejecuta. Además, tus automatizaciones funcionan las 24 horas.',
+  },
+  {
+    q: '¿Cómo conecto Instagram con ChatGPT?',
+    a: 'Conecta tu cuenta profesional de Instagram a Kalmaa y añade Kalmaa como app en ChatGPT o Claude. Te guiamos paso a paso. Con Claude funciona también en su plan gratis; en ChatGPT, conectar apps propias requiere un plan de pago.',
+  },
+  {
+    q: '¿Es seguro para mi cuenta de Instagram?',
+    a: 'Sí. Kalmaa se conecta con la API oficial de Instagram y el inicio de sesión oficial, sin tu contraseña, y respeta las reglas de Meta: solo responde a quien te escribe o comenta, y nunca envía mensajes masivos.',
+  },
+  {
+    q: '¿Kalmaa responde solo?',
+    a: 'Tus automatizaciones por palabra clave responden solas, las 24 horas. La IA responde cuando se lo pides desde ChatGPT o Claude.',
+  },
+  {
+    q: '¿Cómo pongo un mensaje automático en Instagram?',
+    a: 'Activa una plantilla en Kalmaa o pídeselo a tu IA: «si alguien comenta PRECIO, envíale este mensaje». Desde ese momento, cada comentario, respuesta a historia o DM con esa palabra recibe tu mensaje.',
+  },
+  {
+    q: '¿Funciona con WhatsApp?',
+    a: 'Kalmaa lleva a tus clientes de Instagram a tu WhatsApp con un clic, gratis. La conversación en WhatsApp la llevas tú.',
+  },
+  {
+    q: '¿Funciona con TikTok?',
+    a: 'Hoy no. Kalmaa funciona con Instagram.',
+  },
+];
+
+const steps = [
+  {
+    t: 'Conecta tu Instagram',
+    d: 'Con tu cuenta profesional, en un clic y con el inicio de sesión oficial de Instagram.',
+  },
+  { t: 'Añade Kalmaa a tu IA', d: 'En ChatGPT o en Claude, como una app más. Te guiamos paso a paso.' },
+  {
+    t: 'Pídeselo',
+    d: 'Que responda, que te resuma los DMs o que deje una automatización funcionando las 24 horas.',
+  },
+];
+
+const asks = [
+  '«Responde a quien ha comentado PRECIO en mi último Reel.»',
+  '«¿Qué me han preguntado hoy por DM?»',
+  '«Si alguien comenta GUÍA, envíale este PDF y pídele el email.»',
+  '«Resume las preguntas que más se repiten esta semana.»',
+  '«Manda a mi WhatsApp a quien pregunte por una cita.»',
+];
+
+const templates = [
+  { k: 'Comenta GUÍA', t: 'Envía tu guía gratis', d: 'DM con el enlace o el PDF y petición de email.', slug: 'guia' },
+  { k: 'Comenta PRECIO', t: 'Precios y enlace', d: 'Responde al momento con tu tarifa o tu catálogo.', slug: 'precio' },
+  {
+    k: 'Comenta CLASE',
+    t: 'Webinar o clase',
+    d: 'Envía el enlace de inscripción y guarda el contacto.',
+    slug: 'clase',
+  },
+  {
+    k: 'Responde a la historia',
+    t: 'Sorteo o promoción',
+    d: 'Cada respuesta a tu historia recibe su DM.',
+    slug: 'sorteo',
+  },
+  { k: 'Comenta CÓDIGO', t: 'Código de descuento', d: 'Entrega el código por DM a quien lo pida.', slug: 'codigo' },
+  {
+    k: 'Comenta CITA',
+    t: 'A tu WhatsApp',
+    d: 'Un botón lleva al cliente a tu WhatsApp con un clic.',
+    slug: 'cita',
+    free: true,
+  },
+];
+
+const software = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Kalmaa',
+  url: SITE.url,
+  description: SITE.entity,
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  inLanguage: 'es',
+  offers: [
+    { '@type': 'Offer', name: 'Gratis', price: '0', priceCurrency: 'EUR' },
+    { '@type': 'Offer', name: 'Pro', price: String(PRICING.pro.monthly), priceCurrency: 'EUR' },
+  ],
+};
+---
+
+<Base
+  title="Respuestas automáticas en Instagram con ChatGPT y Claude | Kalmaa"
+  description="Conecta tu ChatGPT o Claude con Instagram. Pídele que responda comentarios, historias y DMs, y deja tus mensajes automáticos funcionando las 24 horas. Empieza gratis con plantillas."
+  schema={[software]}
+  faqs={faqs}
+>
+  <!-- Portada -->
+  <section class="hero">
+    <div class="wrap hero__inner">
+      <div class="hero__copy">
+        <p class="eyebrow">Conecta Instagram con ChatGPT y Claude</p>
+        <h1>Respuestas automáticas en Instagram con <span class="lime">ChatGPT</span></h1>
+        <p class="hero__sub">
+          Pídele a tu IA que responda comentarios, historias y DMs, y deja tus automatizaciones funcionando las 24
+          horas. Empieza en un minuto con plantillas.
+        </p>
+        <div class="hero__ctas">
+          <a href={SITE.ctaHref} class="btn btn--lime">{SITE.ctaLabel}</a>
+          <a href="#como-funciona" class="btn btn--ghost">Ver cómo funciona</a>
+        </div>
+        <ul class="hero__seals">
+          <li>Integración oficial con Instagram</li>
+          <li>Funciona con ChatGPT y Claude</li>
+          <li>Plan gratis</li>
+        </ul>
+      </div>
+      <div class="hero__mock"><AiChatMock /></div>
+    </div>
+  </section>
+
+  <!-- Franja -->
+  <div class="strip" aria-label="Lo esencial">
+    <ul class="wrap strip__list">
+      <li>API oficial de Instagram</li>
+      <li>Funciona con ChatGPT</li>
+      <li>Funciona con Claude</li>
+      <li>Plantillas en un minuto</li>
+      <li>De Instagram a WhatsApp, gratis</li>
+    </ul>
+  </div>
+
+  <!-- Cómo funciona -->
+  <section class="section" id="como-funciona">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Cómo funciona</p>
+        <h2>Pídeselo a tu IA. Kalmaa lo hace en tu Instagram.</h2>
+      </div>
+      <ol class="grid grid--3 steps">
+        {
+          steps.map((s, i) => (
+            <li class="card">
+              <span class="steps__n">{i + 1}</span>
+              <h3>{s.t}</h3>
+              <p>{s.d}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- Qué le puedes pedir -->
+  <section class="section section--light">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Qué le puedes pedir</p>
+        <h2>Responde Instagram con ChatGPT o Claude</h2>
+      </div>
+      <div class="asks">
+        <ul class="asks__list">
+          {asks.map((a) => <li>{a}</li>)}
+        </ul>
+        <div class="asks__feature">
+          <span class="tag">Prioriza tu bandeja</span>
+          <p class="asks__quote">«¿A quién tengo que contestar primero hoy?»</p>
+          <p>Tu IA ordena tus DMs por intención de compra, clientes y tiempo que queda para responder.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plantillas -->
+  <section class="section" id="plantillas">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Plantillas</p>
+        <h2>Empieza en un minuto</h2>
+        <p>
+          Activa una plantilla y queda funcionando las 24 horas. Edítala cuando quieras, en el panel o pidiéndoselo a
+          tu IA.
+        </p>
+      </div>
+      <ul class="grid grid--3 tpl">
+        {
+          templates.map((t) => (
+            <li class="card tpl__card">
+              <div class="tpl__top">
+                <span class="tpl__key">{t.k}</span>
+                {t.free && <span class="tag">gratis</span>}
+              </div>
+              <h3>{t.t}</h3>
+              <p>{t.d}</p>
+              <a href={`${SITE.ctaHref}?plantilla=${t.slug}`} class="tpl__link">
+                Usar esta plantilla →
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Instagram + WhatsApp -->
+  <section class="section section--split">
+    <div class="wrap split">
+      <div class="section-head">
+        <p class="eyebrow">Instagram + WhatsApp</p>
+        <h2>De un comentario a tu WhatsApp, <span class="lime">gratis</span></h2>
+        <p>
+          Cuando alguien quiere hablar contigo, un botón lo lleva a tu WhatsApp de siempre. Sin configurar nada más y
+          sin pagar por mensaje.
+        </p>
+      </div>
+      <WhatsappMock />
+    </div>
+  </section>
+
+  <!-- ¿Vienes de ManyChat? -->
+  <section class="section section--light">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">¿Vienes de ManyChat?</p>
+        <h2>Sin constructor de flujos. Con tu IA.</h2>
+        <p><a href="/alternativas/manychat">Ver la comparativa con ManyChat</a></p>
+      </div>
+      <div class="grid grid--3">
+        <div class="card">
+          <h3>Nada que aprender</h3>
+          <p>Lo que antes montabas con bloques, ahora se lo pides a tu IA.</p>
+        </div>
+        <div class="card">
+          <h3>Plantillas listas</h3>
+          <p>Los casos de uso que más funcionan, activos en un minuto.</p>
+        </div>
+        <div class="card">
+          <h3>WhatsApp incluido</h3>
+          <p>Lleva a tus clientes a tu WhatsApp sin pagar por mensaje.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Integración oficial -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Integración oficial</p>
+        <h2>Conectado a Instagram por la vía oficial</h2>
+      </div>
+      <div class="grid grid--3">
+        <div class="card">
+          <h3>API oficial de Meta</h3>
+          <p>
+            Kalmaa usa la API oficial de Instagram, con los permisos de mensajes y comentarios aprobados en la revisión
+            de apps de Meta.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Nunca pedimos tu contraseña</h3>
+          <p>
+            Te conectas con el inicio de sesión oficial de Instagram y puedes quitar el acceso cuando quieras.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Dentro de las reglas</h3>
+          <p>
+            Respetamos los límites de Instagram: sin mensajes masivos ni a quien no te ha escrito. Así cuidamos tu
+            cuenta.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Preguntas frecuentes -->
+  <section class="section section--light" id="preguntas">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Preguntas frecuentes</p>
+        <h2>Lo que más nos preguntan</h2>
+      </div>
+      <FaqList faqs={faqs} />
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .hero {
+    padding: 72px 0 88px;
+    overflow: hidden;
+  }
+  .hero__inner {
+    display: grid;
+    gap: 56px;
+    align-items: center;
+  }
+  .hero__copy {
+    display: grid;
+    gap: 24px;
+  }
+  .hero__sub {
+    font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+    color: var(--k-body-dark);
+    max-width: 600px;
+  }
+  .hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .hero__seals {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    color: var(--k-muted);
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .hero__seals li::before {
+    content: '✓';
+    color: var(--k-lime);
+    margin-right: 6px;
+  }
+  .hero__mock {
+    display: flex;
+    justify-content: center;
+  }
+  @media (min-width: 980px) {
+    .hero__inner {
+      grid-template-columns: 1.25fr 1fr;
+    }
+  }
+
+  .strip {
+    background: var(--k-lime);
+    color: var(--k-black);
+    padding: 18px 0;
+  }
+  .strip__list {
+    list-style: none;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 32px;
+    font-family: var(--k-font-display);
+    font-weight: 700;
+    font-size: 17px;
+  }
+
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .steps .card {
+    display: grid;
+    gap: 12px;
+    align-content: start;
+  }
+  .steps p {
+    color: var(--k-body-dark);
+  }
+  .steps__n {
+    font-family: var(--k-font-display);
+    font-weight: 800;
+    font-size: 40px;
+    color: var(--k-lime);
+    line-height: 1;
+  }
+
+  .asks {
+    display: grid;
+    gap: 20px;
+  }
+  .asks__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 12px;
+  }
+  .asks__list li {
+    background: var(--k-white);
+    border: 1px solid #e4e4e7;
+    border-radius: 18px;
+    border-bottom-right-radius: 6px;
+    padding: 16px 20px;
+    font-weight: 500;
+  }
+  .asks__feature {
+    background: var(--k-black);
+    color: var(--k-white);
+    border-radius: var(--k-radius-card);
+    padding: 32px;
+    display: grid;
+    gap: 16px;
+    align-content: start;
+  }
+  .asks__feature p {
+    color: var(--k-body-dark);
+  }
+  .asks__feature .asks__quote {
+    font-family: var(--k-font-display);
+    font-weight: 800;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    line-height: 1.1;
+    color: var(--k-lime);
+  }
+  .asks__feature .tag {
+    justify-self: start;
+  }
+  @media (min-width: 900px) {
+    .asks {
+      grid-template-columns: 1.2fr 1fr;
+    }
+  }
+
+  .tpl {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .tpl__card {
+    display: grid;
+    gap: 10px;
+    align-content: start;
+  }
+  .tpl__card p {
+    color: var(--k-body-dark);
+  }
+  .tpl__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+  .tpl__key {
+    font-family: var(--k-font-display);
+    font-weight: 800;
+    color: var(--k-lime);
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .tpl__link {
+    color: var(--k-white);
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 6px;
+  }
+  .tpl__link:hover {
+    color: var(--k-lime);
+  }
+
+  .split {
+    display: grid;
+    gap: 40px;
+    align-items: center;
+  }
+  .split .section-head {
+    margin-bottom: 0;
+  }
+  @media (min-width: 900px) {
+    .split {
+      grid-template-columns: 1.2fr 1fr;
+    }
+  }
+
+  .section--light .card p {
+    color: var(--k-ink-soft);
+  }
+  .section .card h3 + p {
+    margin-top: 10px;
+  }
+  .section:not(.section--light) .card p {
+    color: var(--k-body-dark);
+  }
+  .section--light .section-head a {
+    color: var(--k-black);
+    font-weight: 600;
+    text-decoration-color: var(--k-lime);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 4px;
+  }
+</style>

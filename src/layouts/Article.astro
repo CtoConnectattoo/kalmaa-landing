@@ -1,0 +1,96 @@
+---
+import Base from './Base.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  h1: string;
+  eyebrow: string;
+  /** Respuesta directa al principio (formato para Google y las IAs) */
+  answer: string;
+  updated: string; // AAAA-MM-DD
+  faqs?: { q: string; a: string }[];
+  ctaTitle?: string;
+}
+
+const { title, description, h1, eyebrow, answer, updated, faqs = [], ctaTitle } = Astro.props;
+const updatedLabel = new Date(updated + 'T12:00:00Z').toLocaleDateString('es-ES', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
+
+const article = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: h1,
+  description,
+  inLanguage: 'es',
+  dateModified: updated,
+  author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+  publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+  mainEntityOfPage: new URL(Astro.url.pathname, SITE.url).toString(),
+};
+---
+
+<Base title={title} description={description} schema={[article]} faqs={faqs}>
+  <section class="art-hero">
+    <div class="wrap">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1>{h1}</h1>
+      <p class="art-hero__date">Actualizado el {updatedLabel}</p>
+    </div>
+  </section>
+
+  <section class="section section--light art-body">
+    <div class="wrap">
+      <div class="prose">
+        <p class="answer">{answer}</p>
+        <slot />
+      </div>
+    </div>
+  </section>
+
+  {
+    faqs.length > 0 && (
+      <section class="section section--light art-faq">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Preguntas frecuentes</h2>
+          </div>
+          <FaqList faqs={faqs} />
+        </div>
+      </section>
+    )
+  }
+
+  <CtaBand title={ctaTitle} />
+</Base>
+
+<style>
+  .art-hero {
+    padding: 72px 0 56px;
+  }
+  .art-hero .wrap {
+    display: grid;
+    gap: 18px;
+    max-width: 980px;
+  }
+  .art-hero h1 {
+    font-size: clamp(2.3rem, 5.4vw, 4.2rem);
+  }
+  .art-hero__date {
+    color: var(--k-muted);
+    font-size: 15px;
+  }
+  .art-body {
+    padding-top: 64px;
+  }
+  .art-faq {
+    padding-top: 0;
+  }
+</style>

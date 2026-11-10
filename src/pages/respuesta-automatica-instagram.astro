@@ -1,0 +1,81 @@
+---
+import Article from '../layouts/Article.astro';
+import { SITE } from '../data/site';
+
+const faqs = [
+  {
+    q: '¿Se puede poner una respuesta automática en Instagram gratis?',
+    a: 'Sí. Con el plan gratis de Kalmaa tienes 2 automatizaciones activas y hasta 1.000 DMs al mes, sin tarjeta.',
+  },
+  {
+    q: '¿La respuesta automática funciona en comentarios y en historias?',
+    a: 'Sí. Puede saltar con un comentario con palabra clave, con una respuesta a tu historia o con una palabra clave en un DM.',
+  },
+  {
+    q: '¿Puedo enviar un mensaje automático a quien me sigue?',
+    a: 'No. Instagram no permite escribir primero ni enviar mensajes a quien empieza a seguirte. La respuesta automática solo llega a quien te comenta o te escribe.',
+  },
+  {
+    q: '¿Mi cuenta corre riesgo?',
+    a: 'Kalmaa usa la API oficial de Instagram, con el inicio de sesión oficial, y respeta sus límites: sin mensajes masivos y como mucho una respuesta privada por comentario.',
+  },
+];
+---
+
+<Article
+  title="Respuesta automática en Instagram: comentarios, historias y DMs | Kalmaa"
+  description="Cómo poner una respuesta automática en Instagram para comentarios, respuestas a historias y DMs con palabra clave. Plantillas listas, gratis para empezar y dentro de las reglas de Instagram."
+  eyebrow="Guía · Respuesta automática en Instagram"
+  h1="Respuesta automática en Instagram, en un minuto"
+  answer="Una respuesta automática en Instagram envía un DM a quien comenta una palabra clave en tu post o Reel, responde a tu historia o te escribe una palabra concreta. Con Kalmaa la activas desde una plantilla o pidiéndosela a ChatGPT o Claude, y funciona las 24 horas."
+  updated="2026-11-10"
+  faqs={faqs}
+>
+  <h2>Los tres disparadores</h2>
+  <ul>
+    <li>
+      <strong>Comentario con palabra clave.</strong> Alguien comenta PRECIO en un post o Reel (o en todos) y recibe tu
+      DM. Además, puedes responder en público con un mensaje que va rotando.
+    </li>
+    <li><strong>Respuesta a historia.</strong> Cada persona que responde a tu historia recibe su DM.</li>
+    <li><strong>Palabra clave en DM.</strong> Quien te escribe CITA, GUÍA o la palabra que elijas recibe la respuesta.</li>
+  </ul>
+
+  <h2>Qué puede llevar el mensaje</h2>
+  <ul>
+    <li>Un botón con un enlace (tu web, tu catálogo, tu agenda) o un PDF.</li>
+    <li>Un botón a tu WhatsApp, gratis.</li>
+    <li>Una petición de email para guardar el contacto.</li>
+  </ul>
+
+  <h2>Plantillas para empezar</h2>
+  <table>
+    <thead><tr><th>Palabra clave</th><th>Qué hace</th></tr></thead>
+    <tbody>
+      <tr><td><strong>GUÍA</strong></td><td>Envía tu guía gratis y pide el email.</td></tr>
+      <tr><td><strong>PRECIO</strong></td><td>Responde con tu tarifa o tu catálogo.</td></tr>
+      <tr><td><strong>CLASE</strong></td><td>Envía el enlace de inscripción a tu webinar o clase.</td></tr>
+      <tr><td><strong>Respuesta a historia</strong></td><td>Sorteo o promoción.</td></tr>
+      <tr><td><strong>CÓDIGO</strong></td><td>Entrega un código de descuento.</td></tr>
+      <tr><td><strong>CITA</strong></td><td>Lleva al cliente a tu WhatsApp con un clic.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Reglas de Instagram que conviene saber</h2>
+  <ul>
+    <li>Solo se puede responder a quien te ha comentado o escrito: no hay mensajes masivos ni a quien te sigue.</li>
+    <li>Una respuesta privada por comentario, dentro de los 7 días siguientes.</li>
+    <li>Las respuestas a DMs, dentro de las 24 horas desde el último mensaje de la persona.</li>
+    <li>
+      Si un Reel se hace viral, las respuestas se ponen en cola para no pasar del límite de Instagram (750 respuestas
+      privadas por hora).
+    </li>
+  </ul>
+
+  <p>
+    ¿Quieres el paso a paso? Lee <a href="/como-poner-mensaje-automatico-instagram"
+      >cómo poner un mensaje automático en Instagram</a
+    >.
+  </p>
+  <p><a href={SITE.ctaHref}>Apúntate y activa tu primera respuesta automática</a>.</p>
+</Article>

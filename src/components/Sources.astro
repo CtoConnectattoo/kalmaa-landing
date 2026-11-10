@@ -1,0 +1,22 @@
+---
+interface Props {
+  sources: { label: string; href: string }[];
+  note?: string;
+}
+const { sources, note = 'Consultadas en noviembre de 2026. Los precios de terceros pueden cambiar: revisa siempre su web oficial.' } =
+  Astro.props;
+---
+
+<h2>Fuentes</h2>
+<p>{note}</p>
+<ul>
+  {
+    sources.map((s) => (
+      <li>
+        <a href={s.href} rel="nofollow noopener" target="_blank">
+          {s.label}
+        </a>
+      </li>
+    ))
+  }
+</ul>

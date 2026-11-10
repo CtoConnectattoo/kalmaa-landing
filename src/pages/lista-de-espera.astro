@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import WaitlistForm from '../components/WaitlistForm.astro';
+---
+
+<Base
+  title="Apúntate a la lista de espera | Kalmaa"
+  description="Kalmaa abre pronto. Déjanos tu email y te avisamos para conectar tu Instagram con ChatGPT o Claude."
+  noindex
+>
+  <section class="section">
+    <div class="wrap wl-page">
+      <div class="section-head">
+        <p class="eyebrow">Lista de espera</p>
+        <h1>Conecta tu Instagram <span class="lime">muy pronto</span></h1>
+        <p>
+          Estamos abriendo Kalmaa poco a poco. Déjanos tu email y te escribimos en cuanto puedas conectar tu Instagram.
+          Las primeras 100 cuentas que pasen a Pro tienen precio de fundadores: 9 €/mes.
+        </p>
+      </div>
+      <WaitlistForm />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .wl-page h1 {
+    font-size: clamp(2.4rem, 6vw, 4.4rem);
+  }
+</style>

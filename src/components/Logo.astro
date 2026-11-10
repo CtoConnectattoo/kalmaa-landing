@@ -1,0 +1,35 @@
+---
+interface Props {
+  size?: number;
+}
+const { size = 32 } = Astro.props;
+---
+
+<span class="logo">
+  <svg width={size} height={size} viewBox="0 0 112 112" aria-hidden="true">
+    <path
+      d="M20 12h72a12 12 0 0 1 12 12v48a12 12 0 0 1-12 12H48l-24 20V84h-4A12 12 0 0 1 8 72V24a12 12 0 0 1 12-12z"
+      fill="#C6F432"></path>
+    <circle cx="40" cy="48" r="12" fill="none" stroke="#0E0E10" stroke-width="7"></circle>
+    <path d="M52 36v24" stroke="#0E0E10" stroke-width="7" stroke-linecap="round"></path>
+    <circle cx="72" cy="48" r="12" fill="none" stroke="#0E0E10" stroke-width="7"></circle>
+    <path d="M84 36v24" stroke="#0E0E10" stroke-width="7" stroke-linecap="round"></path>
+  </svg>
+  <span class="logo__word">kalmaa</span>
+</span>
+
+<style>
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .logo__word {
+    font-family: var(--k-font-display);
+    font-weight: 800;
+    font-size: 26px;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    color: var(--k-white);
+  }
+</style>

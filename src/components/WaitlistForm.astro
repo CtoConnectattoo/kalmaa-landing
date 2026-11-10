@@ -1,0 +1,123 @@
+---
+---
+
+<form class="wl" method="post" action="/api/waitlist" data-waitlist novalidate>
+  <div class="wl__field">
+    <label for="wl-email">Tu email</label>
+    <input id="wl-email" name="email" type="email" autocomplete="email" required placeholder="tu@email.com" />
+  </div>
+  <div class="wl__field">
+    <label for="wl-ig">Tu cuenta de Instagram <span>(opcional)</span></label>
+    <input id="wl-ig" name="instagram" type="text" autocomplete="off" placeholder="@tucuenta" maxlength="60" />
+  </div>
+  <input type="hidden" name="template" value="" data-template />
+  <input type="hidden" name="source" value="" data-source />
+  <div class="wl__hp" aria-hidden="true">
+    <label for="wl-web">No rellenar</label>
+    <input id="wl-web" name="website" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+  <label class="wl__consent">
+    <input type="checkbox" name="consent" value="yes" required />
+    <span
+      >Acepto que Kalmaa me escriba cuando abra el acceso. He leído la <a href="/privacidad">política de privacidad</a
+      >.</span
+    >
+  </label>
+  <button type="submit" class="btn btn--lime">Apúntame a la lista</button>
+  <p class="wl__status" role="status" aria-live="polite" data-status></p>
+</form>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-waitlist]');
+  if (form) {
+    const status = form.querySelector<HTMLElement>('[data-status]')!;
+    const params = new URLSearchParams(location.search);
+    const tpl = form.querySelector<HTMLInputElement>('[data-template]');
+    const src = form.querySelector<HTMLInputElement>('[data-source]');
+    if (tpl) tpl.value = params.get('plantilla') ?? '';
+    if (src) src.value = params.get('utm_source') ?? document.referrer.slice(0, 200);
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const email = String(data.get('email') ?? '').trim();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        status.textContent = 'Revisa tu email.';
+        return;
+      }
+      if (!data.get('consent')) {
+        status.textContent = 'Necesitamos tu permiso para escribirte.';
+        return;
+      }
+      status.textContent = 'Enviando…';
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: data });
+        const body = await res.json().catch(() => ({}));
+        if (res.ok) {
+          form.reset();
+          status.textContent = '¡Listo! Te escribimos en cuanto abramos el acceso.';
+        } else {
+          status.textContent = body.error ?? 'No hemos podido apuntarte. Inténtalo de nuevo en un momento.';
+        }
+      } catch {
+        status.textContent = 'No hemos podido apuntarte. Inténtalo de nuevo en un momento.';
+      }
+    });
+  }
+</script>
+
+<style>
+  .wl {
+    display: grid;
+    gap: 18px;
+    max-width: 520px;
+    width: 100%;
+  }
+  .wl__field {
+    display: grid;
+    gap: 8px;
+  }
+  .wl label {
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .wl label span {
+    color: var(--k-muted);
+    font-weight: 400;
+  }
+  .wl input[type='email'],
+  .wl input[type='text'] {
+    min-height: 52px;
+    padding: 0 16px;
+    border-radius: 12px;
+    border: 1px solid var(--k-border-dark);
+    background: var(--k-graphite);
+    color: var(--k-white);
+    font: inherit;
+  }
+  .wl input::placeholder {
+    color: var(--k-muted);
+  }
+  .wl__consent {
+    display: flex !important;
+    gap: 10px;
+    align-items: flex-start;
+    font-weight: 400 !important;
+    color: var(--k-body-dark);
+  }
+  .wl__consent input {
+    margin-top: 4px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--k-lime);
+  }
+  .wl__hp {
+    position: absolute;
+    left: -9999px;
+  }
+  .wl__status {
+    min-height: 1.5em;
+    color: var(--k-lime);
+    font-weight: 500;
+  }
+</style>

@@ -1,0 +1,68 @@
+---
+import Logo from './Logo.astro';
+import { NAV, SITE } from '../data/site';
+---
+
+<header class="header">
+  <div class="wrap header__inner">
+    <a href="/" class="header__brand" aria-label="Kalmaa, inicio"><Logo /></a>
+    <nav class="header__nav" aria-label="Principal">
+      {NAV.map((item) => <a href={item.href}>{item.label}</a>)}
+      <a href={SITE.ctaHref}>Entrar</a>
+    </nav>
+    <a href={SITE.ctaHref} class="btn btn--lime header__cta">{SITE.ctaLabel}</a>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(14, 14, 16, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--k-graphite-2);
+  }
+  .header__inner {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    min-height: 72px;
+  }
+  .header__brand {
+    text-decoration: none;
+  }
+  .header__nav {
+    display: flex;
+    gap: 24px;
+    margin-left: auto;
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .header__nav a {
+    color: var(--k-body-dark);
+    text-decoration: none;
+  }
+  .header__nav a:hover {
+    color: var(--k-white);
+  }
+  .header__cta {
+    min-height: 42px;
+    padding: 0 16px;
+    font-size: 15px;
+  }
+  @media (max-width: 860px) {
+    .header__nav {
+      display: none;
+    }
+    .header__cta {
+      margin-left: auto;
+    }
+  }
+  @media (max-width: 380px) {
+    .header__cta {
+      padding: 0 12px;
+      font-size: 14px;
+    }
+  }
+</style>

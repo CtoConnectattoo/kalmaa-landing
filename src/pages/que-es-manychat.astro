@@ -1,0 +1,71 @@
+---
+import Article from '../layouts/Article.astro';
+import Sources from '../components/Sources.astro';
+import { MANYCHAT_SOURCES } from '../data/sources';
+
+const faqs = [
+  {
+    q: '¿Para qué sirve ManyChat?',
+    a: 'Para automatizar conversaciones en redes sociales y mensajería: responder comentarios y DMs de Instagram, enviar mensajes por palabra clave y llevar a los clientes a una web, una tienda o WhatsApp.',
+  },
+  {
+    q: '¿ManyChat es gratis?',
+    a: 'Tiene un plan gratis limitado a 25 contactos. Los planes de pago empiezan en 17 $/mes y cobran por contactos activos.',
+  },
+  {
+    q: '¿Hay alternativas a ManyChat?',
+    a: 'Sí. Kalmaa, por ejemplo, conecta tu ChatGPT o Claude con Instagram, tiene plantillas listas y cobra un precio fijo, sin pagar por contacto.',
+  },
+];
+---
+
+<Article
+  title="Qué es ManyChat y para qué sirve (2026) | Kalmaa"
+  description="Qué es ManyChat, para qué sirve, cómo funciona su constructor de flujos, cuánto cuesta en 2026 y qué alternativas hay si buscas algo más sencillo o con precio fijo."
+  eyebrow="Comparativa · Qué es ManyChat"
+  h1="Qué es ManyChat y para qué sirve"
+  answer="ManyChat es una herramienta para automatizar conversaciones en Instagram y otros canales de mensajería. Con ella creas flujos que envían un DM cuando alguien comenta una palabra clave, responde a una historia o te escribe. Desde marzo de 2026 cobra por contactos activos, con un plan gratis de 25 contactos y planes de pago desde 17 $/mes."
+  updated="2026-11-10"
+  faqs={faqs}
+>
+  <h2>Cómo funciona ManyChat</h2>
+  <p>
+    Se basa en un <strong>constructor de flujos</strong>: arrastras bloques (disparador, mensaje, botón, condición) y
+    los unes para decidir qué recibe cada persona. Es muy flexible, pero hay que aprender a montarlo y mantenerlo.
+  </p>
+
+  <h2>Canales</h2>
+  <p>
+    Instagram es su canal más usado para creadores y negocios. También trabaja con otros canales de mensajería, como
+    Facebook Messenger y WhatsApp <span class="verify">[VERIFICAR] lista actual de canales en manychat.com</span>.
+  </p>
+
+  <h2>Cuánto cuesta</h2>
+  <p>
+    Plan gratis con 25 contactos; Essential, 17 $/mes con 250 contactos; Pro, 39 $/mes con 2.500; Business, 99 $/mes con
+    7.500; y Advanced, 199 $/mes. El exceso de contactos se paga aparte. Todo el detalle en <a href="/manychat-precio"
+      >precio de ManyChat</a
+    >.
+  </p>
+
+  <h2>Para quién encaja y para quién no</h2>
+  <ul>
+    <li>
+      <strong>Encaja</strong> si quieres montar flujos complejos a medida y tienes tiempo (o alguien) para construirlos.
+    </li>
+    <li>
+      <strong>Encaja peor</strong> si solo necesitas responder comentarios y DMs con palabra clave, si no quieres
+      aprender un constructor o si tus Reels se hacen virales y no quieres que suba la factura por contacto.
+    </li>
+  </ul>
+
+  <h2>La alternativa: pedírselo a tu IA</h2>
+  <p>
+    Con Kalmaa no hay flujos que montar: activas una plantilla o se lo pides a ChatGPT o Claude, y lo dejas funcionando
+    las 24 horas. Precio fijo, sin pagar por contacto. Ver la <a href="/alternativas/manychat"
+      >comparativa Kalmaa vs. ManyChat</a
+    >.
+  </p>
+
+  <Sources sources={MANYCHAT_SOURCES} />
+</Article>

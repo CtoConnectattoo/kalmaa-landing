@@ -1,0 +1,296 @@
+---
+import Base from '../layouts/Base.astro';
+import FaqList from '../components/FaqList.astro';
+import { SITE, PRICING } from '../data/site';
+
+const faqs = [
+  {
+    q: '¿Qué pasa si llego a 1.000 DMs en el plan gratis?',
+    a: 'Tus automatizaciones se pausan hasta el mes siguiente y te avisamos antes; con Pro no hay límite.',
+  },
+  {
+    q: '¿Necesito pagar ChatGPT o Claude?',
+    a: 'Kalmaa no te cobra por usar tu IA; con Claude funciona también en su plan gratis; en ChatGPT, conectar apps propias requiere un plan de pago.',
+  },
+  {
+    q: '¿Por qué es más barato que ManyChat?',
+    a: 'Porque cobramos un precio fijo y no por contacto: en otras herramientas, cada Reel que funciona sube la factura.',
+  },
+  { q: '¿Puedo cambiar de plan o cancelar?', a: 'Sí, cuando quieras, desde tu panel.' },
+  {
+    q: '¿Tenéis precios para Latinoamérica?',
+    a: 'Sí, Pro cuesta 8 US$/mes (6 US$/mes pagando el año); pronto, también en tu moneda local.',
+  },
+];
+
+const included = [
+  'Comentario → DM',
+  'Historia → DM',
+  'Palabra clave en DM',
+  'Paso a WhatsApp, gratis',
+  'Por qué no saltó',
+  'ChatGPT y Claude (no cobramos por usar tu IA)',
+];
+
+const software = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Kalmaa',
+  url: SITE.url,
+  description: SITE.entity,
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  offers: [
+    { '@type': 'Offer', name: 'Gratis', price: '0', priceCurrency: 'EUR' },
+    { '@type': 'Offer', name: 'Pro mensual', price: String(PRICING.pro.monthly), priceCurrency: 'EUR' },
+    { '@type': 'Offer', name: 'Pro anual', price: String(PRICING.pro.yearlyTotal), priceCurrency: 'EUR' },
+  ],
+};
+---
+
+<Base
+  title="Precios de Kalmaa: gratis o Pro desde 9 €/mes, sin pagar por contacto"
+  description="Empieza gratis, sin tarjeta, con 2 automatizaciones y 1.000 DMs al mes. Pro por 12 €/mes o 9 €/mes en anual, con DMs y contactos ilimitados. Precio fijo, sin pagar por contacto."
+  schema={[software]}
+  faqs={faqs}
+>
+  <section class="section pricing-hero">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Precios</p>
+        <h1>Precio fijo. <span class="lime">Sin pagar por contacto.</span></h1>
+        <p>
+          Empieza gratis, sin tarjeta. Tengas 50 o 5.000 personas escribiéndote, pagas lo mismo. Al registrarte tienes
+          14 días de Pro para probarlo todo.
+        </p>
+      </div>
+
+      <div class="toggle" role="group" aria-label="Periodo de facturación">
+        <button type="button" class="toggle__btn" data-period="monthly" aria-pressed="false">Mensual</button>
+        <button type="button" class="toggle__btn" data-period="yearly" aria-pressed="true">
+          Anual <span>· ahorra hasta un 25 %</span>
+        </button>
+      </div>
+
+      <div class="plans">
+        <article class="plan">
+          <h2 class="plan__name">{PRICING.free.name}</h2>
+          <p class="plan__price">{PRICING.free.price}</p>
+          <p class="plan__note">{PRICING.free.note}</p>
+          <a href={SITE.ctaHref} class="btn btn--ghost">{PRICING.free.cta}</a>
+          <ul>{PRICING.free.features.map((f) => <li>{f}</li>)}</ul>
+        </article>
+
+        <article class="plan plan--pro">
+          <div class="plan__head">
+            <h2 class="plan__name">{PRICING.pro.name}</h2>
+            <span class="sticker">Recomendado</span>
+          </div>
+          <p class="plan__price">
+            <span data-price-yearly>{PRICING.pro.yearlyPerMonth} €</span><span data-price-monthly hidden
+              >{PRICING.pro.monthly} €</span
+            ><small>/mes</small>
+          </p>
+          <p class="plan__note">
+            <span data-note-yearly>Pagando el año ({PRICING.pro.yearlyTotal} €). O {PRICING.pro.monthly} €/mes al mes.</span
+            ><span data-note-monthly hidden>Pagando mes a mes. O {PRICING.pro.yearlyPerMonth} €/mes pagando el año.</span>
+          </p>
+          <a href={SITE.ctaHref} class="btn btn--lime">{PRICING.pro.cta}</a>
+          <ul>{PRICING.pro.features.map((f) => <li>{f}</li>)}</ul>
+        </article>
+      </div>
+
+      <div class="founders">
+        <p class="eyebrow">Precio de fundadores</p>
+        <p>
+          Las primeras 100 cuentas que pasen a Pro se quedan en <strong>9 €/mes pagando mes a mes</strong>, para
+          siempre mientras sigan suscritas.
+        </p>
+      </div>
+
+      <p class="note">
+        Precios sin IVA. En Latinoamérica, Pro cuesta {PRICING.latam.monthly} US$/mes ({PRICING.latam.yearlyPerMonth}
+        US$/mes pagando el año). ¿Gestionas varias cuentas de Instagram? <a href={`mailto:${SITE.contactEmail}`}
+          >Escríbenos</a
+        >.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Todos los planes incluyen</h2>
+      </div>
+      <ul class="included">{included.map((i) => <li>{i}</li>)}</ul>
+    </div>
+  </section>
+
+  <section class="section section--light faq-sec">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Preguntas</h2>
+      </div>
+      <FaqList faqs={faqs} />
+    </div>
+  </section>
+</Base>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-period]');
+  const set = (period: string) => {
+    buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.period === period)));
+    const yearly = period === 'yearly';
+    document.querySelectorAll<HTMLElement>('[data-price-yearly],[data-note-yearly]').forEach((el) => (el.hidden = !yearly));
+    document
+      .querySelectorAll<HTMLElement>('[data-price-monthly],[data-note-monthly]')
+      .forEach((el) => (el.hidden = yearly));
+  };
+  buttons.forEach((b) => b.addEventListener('click', () => set(b.dataset.period!)));
+</script>
+
+<style>
+  .pricing-hero .section-head {
+    margin-bottom: 32px;
+  }
+  .pricing-hero h1 {
+    font-size: clamp(2.4rem, 6vw, 4.6rem);
+  }
+  .toggle {
+    display: inline-flex;
+    background: var(--k-graphite);
+    border: 1px solid var(--k-border-dark);
+    border-radius: 14px;
+    padding: 4px;
+    margin-bottom: 32px;
+  }
+  .toggle__btn {
+    font: inherit;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--k-body-dark);
+    background: transparent;
+    border: 0;
+    border-radius: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
+  }
+  .toggle__btn span {
+    font-weight: 500;
+  }
+  .toggle__btn[aria-pressed='true'] {
+    background: var(--k-lime);
+    color: var(--k-black);
+  }
+  .plans {
+    display: grid;
+    gap: 20px;
+    max-width: 900px;
+  }
+  @media (min-width: 760px) {
+    .plans {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .plan {
+    background: var(--k-graphite);
+    border: 1px solid var(--k-graphite-2);
+    border-radius: 28px;
+    padding: 32px;
+    display: grid;
+    gap: 14px;
+    align-content: start;
+  }
+  .plan--pro {
+    border: 2px solid var(--k-lime);
+  }
+  .plan__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .plan__name {
+    font-size: 26px;
+  }
+  .plan__price {
+    font-family: var(--k-font-display);
+    font-weight: 800;
+    font-size: 56px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .plan__price small {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--k-muted);
+    margin-left: 4px;
+  }
+  .plan__note {
+    color: var(--k-muted);
+    font-size: 15px;
+    min-height: 2.6em;
+  }
+  .plan ul {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0;
+    display: grid;
+    gap: 10px;
+    color: var(--k-body-dark);
+  }
+  .plan li::before {
+    content: '✓';
+    color: var(--k-lime);
+    font-weight: 700;
+    margin-right: 10px;
+  }
+  .founders {
+    margin-top: 28px;
+    max-width: 900px;
+    border: 1px dashed var(--k-lime);
+    border-radius: 20px;
+    padding: 22px 26px;
+    display: grid;
+    gap: 8px;
+    color: var(--k-body-dark);
+  }
+  .founders strong {
+    color: var(--k-white);
+  }
+  .note {
+    margin-top: 24px;
+    color: var(--k-muted);
+    font-size: 15px;
+    max-width: 900px;
+  }
+  .note a {
+    color: var(--k-white);
+  }
+  .included {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 12px;
+    max-width: 900px;
+  }
+  @media (min-width: 760px) {
+    .included {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .included li {
+    background: var(--k-white);
+    border: 1px solid #e4e4e7;
+    border-radius: 16px;
+    padding: 16px 18px;
+    font-weight: 600;
+  }
+  .included li::before {
+    content: '✓';
+    margin-right: 10px;
+  }
+  .faq-sec {
+    padding-top: 0;
+  }
+</style>

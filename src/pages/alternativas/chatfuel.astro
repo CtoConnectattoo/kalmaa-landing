@@ -1,0 +1,73 @@
+---
+import Article from '../../layouts/Article.astro';
+
+const faqs = [
+  {
+    q: '¿Qué es Chatfuel?',
+    a: 'Una plataforma para crear chatbots y automatizar conversaciones en canales de mensajería como Instagram, Facebook Messenger y WhatsApp.',
+  },
+  {
+    q: '¿Kalmaa sirve como alternativa a Chatfuel?',
+    a: 'Si lo que necesitas es responder comentarios, historias y DMs de Instagram con palabra clave y llevar clientes a WhatsApp, sí. Si necesitas chatbots en varios canales, Chatfuel cubre más.',
+  },
+];
+
+const rows = [
+  ['Cómo se cobra', '[VERIFICAR]', 'Precio fijo, sin pagar por contacto'],
+  ['Plan gratis', '[VERIFICAR]', '2 automatizaciones y 1.000 DMs al mes, sin tarjeta'],
+  ['Primer plan de pago', '[VERIFICAR]', '12 €/mes o 9 €/mes en anual'],
+  ['Cómo se crea una automatización', 'Constructor de bots', 'Plantilla en un minuto o pidiéndoselo a tu IA'],
+  ['ChatGPT y Claude', '[VERIFICAR]', 'Se conecta a tu ChatGPT o Claude'],
+  ['Paso a WhatsApp', '[VERIFICAR]', 'Botón a tu WhatsApp, gratis'],
+  ['Canales', 'Instagram, Messenger y WhatsApp [VERIFICAR]', 'Solo Instagram'],
+];
+---
+
+<Article
+  title="Alternativa a Chatfuel para Instagram, con ChatGPT y Claude | Kalmaa"
+  description="Kalmaa vs. Chatfuel para Instagram: cómo se crean las automatizaciones, IA, WhatsApp y precio. Una alternativa a Chatfuel con plantillas, tu propia IA y precio fijo."
+  eyebrow="Comparativa · Alternativa a Chatfuel"
+  h1="Alternativa a Chatfuel para Instagram"
+  answer="Si usas Chatfuel sobre todo para Instagram, Kalmaa cubre lo esencial sin montar un bot: comentario, historia o DM con palabra clave → DM automático, paso gratis a WhatsApp y la posibilidad de pedírselo todo a ChatGPT o Claude. Precio fijo, sin pagar por contacto."
+  updated="2026-11-10"
+  faqs={faqs}
+>
+  <h2>Kalmaa vs. Chatfuel</h2>
+  <table>
+    <thead><tr><th></th><th>Chatfuel</th><th>Kalmaa</th></tr></thead>
+    <tbody>
+      {
+        rows.map(([k, f, c]) => (
+          <tr>
+            <td><strong>{k}</strong></td>
+            <td>{f.includes('[VERIFICAR]') ? <span class="verify">{f}</span> : f}</td>
+            <td>{c}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+  <p>
+    Los datos de Chatfuel están pendientes de comprobar en su web oficial antes de publicar:
+    <span class="verify">[VERIFICAR] precios y canales en chatfuel.com</span>.
+  </p>
+
+  <h2>Cuándo elegir Kalmaa</h2>
+  <ul>
+    <li>Tu canal principal es Instagram.</li>
+    <li>Quieres activar respuestas automáticas en un minuto, con plantillas.</li>
+    <li>Ya usas ChatGPT o Claude y quieres manejar tu Instagram desde ahí.</li>
+    <li>Quieres un precio fijo aunque te hagas viral.</li>
+  </ul>
+
+  <h2>Cuándo seguir con Chatfuel</h2>
+  <ul>
+    <li>Necesitas chatbots en varios canales a la vez.</li>
+    <li>Tienes flujos de conversación largos y complejos ya montados.</li>
+  </ul>
+
+  <p>
+    ¿Vienes de otra herramienta? Mira también la <a href="/alternativas/manychat">alternativa a ManyChat</a> y los
+    <a href="/precios">precios de Kalmaa</a>.
+  </p>
+</Article>

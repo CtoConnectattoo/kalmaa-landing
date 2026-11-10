@@ -1,0 +1,78 @@
+---
+import Article from '../layouts/Article.astro';
+import { SITE } from '../data/site';
+
+const faqs = [
+  {
+    q: '¿ChatGPT se puede conectar directamente con Instagram?',
+    a: 'No hay un botón directo en ChatGPT para Instagram. Hace falta una app intermedia que se conecte a tu cuenta de Instagram por la vía oficial y que ChatGPT pueda usar. Kalmaa es esa app.',
+  },
+  {
+    q: '¿Necesito ChatGPT de pago?',
+    a: 'Para añadir apps propias en ChatGPT hace falta un plan de pago. Kalmaa no te cobra por usar tu IA.',
+  },
+  {
+    q: '¿ChatGPT responderá solo a mis clientes?',
+    a: 'ChatGPT responde cuando se lo pides. Lo que funciona solo, las 24 horas, son tus automatizaciones por palabra clave, que puedes crear pidiéndoselas a ChatGPT.',
+  },
+  {
+    q: '¿Es seguro para mi cuenta?',
+    a: 'Kalmaa usa la API oficial de Instagram y el inicio de sesión oficial, sin tu contraseña, y respeta los límites de Instagram: nada de mensajes masivos ni a quien no te ha escrito.',
+  },
+];
+---
+
+<Article
+  title="ChatGPT e Instagram: responde comentarios y DMs con tu IA | Kalmaa"
+  description="Cómo usar ChatGPT con Instagram para responder comentarios, historias y DMs, y crear mensajes automáticos por palabra clave. Paso a paso y qué se puede hacer hoy."
+  eyebrow="Guía · ChatGPT + Instagram"
+  h1="ChatGPT e Instagram: responde Instagram con tu IA"
+  answer="ChatGPT no se conecta a Instagram por sí solo: necesita una app intermedia que acceda a tu cuenta por la vía oficial. Con Kalmaa, conectas tu cuenta profesional de Instagram, añades Kalmaa como app en ChatGPT y le pides lo que quieras: que responda a quien comentó PRECIO, que te resuma los DMs o que deje una automatización funcionando las 24 horas."
+  updated="2026-11-10"
+  faqs={faqs}
+>
+  <h2>Qué puedes hacer con ChatGPT en tu Instagram</h2>
+  <ul>
+    <li><strong>Responder comentarios por DM:</strong> «Responde a quien ha comentado PRECIO en mi último Reel».</li>
+    <li><strong>Leer tu bandeja:</strong> «¿Qué me han preguntado hoy por DM?».</li>
+    <li>
+      <strong>Crear automatizaciones:</strong> «Si alguien comenta GUÍA, envíale este PDF y pídele el email». Desde
+      ese momento funciona sola, las 24 horas.
+    </li>
+    <li><strong>Resumir:</strong> «Resume las preguntas que más se repiten esta semana».</li>
+    <li>
+      <strong>Priorizar:</strong> «¿A quién tengo que contestar primero hoy?». ChatGPT ordena tus DMs por intención de
+      compra, clientes y tiempo que queda para responder.
+    </li>
+    <li><strong>Llevar a WhatsApp:</strong> «Manda a mi WhatsApp a quien pregunte por una cita».</li>
+  </ul>
+
+  <h2>Cómo se conecta, paso a paso</h2>
+  <ol>
+    <li>
+      <strong>Conecta tu Instagram a Kalmaa.</strong> Necesitas una cuenta profesional (de empresa o de creador). Entras
+      con el inicio de sesión oficial de Instagram: nunca te pedimos la contraseña.
+    </li>
+    <li>
+      <strong>Añade Kalmaa a ChatGPT.</strong> Como una app más dentro de ChatGPT. Te guiamos paso a paso al registrarte.
+    </li>
+    <li>
+      <strong>Pídeselo.</strong> Escribe lo que quieres hacer en tu Instagram, como hablarías con un ayudante.
+    </li>
+  </ol>
+
+  <h2>Qué no hace (por las reglas de Instagram)</h2>
+  <p>
+    Instagram solo deja responder a quien te ha escrito o comentado. Por eso Kalmaa no escribe primero a nadie, no envía
+    mensajes masivos y no escribe a quien te empieza a seguir. Tampoco funciona con TikTok. Así cuidamos tu cuenta.
+  </p>
+
+  <h2>¿Y con Claude?</h2>
+  <p>
+    Funciona igual. Si usas Claude en lugar de ChatGPT, mira la guía de <a href="/claude-instagram"
+      >Claude e Instagram</a
+    >. Si quieres entender la parte técnica, lee <a href="/mcp-instagram">qué es un MCP para Instagram</a>.
+  </p>
+
+  <p><a href={SITE.ctaHref}>Apúntate para conectar tu Instagram con ChatGPT</a>.</p>
+</Article>

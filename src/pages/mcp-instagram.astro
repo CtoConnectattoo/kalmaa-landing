@@ -1,0 +1,68 @@
+---
+import Article from '../layouts/Article.astro';
+import { SITE } from '../data/site';
+
+const faqs = [
+  {
+    q: '¿Qué significa MCP?',
+    a: 'Model Context Protocol: un estándar abierto para que asistentes de IA como Claude o ChatGPT usen herramientas y datos externos.',
+  },
+  {
+    q: '¿Tengo que saber programar para usar un MCP de Instagram?',
+    a: 'No. Con Kalmaa añades la conexión en ChatGPT o Claude como una app más, sin escribir código.',
+  },
+  {
+    q: '¿Qué permisos necesita?',
+    a: 'Los de mensajes y comentarios de Instagram, que se conceden con el inicio de sesión oficial de Instagram. Puedes quitar el acceso cuando quieras.',
+  },
+];
+
+const tools = [
+  ['Leer comentarios y DMs', 'Para que tu IA sepa qué te han escrito.'],
+  ['Responder por DM o en público', 'Siempre a quien te ha comentado o escrito.'],
+  ['Crear, editar, pausar y borrar automatizaciones', 'Por palabra clave en comentarios, historias o DMs.'],
+  ['Resumen de resultados', 'Cuántas conversaciones ha atendido cada automatización.'],
+  ['Priorizar la bandeja', 'Ordena por intención de compra, clientes y tiempo que queda para responder.'],
+];
+---
+
+<Article
+  title="MCP para Instagram: conecta ChatGPT y Claude con tu cuenta | Kalmaa"
+  description="Qué es un MCP para Instagram, qué herramientas ofrece a ChatGPT y Claude y cómo usarlo sin programar para responder comentarios y DMs y crear mensajes automáticos."
+  eyebrow="Guía · MCP para Instagram"
+  h1="MCP para Instagram: tu IA, conectada a tu cuenta"
+  answer="Un MCP para Instagram es un conector que permite a una IA como ChatGPT o Claude leer y responder los comentarios y DMs de tu cuenta, y crear automatizaciones, usando la API oficial de Instagram. Kalmaa es un MCP para Instagram listo para usar: lo añades en tu IA como una app más, sin programar."
+  updated="2026-11-10"
+  faqs={faqs}
+>
+  <h2>Qué es MCP, en dos líneas</h2>
+  <p>
+    MCP (Model Context Protocol) es un estándar abierto para conectar asistentes de IA con herramientas externas. En vez
+    de copiar y pegar, tu IA puede hacer cosas en otras aplicaciones cuando se lo pides.
+  </p>
+
+  <h2>Qué herramientas da el MCP de Kalmaa a tu IA</h2>
+  <table>
+    <thead>
+      <tr><th>Herramienta</th><th>Para qué sirve</th></tr>
+    </thead>
+    <tbody>
+      {tools.map(([t, d]) => <tr><td><strong>{t}</strong></td><td>{d}</td></tr>)}
+    </tbody>
+  </table>
+
+  <h2>Límites que respeta</h2>
+  <ul>
+    <li>Una respuesta privada por comentario, dentro de los 7 días siguientes.</li>
+    <li>Respuestas a DMs dentro de la ventana de 24 horas desde el último mensaje de la persona.</li>
+    <li>Nada de envíos masivos ni de escribir primero.</li>
+  </ul>
+
+  <h2>Dónde usarlo</h2>
+  <p>
+    En <a href="/chatgpt-instagram">ChatGPT</a> y en <a href="/claude-instagram">Claude</a>. En Claude funciona también
+    en el plan gratis; en ChatGPT, añadir apps propias requiere un plan de pago.
+  </p>
+
+  <p><a href={SITE.ctaHref}>Apúntate a la lista de espera de Kalmaa</a>.</p>
+</Article>
