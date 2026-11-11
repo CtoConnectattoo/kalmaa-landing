@@ -6,3 +6,7 @@ dist/
 .env.*
 !.env.example
 .DS_Store
+
+# Claves de cuentas de servicio (nunca al repo)
+kalmaa-seo-*.json
+*-service-account*.json
