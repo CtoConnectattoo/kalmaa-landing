@@ -1,0 +1,93 @@
+---
+// Captura del producto exportada de los diseños de /disenos (11 nov 2026).
+// Sirve la versión móvil en pantallas estrechas y AVIF/WebP en varios tamaños.
+// Cuando exista la app, basta con sustituir los PNG de src/assets/capturas por capturas reales.
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  desktop: ImageMetadata;
+  mobile?: ImageMetadata;
+  alt: string;
+  caption?: string;
+  priority?: boolean;
+  frame?: boolean;
+}
+
+const { desktop, mobile, alt, caption, priority = false, frame = true } = Astro.props;
+
+const widthsFor = (img: ImageMetadata, list: number[]) => list.filter((w) => w <= img.width);
+const srcset = async (img: ImageMetadata, list: number[], format: 'avif' | 'webp') => {
+  const widths = widthsFor(img, list);
+  const out = await Promise.all(widths.map((width) => getImage({ src: img, width, format })));
+  return out.map((o, i) => `${o.src} ${widths[i]}w`).join(', ');
+};
+
+const D = [720, 1100, 1600, 2200, 2880];
+const M = [390, 780];
+const mobileMedia = '(max-width: 699px)';
+const sizes = '(max-width: 699px) 100vw, (max-width: 1240px) 92vw, 1160px';
+
+const fallback = await getImage({ src: desktop, width: Math.min(1600, desktop.width), format: 'webp' });
+const sources = [
+  ...(mobile
+    ? [
+        { media: mobileMedia, type: 'image/avif', srcset: await srcset(mobile, M, 'avif') },
+        { media: mobileMedia, type: 'image/webp', srcset: await srcset(mobile, M, 'webp') },
+      ]
+    : []),
+  { type: 'image/avif', srcset: await srcset(desktop, D, 'avif') },
+  { type: 'image/webp', srcset: await srcset(desktop, D, 'webp') },
+];
+---
+
+<figure
+  class:list={['shot', { 'shot--frame': frame, 'shot--art': mobile }]}
+  style={mobile ? `--ar-m: ${mobile.width} / ${mobile.height}` : undefined}
+>
+  <picture>
+    {sources.map((s) => <source media={s.media} type={s.type} srcset={s.srcset} sizes={sizes} />)}
+    <img
+      src={fallback.src}
+      alt={alt}
+      width={desktop.width}
+      height={desktop.height}
+      loading={priority ? 'eager' : 'lazy'}
+      fetchpriority={priority ? 'high' : 'auto'}
+      decoding="async"
+    />
+  </picture>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .shot {
+    margin: 0;
+    display: grid;
+    gap: 12px;
+    justify-items: center;
+  }
+  .shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .shot--frame picture {
+    display: block;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--k-border-dark);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  }
+  @media (max-width: 699px) {
+    .shot--art img {
+      aspect-ratio: var(--ar-m);
+    }
+  }
+  .shot figcaption {
+    font-size: 14px;
+    color: var(--k-muted);
+    text-align: center;
+  }
+</style>

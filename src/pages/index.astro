@@ -1,7 +1,16 @@
 ---
 import Base from '../layouts/Base.astro';
-import AiChatMock from '../components/AiChatMock.astro';
-import WhatsappMock from '../components/WhatsappMock.astro';
+import Captura from '../components/Captura.astro';
+import c1 from '../assets/capturas/c1-portada.png';
+import c1m from '../assets/capturas/c1-portada-movil.png';
+import c2 from '../assets/capturas/c2-conectar-ia.png';
+import c2m from '../assets/capturas/c2-conectar-ia-movil.png';
+import c3 from '../assets/capturas/c3-plantillas.png';
+import c3m from '../assets/capturas/c3-plantillas-movil.png';
+import c4 from '../assets/capturas/c4-whatsapp.png';
+import c4m from '../assets/capturas/c4-whatsapp-movil.png';
+import c5 from '../assets/capturas/c5-inicio.png';
+import c5m from '../assets/capturas/c5-inicio-movil.png';
 import FaqList from '../components/FaqList.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { SITE, PRICING } from '../data/site';
@@ -126,7 +135,15 @@ const software = {
           <li>Plan gratis</li>
         </ul>
       </div>
-      <div class="hero__mock"><AiChatMock /></div>
+      <div class="hero__mock">
+        <Captura
+          desktop={c1}
+          mobile={c1m}
+          frame={false}
+          priority
+          alt="Chat con la IA: «Responde por DM a quien ha comentado PRECIO en mi último Reel y pásales el enlace de reservas». La IA responde que lo ha hecho usando Kalmaa, y al lado se ve en Instagram el DM que recibe la clienta con el botón «Reservar cita»."
+        />
+      </div>
     </div>
   </section>
 
@@ -159,6 +176,13 @@ const software = {
           ))
         }
       </ol>
+      <div class="section-shot">
+        <Captura
+          desktop={c2}
+          mobile={c2m}
+          alt="Panel de Kalmaa en el paso «Conecta tu IA», con una tarjeta para ChatGPT y otra para Claude y ejemplos de peticiones como «¿Qué me han preguntado hoy por DM?»."
+        />
+      </div>
     </div>
   </section>
 
@@ -193,6 +217,13 @@ const software = {
           tu IA.
         </p>
       </div>
+      <div class="section-shot section-shot--before">
+        <Captura
+          desktop={c3}
+          mobile={c3m}
+          alt="Plantillas de Kalmaa (GUÍA, PRECIO, CLASE, sorteo, CÓDIGO y CITA) con el editor de «Envía tu guía gratis»: palabra clave, respuesta pública, mensaje privado con botón, petición de email y vista previa del DM."
+        />
+      </div>
       <ul class="grid grid--3 tpl">
         {
           templates.map((t) => (
@@ -214,8 +245,8 @@ const software = {
   </section>
 
   <!-- Instagram + WhatsApp -->
-  <section class="section section--split">
-    <div class="wrap split">
+  <section class="section">
+    <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">Instagram + WhatsApp</p>
         <h2>De un comentario a tu WhatsApp, <span class="lime">gratis</span></h2>
@@ -224,7 +255,13 @@ const software = {
           sin pagar por mensaje.
         </p>
       </div>
-      <WhatsappMock />
+      <div class="section-shot">
+        <Captura
+          desktop={c4}
+          mobile={c4m}
+          alt="De Instagram a WhatsApp en tres pasos: alguien comenta CITA en un Reel, Kalmaa le responde por DM con el botón «Abrir WhatsApp» y se abre el chat de WhatsApp del negocio."
+        />
+      </div>
     </div>
   </section>
 
@@ -281,6 +318,14 @@ const software = {
             cuenta.
           </p>
         </div>
+      </div>
+      <div class="section-shot">
+        <Captura
+          desktop={c5}
+          mobile={c5m}
+          caption="Ejemplo del panel de Kalmaa. Las cifras son ilustrativas."
+          alt="Inicio del panel de Kalmaa: Instagram conectado por la integración oficial, automatizaciones activas y actividad, con avisos como «Instagram solo permite un DM por comentario» y respuestas en cola para respetar el límite de Instagram."
+        />
       </div>
     </div>
   </section>
@@ -339,13 +384,17 @@ const software = {
     color: var(--k-lime);
     margin-right: 6px;
   }
-  .hero__mock {
-    display: flex;
-    justify-content: center;
+  .hero__copy {
+    max-width: 860px;
   }
-  @media (min-width: 980px) {
-    .hero__inner {
-      grid-template-columns: 1.25fr 1fr;
+  .hero__mock {
+    width: 100%;
+    max-width: 1200px;
+    justify-self: center;
+  }
+  @media (max-width: 699px) {
+    .hero__mock {
+      max-width: 420px;
     }
   }
 
@@ -471,17 +520,16 @@ const software = {
     color: var(--k-lime);
   }
 
-  .split {
-    display: grid;
-    gap: 40px;
-    align-items: center;
+  .section-shot {
+    max-width: 1160px;
+    margin: 48px auto 0;
   }
-  .split .section-head {
-    margin-bottom: 0;
+  .section-shot--before {
+    margin: 0 auto 40px;
   }
-  @media (min-width: 900px) {
-    .split {
-      grid-template-columns: 1.2fr 1fr;
+  @media (max-width: 699px) {
+    .section-shot {
+      max-width: 420px;
     }
   }
 

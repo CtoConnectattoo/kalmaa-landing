@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Onboarding · escritorio</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:#0E0E10}</style>
+</helmet>
+<div style="width: 1440px; height: 900px; display: flex; font-family: Inter, sans-serif; color: #0E0E10; background: #F4F4F5">
+
+  <aside style="width: 440px; flex: none; box-sizing: border-box; background: #0E0E10; color: #FFFFFF; padding: 48px 44px; display: flex; flex-direction: column; gap: 36px">
+    <div style="display: flex; align-items: center; gap: 10px"><svg width="36" height="36" viewBox="0 0 112 112" aria-hidden="true"><path d="M20 12h72a12 12 0 0 1 12 12v48a12 12 0 0 1-12 12H48l-24 20V84h-4A12 12 0 0 1 8 72V24a12 12 0 0 1 12-12z" fill="#C6F432"></path><circle cx="40" cy="48" r="12" fill="none" stroke="#0E0E10" stroke-width="8"></circle><path d="M52 36v24" stroke="#0E0E10" stroke-width="8" stroke-linecap="round"></path><circle cx="72" cy="48" r="12" fill="none" stroke="#0E0E10" stroke-width="8"></circle><path d="M84 36v24" stroke="#0E0E10" stroke-width="8" stroke-linecap="round"></path></svg><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 28px; letter-spacing: -0.05em">kalmaa</span></div>
+    <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 40px; line-height: 1; letter-spacing: -0.04em">Tu primera automatización, en <span style="color: #C6F432">2 minutos</span></div>
+    <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px">
+      <sc-for list="{{ pasos }}" as="p" hint-placeholder-count="3">
+        <li style="{{ p.rowStyle }}"><span style="{{ p.dotStyle }}">{{ p.n }}</span><span>{{ p.titulo }}</span></li>
+      </sc-for>
+    </ol>
+    <div style="flex: 1"></div>
+    <div style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: #D4D4D8"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6l7-3z" fill="none" stroke="#C6F432" stroke-width="2.4" stroke-linejoin="round"></path></svg>Integración oficial con la API de Instagram</div>
+  </aside>
+
+  <main style="flex: 1; min-width: 0; box-sizing: border-box; padding: 64px 88px; display: flex; flex-direction: column; gap: 24px">
+    <sc-if value="{{ enPasos }}" hint-placeholder-val="{{ true }}">
+      <div style="font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #52525B">Paso {{ numero }} de 3</div>
+    </sc-if>
+
+    <sc-if value="{{ s0 }}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; gap: 18px; max-width: 520px">
+        <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 52px; line-height: 1; letter-spacing: -0.04em">Crea tu cuenta</h1>
+        <p style="margin: 0; font-size: 18px; color: #3F3F46">Tu cuenta de Kalmaa es tuya: podrás conectar uno o varios Instagram y tu ChatGPT o Claude.</p>
+        <button type="button" onClick="{{ siguiente }}" style="min-height: 54px; border: 1px solid #D4D4D8; border-radius: 12px; background: #FFFFFF; color: #0E0E10; font: 600 17px Inter, sans-serif; cursor: pointer">Continuar con Google</button>
+        <div style="display: flex; flex-direction: column; gap: 6px"><label for="o-email" style="font-weight: 600">O con tu email</label><div style="display: flex; gap: 10px"><input id="o-email" placeholder="tu@email.com" style="flex: 1; min-height: 50px; padding: 0 14px; border: 1px solid #D4D4D8; border-radius: 12px; font: 16px Inter, sans-serif"><button type="button" onClick="{{ siguiente }}" style="min-height: 50px; padding: 0 20px; border: 0; border-radius: 12px; background: #0E0E10; color: #C6F432; font: 600 16px Inter, sans-serif; cursor: pointer">Enviar enlace</button></div></div>
+        <p style="margin: 0; font-size: 14px; color: #52525B">Gratis y sin tarjeta, con 14 días de Pro incluidos.</p>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ s1 }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 16px; max-width: 580px">
+        <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 52px; line-height: 1; letter-spacing: -0.04em">Conecta tu Instagram</h1>
+        <p style="margin: 0; font-size: 18px; color: #3F3F46">Con el inicio de sesión oficial de Instagram (Meta). Nunca vemos tu contraseña.</p>
+        <div style="background: #FFFFFF; border-radius: 18px; padding: 20px 22px; display: flex; flex-direction: column; gap: 8px"><b>Tú decides cuándo actúa Kalmaa</b><span>Solo responde cuando <b>tú activas una automatización</b> o <b>se lo pides a tu IA</b>. Nunca por su cuenta.</span><span style="color: #52525B; font-size: 14px">Nunca publica en tu perfil ni escribe a quien no te ha escrito. Puedes quitar el permiso cuando quieras.</span></div>
+        <div style="padding: 14px 18px; background: #FFF4D6; border-radius: 14px; font-size: 15px; color: #3F3F46"><b style="color: #0E0E10">Deja activados todos los permisos</b> que te pida Instagram. Si quitas uno, los DMs no se enviarán.</div>
+        <button type="button" onClick="{{ siguiente }}" style="min-height: 54px; border: 0; border-radius: 12px; background: #0E0E10; color: #C6F432; font: 700 17px Inter, sans-serif; cursor: pointer">Conectar con Instagram</button>
+        <a href="#" style="font-size: 15px">¿Tu cuenta es personal? Pásala a profesional en 1 minuto</a>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ s2 }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; gap: 32px; align-items: flex-start">
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+          <h1 style="margin: 0 0 4px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 44px; line-height: 1; letter-spacing: -0.04em">Elige tu primera automatización</h1>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+            <sc-for list="{{ objetivos }}" as="o" hint-placeholder-count="4">
+              <button type="button" onClick="{{ o.pick }}" style="{{ o.style }}"><b style="font-size: 16px">{{ o.titulo }}</b><span style="{{ o.subStyle }}">{{ o.sub }}</span></button>
+            </sc-for>
+          </div>
+          <button type="button" onClick="{{ pickOtro }}" style="{{ otroStyle }}"><b style="font-size: 16px">Otro</b><span style="font-size: 13px; color: #52525B">Cuéntanos qué quieres conseguir</span></button>
+
+          <sc-if value="{{ verOtro }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 10px; padding: 16px; background: #FFFFFF; border: 2px solid #0E0E10; border-radius: 14px">
+              <label for="o-otro" style="font-weight: 600">¿Qué quieres que haga tu Instagram?</label>
+              <textarea id="o-otro" rows="2" onChange="{{ setTexto }}" placeholder="Ej.: cuando alguien pregunte por mis talleres, enviarle las fechas y apuntarlo" style="padding: 10px 12px; border: 1px solid #D4D4D8; border-radius: 10px; font: 15px Inter, sans-serif; resize: none">{{ texto }}</textarea>
+              <div style="display: flex; gap: 12px; align-items: center"><button type="button" onClick="{{ enviarOtro }}" style="min-height: 44px; padding: 0 20px; border: 0; border-radius: 10px; background: #0E0E10; color: #C6F432; font: 600 15px Inter, sans-serif; cursor: pointer">Continuar</button><span style="font-size: 13px; color: #52525B">Lo guardamos para mejorar Kalmaa.</span></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ verSugerencia }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 10px; padding: 16px; background: #FFFFFF; border-radius: 14px">
+              <b>Gracias. Así lo puedes montar:</b>
+              <sc-if value="{{ hayMatch }}" hint-placeholder-val="{{ true }}">
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 14px; background: #F4F4F5; border-radius: 12px"><span>La plantilla más parecida: <b>{{ matchTitulo }}</b></span><button type="button" onClick="{{ usarMatch }}" style="min-height: 40px; padding: 0 14px; border: 0; border-radius: 10px; background: #C6F432; color: #0E0E10; font: 700 14px Inter, sans-serif; cursor: pointer">Usarla</button></div>
+              </sc-if>
+              <div style="display: flex; flex-direction: column; gap: 6px; padding: 12px 14px; background: #0E0E10; color: #FFFFFF; border-radius: 12px"><span>O créala con tu IA. Copia esta petición en ChatGPT o Claude:</span><code style="font: 14px Inter, sans-serif; color: #C6F432">«Crea una automatización en Kalmaa: {{ textoCorto }}»</code><a href="C2-ConectarIA.dc.html" style="color: #FFFFFF; font-weight: 600">Conectar mi IA</a></div>
+              <a href="#" onClick="{{ irInicio }}" style="font-size: 14px; color: #52525B">Ir al inicio sin activar nada</a>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ verPlantilla }}" hint-placeholder-val="{{ true }}">
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+            <div style="display: flex; flex-direction: column; gap: 6px"><label for="o-pal" style="font-weight: 600">Palabra</label><input id="o-pal" value="{{ palabra }}" style="min-height: 46px; padding: 0 12px; border: 1px solid #D4D4D8; border-radius: 10px; font: 600 16px Inter, sans-serif"></div>
+            <div style="display: flex; flex-direction: column; gap: 6px"><label for="o-msg" style="font-weight: 600">Mensaje</label><input id="o-msg" value="{{ mensaje }}" style="min-height: 46px; padding: 0 12px; border: 1px solid #D4D4D8; border-radius: 10px; font: 15px Inter, sans-serif"></div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 20px"><button type="button" onClick="{{ siguiente }}" style="min-height: 54px; padding: 0 32px; border: 0; border-radius: 12px; background: #C6F432; color: #0E0E10; font: 700 17px Inter, sans-serif; cursor: pointer">Activar</button><a href="C2-ConectarIA.dc.html" style="font-weight: 600">Prefiero crearla con mi IA</a><a href="#" style="color: #52525B">Empezar de cero</a></div>
+          </sc-if>
+        </div>
+        <sc-if value="{{ verPlantilla }}" hint-placeholder-val="{{ true }}">
+        <div style="width: 240px; flex: none; height: 480px; box-sizing: border-box; border: 8px solid #1C1C1F; border-radius: 34px; overflow: hidden; background: #FFFFFF; display: flex; flex-direction: column; font-size: 13px; color: #000">
+          <div style="display: flex; align-items: center; gap: 8px; padding: 16px 12px 10px; border-bottom: 1px solid #EFEFEF"><div style="width: 24px; height: 24px; border-radius: 50%; background: #0E0E10"></div><b>tu_negocio</b></div>
+          <div style="padding: 12px; display: flex; flex-direction: column; gap: 8px">
+            <div style="align-self: center; font-size: 11px; color: #737373; text-align: center">tu_negocio respondió a tu comentario: «{{ palabra }}»</div>
+            <div style="padding: 9px 12px; background: #EFEFEF; border-radius: 16px">{{ mensaje }}</div>
+            <div style="border: 1px solid #DBDBDB; border-radius: 12px; overflow: hidden"><div style="padding: 8px 11px"><b>{{ boton }}</b></div><div style="border-top: 1px solid #DBDBDB; padding: 8px; text-align: center; font-weight: 600; color: #0095F6">Abrir</div></div>
+          </div>
+        </div>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ s3 }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 16px; max-width: 760px">
+        <div style="padding: 18px 20px; background: #C6F432; border-radius: 16px; display: flex; gap: 12px; align-items: center; font-size: 17px"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#0E0E10" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg><span><b>«Comenta {{ palabra }}» está activa.</b> Responde las 24 horas.</span></div>
+        <h1 style="margin: 8px 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 40px; letter-spacing: -0.03em">Primeros pasos · 1 de 3</h1>
+        <div style="padding: 22px; background: #0E0E10; color: #FFFFFF; border-radius: 18px; display: flex; justify-content: space-between; align-items: center; gap: 20px">
+          <div style="display: flex; flex-direction: column; gap: 6px"><span style="align-self: flex-start; padding: 3px 8px; background: #C6F432; color: #0E0E10; border-radius: 6px; font-size: 12px; font-weight: 700">Recomendado</span><b style="font-size: 20px">Conecta tu IA</b><span style="color: #D4D4D8">Pregúntale a ChatGPT: «¿A quién tengo que contestar primero hoy?»</span></div>
+          <a href="C2-ConectarIA.dc.html" style="flex: none; display: inline-flex; align-items: center; min-height: 48px; padding: 0 20px; border-radius: 12px; background: #C6F432; color: #0E0E10; font-weight: 700; text-decoration: none">Conectar ChatGPT o Claude</a>
+        </div>
+        <div style="padding: 18px 22px; background: #FFFFFF; border-radius: 16px; display: flex; flex-direction: column; gap: 2px"><b>Prueba tu automatización</b><span style="color: #52525B">Comenta {{ palabra }} en tu último post desde otra cuenta o pídeselo a un amigo. Te avisaremos cuando salga el primer DM.</span></div>
+        <div style="padding: 18px 22px; background: #FFFFFF; border-radius: 16px; display: flex; flex-direction: column; gap: 2px"><b>Crea tu segunda automatización</b><span style="color: #52525B">Por ejemplo, para las respuestas a tus historias.</span></div>
+        <a href="C5-Inicio.dc.html" style="font-weight: 600">Ir al inicio</a>
+      </div>
+    </sc-if>
+
+    <div style="flex: 1"></div>
+    <sc-if value="{{ puedeVolver }}" hint-placeholder-val="{{ false }}">
+      <button type="button" onClick="{{ anterior }}" style="align-self: flex-start; min-height: 44px; padding: 0 16px; border: 0; background: transparent; color: #52525B; font: 500 15px Inter, sans-serif; cursor: pointer">← Volver</button>
+    </sc-if>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { step: 0, objetivo: 0, otro: false, enviado: false, texto: '' }; }
+  renderVals() {
+    const step = this.state.step;
+    const titulos = ['Crea tu cuenta', 'Conecta tu Instagram', 'Elige tu primera automatización'];
+    const pasos = titulos.map((t, i) => {
+      const done = i < step, cur = i === step;
+      return {
+        n: done ? '✓' : String(i + 1), titulo: t,
+        rowStyle: 'display: flex; align-items: center; gap: 14px; padding: 12px 14px; border-radius: 12px; font-size: 17px; ' + (cur ? 'background: #1C1C1F; color: #FFFFFF; font-weight: 700' : (done ? 'color: #D4D4D8' : 'color: #A1A1AA')),
+        dotStyle: 'width: 30px; height: 30px; flex: none; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; ' + (cur || done ? 'background: #C6F432; color: #0E0E10' : 'border: 1px solid #3F3F46; color: #A1A1AA')
+      };
+    });
+    const objs = [
+      ['Enviar una guía', 'Comenta GUÍA → DM con tu enlace', 'GUÍA', '¡Hola! Aquí tienes la guía gratis.', 'Descargar guía'],
+      ['Dar precios', 'Comenta PRECIO → DM con tu tarifa', 'PRECIO', '¡Hola! Te paso precios y enlace para reservar.', 'Ver precios'],
+      ['Llevar a mi WhatsApp', 'Comenta CITA → botón a WhatsApp, gratis', 'CITA', '¡Hola! Escríbeme por WhatsApp y te doy cita.', 'Abrir WhatsApp'],
+      ['Captar emails', 'Pide el email en el DM y guárdalo', 'INFO', '¡Hola! ¿Me dejas tu email y te envío la info?', 'Ver la info']
+    ];
+    const sel = objs[this.state.objetivo];
+    const texto = this.state.texto || '';
+    const t = texto.toLowerCase();
+    let match = -1;
+    if (/precio|tarifa|cu[aá]nto/.test(t)) match = 1;
+    else if (/whatsapp|cita|reserv/.test(t)) match = 2;
+    else if (/email|correo|lista/.test(t)) match = 3;
+    else if (/gu[ií]a|pdf|enlace|link|recurso|taller|fecha/.test(t)) match = 0;
+    const otro = this.state.otro;
+    const objetivos = objs.map((o, i) => {
+      const on = !otro && i === this.state.objetivo;
+      return {
+        titulo: o[0], sub: o[1],
+        pick: () => this.setState({ objetivo: i, otro: false, enviado: false }),
+        style: 'text-align: left; padding: 16px; border-radius: 14px; display: flex; flex-direction: column; gap: 4px; cursor: pointer; font-family: Inter, sans-serif; ' + (on ? 'background: #0E0E10; color: #FFFFFF; border: 2px solid #0E0E10' : 'background: #FFFFFF; color: #0E0E10; border: 2px solid #FFFFFF'),
+        subStyle: 'font-size: 13px; color: ' + (on ? '#C6F432' : '#52525B')
+      };
+    });
+    return {
+      pasos, objetivos, numero: step + 1,
+      palabra: sel[2], mensaje: sel[3], boton: sel[4],
+      enPasos: step < 3,
+      otroStyle: 'text-align: left; padding: 14px 16px; border-radius: 14px; display: flex; gap: 12px; align-items: baseline; cursor: pointer; font-family: Inter, sans-serif; background: #FFFFFF; color: #0E0E10; border: 2px ' + (otro ? 'solid #0E0E10' : 'dashed #A1A1AA'),
+      pickOtro: () => this.setState({ otro: true, enviado: false }),
+      verPlantilla: !otro,
+      verOtro: otro && !this.state.enviado,
+      verSugerencia: otro && this.state.enviado,
+      texto,
+      setTexto: (e) => this.setState({ texto: e && e.target ? e.target.value : '' }),
+      enviarOtro: () => this.setState({ enviado: true }),
+      hayMatch: match >= 0,
+      matchTitulo: match >= 0 ? objs[match][0] : '',
+      usarMatch: () => this.setState({ objetivo: match, otro: false, enviado: false }),
+      textoCorto: texto ? texto.slice(0, 90) : 'cuando alguien pregunte por mis talleres, envíale las fechas',
+      irInicio: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ step: 3 }); },
+      s0: step === 0, s1: step === 1, s2: step === 2, s3: step === 3,
+      puedeVolver: step > 0,
+      siguiente: () => this.setState({ step: Math.min(3, step + 1) }),
+      anterior: () => this.setState({ step: Math.max(0, step - 1) })
+    };
+  }
+}
+</script>
+</body>
+</html>
