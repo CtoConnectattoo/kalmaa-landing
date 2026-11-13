@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Captura 3 · Editor de plantilla (móvil)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width: 390px; height: 844px; display: flex; flex-direction: column; font-family: Inter, sans-serif; color: #0E0E10; background: #F4F4F5">
+  <div style="flex: none; background: #0E0E10; color: #FFFFFF; padding: 14px 18px; display: flex; align-items: center; gap: 12px">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    <b style="font-size: 16px">Envía tu guía gratis</b>
+  </div>
+  <div style="flex: 1; overflow: hidden; padding: 16px; display: flex; flex-direction: column; gap: 12px; font-size: 14px">
+    <div style="background: #FFFFFF; border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 6px">
+      <span style="font-size: 12px; font-weight: 600; color: #52525B">Vista previa del DM</span>
+      <div style="padding: 8px 11px; background: #EFEFEF; border-radius: 16px; max-width: 92%">¡Hola! Aquí tienes la guía gratis. ¿Me dejas tu email?</div>
+      <div style="border: 1px solid #DBDBDB; border-radius: 12px; overflow: hidden; max-width: 92%"><div style="padding: 8px 11px"><b>Descargar guía</b></div><div style="border-top: 1px solid #DBDBDB; padding: 8px; text-align: center; font-weight: 600; color: #0095F6">Abrir</div></div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 6px"><label for="m-disp" style="font-weight: 600">Cuándo</label><select id="m-disp" style="min-height: 44px; padding: 0 12px; border: 1px solid #D4D4D8; border-radius: 10px; font: 15px Inter, sans-serif; background: #FFFFFF"><option>Alguien comenta una palabra</option></select></div>
+    <div style="display: flex; flex-direction: column; gap: 6px"><label for="m-pal" style="font-weight: 600">Palabra</label><input id="m-pal" value="GUÍA" style="min-height: 44px; padding: 0 12px; border: 1px solid #D4D4D8; border-radius: 10px; font: 600 15px Inter, sans-serif"></div>
+    <div style="display: flex; flex-direction: column; gap: 6px"><label for="m-msg" style="font-weight: 600">Mensaje privado</label><textarea id="m-msg" rows="3" style="padding: 10px 12px; border: 1px solid #D4D4D8; border-radius: 10px; font: 15px Inter, sans-serif; resize: none">¡Hola! Aquí tienes la guía gratis. ¿Me dejas tu email?</textarea></div>
+    <label style="display: flex; align-items: center; gap: 10px; font-weight: 600"><span style="width: 40px; height: 24px; border-radius: 999px; background: #0E0E10; position: relative; display: inline-block"><span style="position: absolute; right: 3px; top: 3px; width: 18px; height: 18px; border-radius: 50%; background: #C6F432"></span></span>Pedir el email</label>
+    <div style="padding: 12px; border: 1px dashed #A1A1AA; border-radius: 12px; color: #3F3F46">También puedes editarla pidiéndoselo a tu IA.</div>
+  </div>
+  <div style="flex: none; padding: 12px 16px 26px; background: #FFFFFF; border-top: 1px solid #E4E4E7"><button type="button" style="width: 100%; min-height: 50px; border: 0; border-radius: 12px; background: #C6F432; color: #0E0E10; font: 700 16px Inter, sans-serif">Activar plantilla</button></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
