@@ -2,7 +2,7 @@
 import Base from './Base.astro';
 import FaqList from '../components/FaqList.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { SITE } from '../data/site';
+import { SITE, FOOTER } from '../data/site';
 
 interface Props {
   title: string;
@@ -12,11 +12,30 @@ interface Props {
   /** Respuesta directa al principio (formato para Google y las IAs) */
   answer: string;
   updated: string; // AAAA-MM-DD
+  /** Fecha de publicación (AAAA-MM-DD); por defecto, la de actualización */
+  published?: string;
+  /** Nombre corto en las migas de pan; por defecto, el del pie o el H1 */
+  crumb?: string;
   faqs?: { q: string; a: string }[];
   ctaTitle?: string;
 }
 
-const { title, description, h1, eyebrow, answer, updated, faqs = [], ctaTitle } = Astro.props;
+const {
+  title,
+  description,
+  h1,
+  eyebrow,
+  answer,
+  updated,
+  published = updated,
+  crumb,
+  faqs = [],
+  ctaTitle,
+} = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, '');
+const pageUrl = new URL(path, SITE.url).toString();
+const crumbLabel =
+  crumb ?? [...FOOTER.guias, ...FOOTER.comparativas].find((l) => l.href === path)?.label ?? h1;
 const updatedLabel = new Date(updated + 'T12:00:00Z').toLocaleDateString('es-ES', {
   day: 'numeric',
   month: 'long',
@@ -30,16 +49,32 @@ const article = {
   headline: h1,
   description,
   inLanguage: 'es',
+  datePublished: published,
   dateModified: updated,
-  author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
-  publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
-  mainEntityOfPage: new URL(Astro.url.pathname, SITE.url).toString(),
+  image: `${SITE.url}/og.png`,
+  author: { '@id': `${SITE.url}/#organization` },
+  publisher: { '@id': `${SITE.url}/#organization` },
+  mainEntityOfPage: pageUrl,
+};
+
+const breadcrumbs = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${SITE.url}/` },
+    { '@type': 'ListItem', position: 2, name: crumbLabel, item: pageUrl },
+  ],
 };
 ---
 
-<Base title={title} description={description} schema={[article]} faqs={faqs}>
+<Base title={title} description={description} schema={[article, breadcrumbs]} faqs={faqs} ogType="article">
   <section class="art-hero">
     <div class="wrap">
+      <nav class="crumbs" aria-label="Migas de pan">
+        <a href="/">Inicio</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">{crumbLabel}</span>
+      </nav>
       <p class="eyebrow">{eyebrow}</p>
       <h1>{h1}</h1>
       <p class="art-hero__date">Actualizado el {updatedLabel}</p>
@@ -82,6 +117,20 @@ const article = {
   }
   .art-hero h1 {
     font-size: clamp(2.3rem, 5.4vw, 4.2rem);
+  }
+  .crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    color: var(--k-muted);
+    font-size: 14px;
+  }
+  .crumbs a {
+    color: var(--k-body-dark);
+    text-decoration: none;
+  }
+  .crumbs a:hover {
+    color: var(--k-lime);
   }
   .art-hero__date {
     color: var(--k-muted);

@@ -5,6 +5,8 @@ Landing de [kalmaa.io](https://kalmaa.io): respuestas automáticas en Instagram 
 ## Stack
 - [Astro](https://astro.build) con salida estática y el adaptador de Vercel.
 - `@astrojs/sitemap` para `sitemap-index.xml`; `public/robots.txt`.
+- SEO en `src/layouts/Base.astro` (canonical, Open Graph y X con `og.png`, iconos, JSON-LD `Organization` y `WebSite`) y `src/layouts/Article.astro` (`Article`, `BreadcrumbList` con migas visibles y `FAQPage`).
+- Imágenes de SEO (`og.png`, `logo.png`, `apple-touch-icon.png`, `favicon-48.png`): se generan con `npm run og` a partir de `public/favicon.svg` y `scripts/og-image.html` (necesita Google Chrome).
 - Tipografías Bricolage Grotesque e Inter servidas desde el propio dominio (`@fontsource`), sin cookies ni llamadas a terceros.
 - Lista de espera: `POST /api/waitlist` guarda en Supabase (tabla `waitlist`, ver `supabase/waitlist.sql`).
 
@@ -20,6 +22,7 @@ Landing de [kalmaa.io](https://kalmaa.io): respuestas automáticas en Instagram 
 | `/lista-de-espera` | Formulario (noindex) |
 
 ## Desarrollo
+Astro pide Node 22.23.4 o superior.
 ```bash
 npm install
 npm run dev

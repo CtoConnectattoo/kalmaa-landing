@@ -17,21 +17,57 @@ interface Props {
   /** Preguntas frecuentes: genera FAQPage */
   faqs?: Faq[];
   noindex?: boolean;
+  /** og:type: website (por defecto) o article */
+  ogType?: 'website' | 'article';
+  /** Imagen para compartir, ruta absoluta desde la raíz (1200×630) */
+  image?: string;
+  imageAlt?: string;
 }
 
-const { title, description, schema = [], faqs, noindex = false } = Astro.props;
+const {
+  title,
+  description,
+  schema = [],
+  faqs,
+  noindex = false,
+  ogType = 'website',
+  image = '/og.png',
+  imageAlt = `Kalmaa · ${SITE.entity}`,
+} = Astro.props;
 const path = Astro.url.pathname === '/' ? '/' : Astro.url.pathname.replace(/\/$/, '');
 const canonical = new URL(path, SITE.url).toString();
+const imageUrl = new URL(image, SITE.url).toString();
+const isHome = path === '/';
 
 const organization = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
+  '@id': `${SITE.url}/#organization`,
   name: SITE.name,
   url: SITE.url,
-  logo: `${SITE.url}/favicon.svg`,
+  logo: {
+    '@type': 'ImageObject',
+    url: `${SITE.url}/logo.png`,
+    width: 512,
+    height: 512,
+  },
   description: SITE.entity,
   legalName: SITE.company,
 };
+
+// WebSite solo en la home: ayuda a Google a reconocer el nombre del sitio
+const website = isHome
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      '@id': `${SITE.url}/#website`,
+      name: SITE.name,
+      url: `${SITE.url}/`,
+      inLanguage: 'es',
+      description: SITE.entity,
+      publisher: { '@id': `${SITE.url}/#organization` },
+    }
+  : null;
 
 const faqSchema = faqs?.length
   ? {
@@ -45,7 +81,7 @@ const faqSchema = faqs?.length
     }
   : null;
 
-const allSchema = [organization, ...schema, ...(faqSchema ? [faqSchema] : [])];
+const allSchema = [organization, ...(website ? [website] : []), ...schema, ...(faqSchema ? [faqSchema] : [])];
 ---
 
 <!doctype html>
@@ -58,14 +94,27 @@ const allSchema = [organization, ...schema, ...(faqSchema ? [faqSchema] : [])];
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#0E0E10" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="Kalmaa" />
     <meta property="og:locale" content="es_ES" />
+    <meta property="og:locale:alternate" content="es_MX" />
+    <meta property="og:locale:alternate" content="es_AR" />
+    <meta property="og:locale:alternate" content="es_CO" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content={imageAlt} />
     {allSchema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
   </head>
   <body>
