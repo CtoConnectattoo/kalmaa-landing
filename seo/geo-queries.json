@@ -1,0 +1,14 @@
+{
+  "_doc": "Preguntas que el agente hace cada semana a Google (resultados, AI Overview y AI Mode), ChatGPT y Perplexity para medir si citan o recomiendan Kalmaa. Mantener 8-10 como máximo por presupuesto. Redactadas como las haría un usuario, en español neutro.",
+  "country": "es",
+  "queries": [
+    "cómo poner una respuesta automática en Instagram",
+    "mensajes automáticos en Instagram cuando comentan una palabra",
+    "cómo conectar ChatGPT con Instagram para responder mensajes",
+    "MCP para Instagram",
+    "mejor alternativa a ManyChat en español",
+    "cuánto cuesta ManyChat",
+    "alternativa a Chatfuel para Instagram",
+    "herramienta para responder comentarios de Instagram con IA"
+  ]
+}
