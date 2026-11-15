@@ -41,7 +41,7 @@ planes:
   pro:
     precio: 12 €/mes · 9 €/mes en anual (108 €) · sin IVA
     incluye: Automatizaciones y DMs ilimitados (uso razonable), captura de email, exportar contactos, sin «Hecho con Kalmaa»
-  prueba: 14 días de Pro al registrarse; después pasa a Gratis
+  prueba: 14 días de Pro al registrarse; después pasa a Gratis y se quedan activos los 2 flujos más usados (el usuario puede cambiar cuáles, con aviso antes)
   fundadores: 9 €/mes pagando mes a mes, primeras 100 cuentas que pasen a Pro, mientras sigan suscritas
   latam: Pro 8 USD/mes (6 USD/mes en anual); moneda local cuando lo permita Stripe
   no_anunciar: Pro + IA (~24 €) y Agencia (~59 €)
@@ -60,7 +60,7 @@ funcionalidades:
       - Una cuenta de Instagram por cuenta de Kalmaa (varias cuentas = «Escríbenos», sin plan Agencia).
     desde: null
     pasos:
-      - Crea tu cuenta de Kalmaa.
+      - Crea tu cuenta de Kalmaa con un enlace a tu email o con Google (sin contraseña).
       - Pulsa «Conecta tu Instagram» e inicia sesión con Instagram.
       - Acepta los permisos de mensajes y comentarios.
     no_hace:
@@ -89,7 +89,7 @@ funcionalidades:
     limites: []
     desde: null
     pasos:
-      - Crea tu cuenta.
+      - Crea tu cuenta con un enlace a tu email o con Google.
       - Conecta tu Instagram.
       - Activa tu primera automatización desde una plantilla.
       - En el inicio, conecta tu ChatGPT o Claude.
@@ -119,7 +119,7 @@ funcionalidades:
     planes: [gratis, pro]
     limites:
       - "ChatGPT: hasta estar en su directorio de apps, un conector propio con escritura solo funciona en planes Business, Enterprise y Edu."
-      - "Claude: conector personalizado; funciona también en el plan gratis de Claude (verificar al lanzar)."
+      - "Claude: conector personalizado; funciona también en el plan gratis de Claude (verificar al lanzar). Es el camino principal del lanzamiento."
       - Kalmaa no cobra por usar tu IA; el plan de ChatGPT o Claude lo pagas tú si hace falta.
     desde: null
     pasos:
@@ -212,8 +212,9 @@ funcionalidades:
     fase: mvp
     planes: [gratis, pro]
     limites:
+      - Máximo 10 pasos por flujo.
       - Disparadores del MVP, comentario con palabra clave, respuesta a historia y palabra clave en DM.
-      - Condiciones por botón pulsado, por lo que responde (texto, email, opción) y por si te sigue (verificar en la API antes de prometerlo).
+      - Condiciones por botón pulsado, por lo que responde (texto, email, opción) y por si te sigue (solo si la prueba en la API lo confirma; entonces entra en el MVP y en la plantilla de sorteo).
       - Pausas y esperas siempre dentro de la ventana de 24 h; si la persona no responde a tiempo, el flujo termina o sigue cuando vuelva a escribir.
       - Gratis, 2 automatizaciones activas y 1.000 DMs/mes; pedir email solo en Pro.
     desde: null
@@ -279,7 +280,7 @@ funcionalidades:
     planes: [gratis, pro]
     limites:
       - 1 respuesta privada por comentario, dentro de 7 días.
-      - "Gratis: 2 automatizaciones activas y 1.000 DMs/mes; al llegar se pausan hasta el mes siguiente con aviso (según /precios; confirmar)."
+      - "Gratis: 2 automatizaciones activas y 1.000 DMs/mes; aviso al 80 % y al 100 %; al llegar se pausan hasta el mes siguiente y Actividad lo muestra (decidido el 15 nov)."
     desde: null
     pasos:
       - Elige una plantilla o crea la automatización.
@@ -337,7 +338,7 @@ funcionalidades:
       - "Gratis: lleva «Hecho con Kalmaa»."
     desde: null
     pasos:
-      - En la automatización, añade el botón y su destino.
+      - En la automatización, añade el botón y su destino (enlace, WhatsApp o PDF, que se sube al panel o se pega como enlace).
     no_hace: []
     claims:
       permitidos: []
@@ -387,7 +388,7 @@ funcionalidades:
     planes: [gratis, pro]
     limites:
       - En el MVP se rellenan (palabra, mensajes, botones) y se activan, o se le pide a la IA que las adapte; guardar plantillas propias llega después (ver plantillas-editables).
-      - La de guía pide email, que es de Pro.
+      - La de guía en Gratis manda el PDF con un botón; en Pro añade el paso de pedir el email.
     desde: null
     pasos:
       - Abre Plantillas, elige una, rellena tu mensaje y actívala.
