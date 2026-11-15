@@ -16,6 +16,7 @@ estado_producto: >-
 fuentes:
   - Brief del 9 nov 2026, secciones 2–4 (https://docs.google.com/document/d/1Y-YqwjUME3KRhJArKGgxQTK8hxcMI1syQbhSU_y0ELw/edit)
   - KB kalmaa/producto/README.md (MVP, orden posterior, reglas de Instagram, qué NO hacer)
+  - KB kalmaa/producto/mvp.md y decisiones.md (motor de flujos, decisión del 15 nov 2026)
   - KB kalmaa/estrategia/posicionamiento.md (precios del 9 nov 2026)
   - Skill kalmaa-branding, sección 0b (claims y prohibidos)
 
@@ -180,23 +181,55 @@ funcionalidades:
         version: lienzo 11 nov 2026
 
   - id: ia-automatizaciones
-    nombre: Crea automatizaciones hablando
-    que_hace: Tu IA crea, edita, pausa y borra automatizaciones por palabra clave sin tocar el panel.
+    nombre: Crea flujos hablando
+    que_hace: Tu IA crea, edita, prueba sin enviar, pausa y borra tus flujos (pasos, botones, esperas y condiciones) sin tocar el panel.
     estado: en-desarrollo
     fase: mvp
     planes: [gratis, pro]
     limites:
       - Mismos límites de plan que las automatizaciones (Gratis, 2 activas).
+      - Kalmaa valida el flujo con las reglas de Instagram antes de guardarlo (24 h, 7 días, sin escribir primero).
     desde: null
     pasos:
-      - Pídele «Si alguien comenta GUÍA, envíale este PDF».
+      - Pídele «Si alguien comenta GUÍA, pregúntale si es principiante o avanzado y mándale el PDF que toque».
+      - Pídele «Pruébalo sin enviar nada» y después «Actívalo».
     no_hace:
-      - No crea flujos con ramas ni secuencias.
+      - No hay editor visual de bloques; el flujo se pide hablando o se parte de una plantilla.
+      - No programa mensajes más allá de las 24 h desde el último mensaje de la persona.
     claims:
       permitidos:
         - Automatiza Instagram con ChatGPT.
-        - Sin constructor de flujos.
-      prohibidos: []
+        - Sin constructor de flujos. Tus flujos los crea tu IA.
+        - Pídeselo a tu IA. Kalmaa monta el flujo y lo ejecuta.
+      prohibidos:
+        - Secuencias de varios días.
+    capturas: []
+
+  - id: flujos
+    nombre: Flujos de varios pasos
+    que_hace: Cada automatización es un flujo, un disparador y pasos (mensaje con botones, esperar respuesta o clic, condición, guardar dato o etiqueta, pausa y respuesta pública).
+    estado: en-desarrollo
+    fase: mvp
+    planes: [gratis, pro]
+    limites:
+      - Disparadores del MVP, comentario con palabra clave, respuesta a historia y palabra clave en DM.
+      - Condiciones por botón pulsado, por lo que responde (texto, email, opción) y por si te sigue (verificar en la API antes de prometerlo).
+      - Pausas y esperas siempre dentro de la ventana de 24 h; si la persona no responde a tiempo, el flujo termina o sigue cuando vuelva a escribir.
+      - Gratis, 2 automatizaciones activas y 1.000 DMs/mes; pedir email solo en Pro.
+    desde: null
+    pasos:
+      - Parte de una plantilla o pídele el flujo a tu IA.
+      - En el panel ves el flujo paso a paso (solo lectura en el MVP) y lo activas o pausas.
+    no_hace:
+      - No tiene editor visual de bloques ni lienzo para arrastrar.
+      - No envía secuencias de varios días ni escribe primero.
+    claims:
+      permitidos:
+        - Flujos sin constructor, pídeselos a tu IA o parte de una plantilla.
+      prohibidos:
+        - Editor visual de flujos o constructor de bloques.
+        - Secuencias de varios días.
+        - «Sígueme y te lo mando» hasta verificar que la API lo permite.
     capturas: []
 
   - id: ia-resumen
@@ -348,12 +381,12 @@ funcionalidades:
 
   - id: plantillas
     nombre: Plantillas en un minuto
-    que_hace: 6 plantillas listas para activar, guía gratis, precio, clase, sorteo, código de descuento y cita por WhatsApp.
+    que_hace: 6 flujos listos para activar, guía gratis, precio, clase, sorteo, código de descuento y cita por WhatsApp.
     estado: en-desarrollo
     fase: mvp
     planes: [gratis, pro]
     limites:
-      - En el MVP se rellenan (palabra, mensaje, botón) y se activan; editarlas a fondo llega después (ver plantillas-editables).
+      - En el MVP se rellenan (palabra, mensajes, botones) y se activan, o se le pide a la IA que las adapte; guardar plantillas propias llega después (ver plantillas-editables).
       - La de guía pide email, que es de Pro.
     desde: null
     pasos:
@@ -495,7 +528,7 @@ funcionalidades:
   # ── Después del MVP (orden del Brief) ─────────────────────────────────
   - id: plantillas-editables
     nombre: Plantillas editables
-    que_hace: Editar a fondo cualquier plantilla, incluida comentario → WhatsApp.
+    que_hace: Guardar tus propios flujos como plantillas y editar a fondo cualquiera desde el panel, incluida comentario → WhatsApp con texto a medida.
     estado: en-desarrollo
     fase: despues-mvp-1
     planes: [gratis, pro]
@@ -568,15 +601,15 @@ no_hace:
   - id: secuencias
     nombre: Secuencias de varios días
     estado: no-previsto
-    motivo: Fuera del Brief; además, ventana de 24 h.
+    motivo: Instagram solo deja escribir en las 24 h siguientes al último mensaje de la persona; los flujos esperan dentro de esa ventana o a que vuelva a escribir.
   - id: bandeja-equipo
     nombre: Bandeja de equipo (varios agentes)
     estado: no-previsto
     motivo: Fuera del Brief.
   - id: constructor-flujos
-    nombre: Constructor de flujos con bloques y ramas
+    nombre: Editor visual de flujos (bloques que se arrastran)
     estado: no-previsto
-    motivo: Diferencial, se pide hablando o con plantilla.
+    motivo: Diferencial; el motor de flujos sí existe (ver flujos), pero el flujo se pide a tu IA o se parte de una plantilla.
   - id: importar-manychat
     nombre: Importar automatizaciones de ManyChat
     estado: no-previsto
