@@ -1,94 +1,251 @@
 ---
 import Legal from '../layouts/Legal.astro';
 import { SITE } from '../data/site';
+const mail = `mailto:${SITE.contactEmail}`;
 ---
 
 <Legal
   title="Política de privacidad | Kalmaa"
-  description="Cómo trata Kalmaa los datos que dejas en la lista de espera de kalmaa.io: responsable, finalidad, base legal, conservación, proveedores y derechos."
+  description="Cómo trata Kalmaa los datos de tu cuenta, de tu Instagram y de quien te escribe: responsable, encargado, finalidades, plazos, proveedores y derechos."
   h1="Política de privacidad"
-  updated="10 de noviembre de 2026"
+  updated="23 de noviembre de 2026"
 >
   <p>
-    Esta política explica cómo tratamos los datos que nos das en kalmaa.io mientras Kalmaa está en lista de espera. Cuando
-    abramos la app, la actualizaremos con el tratamiento de los datos de tu cuenta de Instagram.
+    Esta política explica qué datos tratamos cuando usas la app de Kalmaa (app.kalmaa.io), cuando conectas tu cuenta
+    de Instagram y tu IA, y cuando te apuntaste a la lista de espera de kalmaa.io. Las condiciones de uso de la app
+    están en los <a href="/terminos">términos de uso</a>.
   </p>
 
   <h2>Responsable</h2>
   <ul>
-    <li><strong>Responsable:</strong> {SITE.company}</li>
+    <li><strong>Responsable:</strong> {SITE.company} («Kalmaa»)</li>
     <li><strong>NIF:</strong> {SITE.legal.nif}</li>
     <li><strong>Domicilio:</strong> {SITE.legal.address}</li>
-    <li><strong>Contacto:</strong> <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a></li>
+    <li><strong>Datos registrales:</strong> {SITE.legal.registry}</li>
+    <li><strong>Contacto:</strong> <a href={mail}>{SITE.contactEmail}</a></li>
   </ul>
   <p>
     No hemos designado un delegado de protección de datos porque no estamos obligados a ello. Para cualquier cuestión
-    sobre tus datos, escríbenos a <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
+    sobre tus datos, escríbenos a <a href={mail}>{SITE.contactEmail}</a>.
+  </p>
+
+  <h2>Dos papeles distintos: responsable y encargado</h2>
+  <p>
+    Con los <strong>datos de tu propia cuenta</strong> (tu email, tu Instagram conectado, cómo usas Kalmaa) somos
+    <strong>responsables del tratamiento</strong>: decidimos para qué se usan, y esta política te lo explica.
+  </p>
+  <p>
+    Con los <strong>datos de las personas que te escriben o comentan</strong> en Instagram (tus seguidores y clientes:
+    sus mensajes, comentarios y perfil público) el <strong>responsable eres tú</strong>, porque decides qué automatizar y
+    qué responder. Kalmaa los trata solo por tu cuenta y siguiendo tus instrucciones, como
+    <strong>encargado del tratamiento</strong>, con las condiciones del artículo 28 del RGPD que recoge el
+    <a href="/terminos#encargo">anexo de encargo del tratamiento</a> de los términos. Si una de esas personas nos
+    escribe para ejercer sus derechos, te pasaremos la petición y te ayudaremos a atenderla.
   </p>
 
   <h2>Qué datos tratamos</h2>
+  <h3>Tu cuenta de Kalmaa</h3>
   <ul>
-    <li>Tu email. Es obligatorio: sin él no podemos avisarte.</li>
-    <li>Tu cuenta de Instagram, solo si decides indicarla.</li>
-    <li>La plantilla que elegiste y de dónde llegaste a la web, si aplica.</li>
-    <li>La fecha en que te apuntaste y la versión del texto que aceptaste, para poder demostrar tu consentimiento.</li>
+    <li>Tu email, con el que entras mediante un enlace que te enviamos (sin contraseña).</li>
+    <li>Tu plan, la fecha de alta y la de fin de la prueba de Pro.</li>
   </ul>
-  <p>Para apuntarte tienes que tener al menos 14 años.</p>
-
-  <h2>Para qué</h2>
+  <h3>Tu cuenta de Instagram conectada</h3>
+  <ul>
+    <li>
+      Su identificador, nombre de usuario y tipo de cuenta, y los permisos que nos das con el inicio de sesión oficial
+      de Instagram: perfil básico, mensajes y comentarios.
+    </li>
+    <li>
+      El token de acceso que nos da Meta para actuar en tu cuenta. Lo guardamos cifrado (AES-256-GCM) y lo renovamos
+      antes de que caduque.
+    </li>
+  </ul>
+  <h3>Las personas que te escriben o comentan (como encargado)</h3>
+  <ul>
+    <li>
+      Su identificador de Instagram y su nombre de usuario público, los mensajes directos que os enviáis, los
+      comentarios en tus publicaciones y las respuestas a tus historias.
+    </li>
+    <li>
+      El historial reciente que importamos al conectar o cuando lo pides: hasta 50 conversaciones con sus 20 últimos
+      mensajes cada una y los comentarios de tus 10 últimas publicaciones, que es lo que permite la API de Instagram.
+    </li>
+    <li>
+      Lo que tus automatizaciones les pidan o les asignen: los botones que pulsan, las etiquetas y los datos que
+      decidas guardar (por ejemplo, un email que te den).
+    </li>
+    <li>En qué paso de cada automatización está cada persona y por qué se cortó, si se cortó.</li>
+  </ul>
+  <h3>Tus automatizaciones</h3>
+  <ul>
+    <li>Los flujos que creas tú, tu IA o una plantilla: disparadores, textos, botones y sus versiones.</li>
+  </ul>
+  <h3>Uso del producto y registros técnicos</h3>
+  <ul>
+    <li>
+      Eventos de uso de tu cuenta, como registrarte, conectar Instagram o tu IA, que salte una automatización o que tu
+      IA responda. No guardan el texto de los mensajes.
+    </li>
+    <li>
+      Registros técnicos del servidor (fecha, ruta, errores y dirección IP) para que el servicio funcione y sea seguro.
+    </li>
+  </ul>
+  <h3>Lista de espera</h3>
+  <ul>
+    <li>
+      Si te apuntaste: tu email, tu cuenta de Instagram si la indicaste, la plantilla que elegiste, de dónde llegaste a
+      la web, la fecha y la versión del texto que aceptaste.
+    </li>
+  </ul>
   <p>
-    Para avisarte cuando puedas usar Kalmaa y para enviarte por email información sobre su lanzamiento y ofertas como el
-    precio de fundadores. No vendemos tus datos, no los usamos para otra cosa y no tomamos decisiones automatizadas ni
-    hacemos perfiles con ellos.
+    No tratamos categorías especiales de datos a propósito. Si alguien las incluye en un mensaje, solo se guardan como
+    parte de ese mensaje.
   </p>
 
-  <h2>Base legal</h2>
+  <h2>Para qué y con qué base legal</h2>
+  <ul>
+    <li>
+      <strong>Darte el servicio</strong>: crear tu cuenta, conectar tu Instagram, ejecutar tus automatizaciones,
+      mostrarte la actividad, dejar que tu IA lea y responda cuando se lo pidas y enviarte los emails necesarios
+      (acceso, avisos de la cuenta y del plan). Base legal: la ejecución del contrato que aceptas con los
+      <a href="/terminos">términos</a>.
+    </li>
+    <li>
+      <strong>Seguridad y prevención de abusos</strong>: registros técnicos, límites de envío y detección de spam para
+      proteger tu cuenta, la de otros usuarios y la integración con Instagram. Base legal: nuestro interés legítimo en
+      mantener el servicio seguro.
+    </li>
+    <li>
+      <strong>Mejorar el producto</strong>: medir de forma agregada qué funciones se usan y dónde se atasca la gente, con
+      los eventos de uso. Base legal: nuestro interés legítimo en mejorar Kalmaa. Puedes oponerte escribiéndonos.
+    </li>
+    <li>
+      <strong>Lista de espera</strong>: avisarte del lanzamiento y enviarte información y ofertas como el precio de
+      fundadores. Base legal: tu consentimiento, que puedes retirar cuando quieras escribiéndonos o con el enlace de
+      baja de nuestros emails. Retirarlo no afecta a lo que hicimos antes con tu permiso.
+    </li>
+  </ul>
   <p>
-    Tu consentimiento, que das al marcar la casilla del formulario. Puedes retirarlo cuando quieras escribiéndonos o con
-    el enlace de baja que llevan todos nuestros emails. Retirarlo no afecta a lo que hicimos antes con tu permiso.
+    No vendemos tus datos ni los de las personas que te escriben, no los usamos para publicidad y no entrenamos modelos
+    de IA con ellos.
+  </p>
+
+  <h2>Automatizaciones y decisiones automatizadas</h2>
+  <p>
+    Las automatizaciones las configuras tú (o tu IA siguiendo tus indicaciones): Kalmaa solo las ejecuta. Kalmaa no
+    toma decisiones automatizadas que produzcan efectos jurídicos sobre ti ni sobre las personas que te escriben, ni
+    elabora perfiles con esa finalidad.
+  </p>
+
+  <h2>Tu IA (Claude o ChatGPT)</h2>
+  <p>
+    Si conectas tu IA a Kalmaa (por ejemplo, Claude de Anthropic o ChatGPT de OpenAI), esa IA recibe los datos de tu
+    cuenta que necesite para lo que le pidas, incluidos mensajes y comentarios de quien te escribe. Solo ocurre cuando
+    tú la conectas y se lo pides. Ese servicio lo eliges y lo contratas tú, y trata los datos según sus propias
+    condiciones: no es un proveedor de Kalmaa. Puedes desconectarla cuando quieras desde tu IA.
   </p>
 
   <h2>Cuánto tiempo los guardamos</h2>
-  <p>Mientras sigas en la lista de espera. Los borramos cuando ocurra lo primero de esto:</p>
   <ul>
-    <li>te das de baja o retiras tu consentimiento;</li>
-    <li>pasan 12 meses desde que abrimos el acceso a Kalmaa;</li>
-    <li>pasan 18 meses desde que te apuntaste sin que hayamos lanzado.</li>
+    <li>
+      <strong>Mientras tu cuenta esté activa</strong> guardamos los datos de tu cuenta, tus automatizaciones y los
+      mensajes, comentarios y contactos de tu Instagram.
+    </li>
+    <li>
+      <strong>Si desconectas Instagram</strong>, borramos el token en ese momento y pausamos tus automatizaciones. Los
+      mensajes, comentarios, contactos y la actividad de esa cuenta de Instagram los borramos en un plazo máximo de
+      30 días, salvo que la vuelvas a conectar antes.
+    </li>
+    <li>
+      <strong>Si quitas el acceso a Kalmaa desde Instagram o pides a Meta que borre tus datos</strong>, Meta nos lo
+      comunica y borramos al momento la conexión, el token y todo lo que depende de esa cuenta de Instagram. Te
+      damos un código de confirmación.
+    </li>
+    <li>
+      <strong>Si borras tu cuenta de Kalmaa</strong> (escribiéndonos a <a href={mail}>{SITE.contactEmail}</a> mientras
+      no haya un botón en la app), borramos todos sus datos en un plazo máximo de 30 días.
+    </li>
+    <li>
+      <strong>Registros técnicos</strong>: los conserva nuestro proveedor de alojamiento durante un plazo corto, como
+      máximo 30 días.
+    </li>
+    <li>
+      <strong>Copias de seguridad</strong>: lo borrado puede seguir en las copias de seguridad automáticas de la base de
+      datos hasta que se sobrescriben en su ciclo normal; no las usamos para recuperar datos borrados.
+    </li>
+    <li>
+      <strong>Lista de espera</strong>: borramos tus datos cuando ocurra lo primero de esto: te das de baja o retiras
+      tu consentimiento; pasan 12 meses desde que abrimos el acceso a Kalmaa; o pasan 18 meses desde que te apuntaste
+      sin que hayamos lanzado. Al borrarlos guardamos bloqueados solo tu email, la fecha y el texto que aceptaste,
+      durante un máximo de 3 años y únicamente para poder demostrar que nos diste tu permiso, y tu email en una lista
+      de bajas para no volver a escribirte.
+    </li>
   </ul>
   <p>
-    Al borrarlos guardamos bloqueados solo tu email, la fecha y el texto que aceptaste, durante un máximo de 3 años y
-    únicamente para poder demostrar que nos diste tu permiso. También guardamos tu email en una lista de bajas para no
-    volver a escribirte.
+    Cuando la ley nos obligue a conservar algún dato (por ejemplo, facturas, cuando haya pagos), lo guardaremos
+    bloqueado durante el plazo legal.
   </p>
 
-  <h2>Quién más los ve</h2>
+  <h2>Proveedores y transferencias internacionales</h2>
   <p>
-    No cedemos tus datos a terceros salvo obligación legal. Los tratan, como encargados del tratamiento y con un contrato
-    conforme al artículo 28 del RGPD, estos proveedores:
+    No cedemos datos a terceros salvo obligación legal. Los tratan por nuestra cuenta, como encargados o subencargados
+    del tratamiento y con un contrato conforme al artículo 28 del RGPD, estos proveedores:
   </p>
   <ul>
     <li>
-      <strong>Vercel Inc.</strong> (Estados Unidos): alojamiento de la web y del formulario. La función que recibe tus
-      datos se ejecuta en Fráncfort (Unión Europea), pero Vercel es una empresa estadounidense y puede acceder a ellos
-      desde Estados Unidos. Garantías: Vercel está adherida al Marco de Privacidad de Datos UE-EE. UU. (decisión de
-      adecuación de la Comisión Europea de 10 de julio de 2023; puedes comprobarlo en dataprivacyframework.gov) y ha
-      firmado además las cláusulas contractuales tipo de la Comisión Europea.
+      <strong>Vercel Inc.</strong> (Estados Unidos): alojamiento de kalmaa.io, de la app y del receptor de avisos de
+      Instagram. Las funciones se ejecutan en Fráncfort (Unión Europea), pero Vercel es una empresa estadounidense y
+      puede acceder a los datos desde Estados Unidos. Garantías: Vercel está adherida al Marco de Privacidad de Datos
+      UE-EE. UU. (decisión de adecuación de la Comisión Europea de 10 de julio de 2023; puedes comprobarlo en
+      dataprivacyframework.gov) y ha firmado además las cláusulas contractuales tipo de la Comisión Europea.
     </li>
     <li>
-      <strong>Supabase Pte. Ltd.</strong> (Singapur): base de datos, alojada en Fráncfort (Unión Europea). Su soporte y
-      algunos de sus subencargados están en Estados Unidos. Garantía: cláusulas contractuales tipo de la Comisión Europea
-      (Decisión 2021/914).
+      <strong>Supabase Pte. Ltd.</strong> (Singapur): base de datos, autenticación y almacenamiento, alojados en
+      Fráncfort (Unión Europea). Su soporte y algunos de sus subencargados están fuera del Espacio Económico Europeo.
+      Garantía: cláusulas contractuales tipo de la Comisión Europea (Decisión 2021/914).
+    </li>
+    <li>
+      <strong>Resend Inc.</strong> (Estados Unidos): envío de los emails de la app, como el enlace para entrar, desde
+      su región de la Unión Europea (Irlanda). Garantías: Resend está adherida al Marco de Privacidad de Datos UE-EE.
+      UU. y ha firmado las cláusulas contractuales tipo de la Comisión Europea.
     </li>
   </ul>
   <p>
-    Si más adelante usamos un proveedor para enviar los emails, lo añadiremos aquí antes de hacerlo. Puedes pedirnos una
-    copia de las garantías escribiendo a <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
+    <strong>Meta Platforms</strong> (Instagram) no es proveedor nuestro: es la plataforma de la que vienen los mensajes
+    y comentarios, y a la que enviamos las respuestas que tú configuras. Lo que ocurre dentro de Instagram se rige por
+    las condiciones y la política de privacidad de Meta.
+  </p>
+  <p>
+    Si añadimos un proveedor (por ejemplo, para cobrar el plan Pro), lo incluiremos aquí antes de usarlo. Puedes
+    pedirnos una copia de las garantías escribiendo a <a href={mail}>{SITE.contactEmail}</a>.
+  </p>
+
+  <h2>Seguridad</h2>
+  <p>
+    Ciframos los tokens de Instagram, separamos los datos de cada cuenta con reglas de acceso en la base de datos,
+    usamos conexiones cifradas (HTTPS) y limitamos el acceso interno a lo imprescindible.
+  </p>
+
+  <h2>Edad</h2>
+  <p>
+    Para usar la app tienes que ser mayor de edad y usarla para tu negocio o actividad profesional. Para apuntarte a
+    la lista de espera hacía falta tener al menos 14 años.
   </p>
 
   <h2>Tus derechos</h2>
   <p>
-    Puedes acceder a tus datos, rectificarlos, suprimirlos, oponerte a su tratamiento, limitarlo y pedir su portabilidad
-    escribiendo a <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>. Si crees que no los tratamos bien,
-    puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).
+    Puedes acceder a tus datos, rectificarlos, suprimirlos, oponerte a su tratamiento, limitarlo y pedir su
+    portabilidad escribiendo a <a href={mail}>{SITE.contactEmail}</a>. Te contestaremos en el plazo de un mes. Si crees
+    que no los tratamos bien, puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).
+  </p>
+  <p>
+    Si eres una persona que escribió o comentó a un usuario de Kalmaa, el responsable de tus datos es ese usuario:
+    dirígete a él. Si nos escribes a nosotros, le haremos llegar tu petición.
+  </p>
+
+  <h2>Cambios</h2>
+  <p>
+    Si cambiamos esta política de forma importante, te avisaremos por email o en la app antes de que el cambio se
+    aplique.
   </p>
 </Legal>

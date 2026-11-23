@@ -44,6 +44,7 @@ export const FOOTER = {
   ],
   legal: [
     { label: 'Aviso legal', href: '/aviso-legal' },
+    { label: 'Términos', href: '/terminos' },
     { label: 'Privacidad', href: '/privacidad' },
     { label: 'Cookies', href: '/cookies' },
   ],
