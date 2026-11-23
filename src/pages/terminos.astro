@@ -1,0 +1,254 @@
+---
+import Legal from '../layouts/Legal.astro';
+import { SITE, PRICING } from '../data/site';
+const mail = `mailto:${SITE.contactEmail}`;
+const { free, pro, latam } = PRICING;
+---
+
+<Legal
+  title="Términos de uso | Kalmaa"
+  description="Condiciones de uso de la app de Kalmaa: cuenta, planes, uso aceptable en Instagram, límites, responsabilidad, baja y encargo del tratamiento."
+  h1="Términos de uso"
+  updated="23 de noviembre de 2026"
+>
+  <p>
+    Estos términos regulan el uso de la app de Kalmaa (app.kalmaa.io) y de su conector para IA. Al crear tu cuenta los
+    aceptas. Cómo tratamos los datos lo explica la <a href="/privacidad">política de privacidad</a>.
+  </p>
+
+  <h2>1. Quiénes somos</h2>
+  <p>
+    Kalmaa es una marca de {SITE.company}, con NIF {SITE.legal.nif} y domicilio en {SITE.legal.address}, inscrita en el {SITE.legal.registry}. Contacto: <a href={mail}>{SITE.contactEmail}</a>.
+  </p>
+
+  <h2>2. Qué es Kalmaa</h2>
+  <p>
+    Kalmaa responde por ti en Instagram: ejecuta automatizaciones (flujos) que saltan cuando alguien comenta, responde
+    a una historia o te escribe un mensaje directo con una palabra clave, y te deja conectar tu propia IA (Claude o
+    ChatGPT) para crear y editar esas automatizaciones, leer tus conversaciones y responder cuando se lo pidas. Kalmaa
+    responde a quien te escribe primero: no envía mensajes en frío ni hace envíos masivos.
+  </p>
+  <p>
+    Kalmaa usa la API oficial de Instagram de Meta. No está afiliada a Meta, OpenAI ni Anthropic.
+  </p>
+
+  <h2>3. Tu cuenta y requisitos</h2>
+  <ul>
+    <li>Tienes que ser mayor de edad y usar Kalmaa para tu negocio o actividad profesional.</li>
+    <li>
+      Necesitas una cuenta profesional de Instagram (de empresa o de creador) y permitir el acceso a los mensajes en
+      sus ajustes.
+    </li>
+    <li>
+      Entras con tu email, mediante un enlace que te enviamos. Eres responsable de lo que se haga con tu cuenta y de
+      mantener seguro el acceso a tu email, a tu Instagram y a tu IA. Avísanos si sospechas un uso indebido.
+    </li>
+    <li>Los datos que nos des tienen que ser ciertos.</li>
+  </ul>
+
+  <h2>4. Planes y precios</h2>
+  <ul>
+    <li>
+      <strong>{free.name}</strong> ({free.price}, sin tarjeta): 2 automatizaciones activas y hasta 1.000 mensajes directos al mes.
+      Al llegar al límite de mensajes del mes, las automatizaciones se pausan hasta el mes siguiente y te avisamos
+      antes.
+    </li>
+    <li>
+      <strong>Prueba de {pro.name}</strong>: al registrarte tienes 14 días de {pro.name} gratis, sin tarjeta. Al
+      acabar pasas a {free.name}: se quedan activas las automatizaciones que permite ese plan y se pausan las demás.
+    </li>
+    <li>
+      <strong>{pro.name}</strong>: {pro.monthly} €/mes o {pro.yearlyPerMonth} €/mes con pago anual ({pro.yearlyTotal} €/año); en Latinoamérica, {latam.monthly} USD/mes o {latam.yearlyPerMonth} USD/mes con pago anual. Los precios
+      no incluyen el IVA ni otros impuestos aplicables.
+    </li>
+  </ul>
+  <p>
+    El pago del plan {pro.name} todavía no está disponible en la app. Cuando lo activemos, te informaremos antes de las
+    condiciones de pago, renovación y cancelación, y del proveedor de pagos. Podemos cambiar los planes y precios
+    avisándote con al menos 30 días de antelación; el cambio no afecta a un periodo que ya hayas pagado.
+  </p>
+
+  <h2>5. Uso aceptable</h2>
+  <p>
+    La integración de Kalmaa con Instagram es compartida por todos sus usuarios: un mal uso puede perjudicar a todos.
+    Por eso, al usar Kalmaa te comprometes a:
+  </p>
+  <ul>
+    <li>
+      Cumplir las Condiciones de uso y las Normas comunitarias de Instagram, las Condiciones de la plataforma de Meta y
+      la ley aplicable, incluida la de protección de datos y la de comunicaciones comerciales.
+    </li>
+    <li>
+      No usar Kalmaa para spam, mensajes no solicitados, envíos masivos, engaños, suplantaciones, contenido ilegal,
+      ofensivo o que infrinja derechos de terceros, ni para vender o tratar productos o servicios prohibidos por Meta.
+    </li>
+    <li>
+      No intentar saltarte los límites de Instagram o de tu plan, acceder a cuentas que no son tuyas, ni dañar,
+      saturar o analizar a la fuerza el servicio.
+    </li>
+    <li>
+      Informar a las personas que te escriben, en tu propia política de privacidad, de que usas herramientas para
+      responder y gestionar sus mensajes, y atender sus derechos.
+    </li>
+  </ul>
+  <p>
+    <strong>Eres responsable de lo que envían tus automatizaciones y tu IA</strong>, igual que si lo escribieras tú: de
+    los textos, enlaces, archivos y ofertas, y de las respuestas que tu IA mande por tu cuenta. Revisa lo que configuras
+    y lo que pides a tu IA. Tu IA es un servicio que contratas tú con su proveedor y se rige por sus condiciones.
+  </p>
+  <p>
+    Si detectamos un uso que incumple estos términos o que pone en riesgo el servicio o la integración con Instagram,
+    podemos pausar automatizaciones o envíos, limitar o suspender tu cuenta, avisándote cuando sea posible, y
+    cancelarla si el incumplimiento es grave o se repite.
+  </p>
+
+  <h2>6. Límites de Instagram</h2>
+  <p>
+    Kalmaa funciona dentro de lo que permite la API de Instagram, y Meta puede cambiarlo en cualquier momento. Entre
+    otras cosas: solo se puede responder por mensaje directo dentro de las 24 horas siguientes al último mensaje de la
+    persona; a un comentario se le puede enviar una sola respuesta privada; hay límites de llamadas y de envíos por
+    hora; el historial que se puede importar es limitado; y algunas funciones requieren permisos que Meta tiene que
+    aprobar. Meta puede retirar permisos, limitar o desconectar cuentas. Nada de esto depende de nosotros y no podemos
+    garantizar que una función de Instagram siga disponible.
+  </p>
+
+  <h2>7. Disponibilidad y cambios del servicio</h2>
+  <p>
+    Trabajamos para que Kalmaa funcione siempre, pero no podemos garantizar un servicio sin interrupciones ni errores:
+    puede haber cortas paradas por mantenimiento, fallos de nuestros proveedores o de Instagram, y retrasos en los
+    envíos. Podemos mejorar, cambiar o retirar funciones; si un cambio te perjudica de forma importante, te avisaremos
+    con antelación razonable.
+  </p>
+
+  <h2>8. Propiedad</h2>
+  <p>
+    Kalmaa, su código, diseño y plantillas son de Connectattoo S.L. Te damos un derecho de uso personal, no exclusivo e
+    intransferible mientras tengas cuenta. Tus textos, automatizaciones y datos son tuyos: nos das solo el permiso
+    necesario para guardarlos y ejecutarlos y prestar el servicio.
+  </p>
+
+  <h2>9. Responsabilidad</h2>
+  <p>
+    Kalmaa es una herramienta: no garantizamos resultados concretos de ventas, respuestas o seguidores. Respondemos de
+    los daños que causemos por dolo o culpa grave y en los demás casos que la ley no permita excluir. Fuera de esos
+    casos, no respondemos del lucro cesante, la pérdida de oportunidades o de datos, ni de lo que hagan Meta, tu IA u
+    otros servicios de terceros, y nuestra responsabilidad total frente a ti se limita a lo que nos hayas pagado en los
+    12 meses anteriores al hecho que la cause. Nada de esto limita los derechos que te reconozca la ley si eres
+    consumidor.
+  </p>
+  <p>
+    Si un tercero reclama contra nosotros por el contenido que envían tus automatizaciones o tu IA, o por un uso de
+    Kalmaa contrario a estos términos, nos mantendrás indemnes en la medida que permita la ley.
+  </p>
+
+  <h2>10. Baja y borrado</h2>
+  <ul>
+    <li>
+      Puedes desconectar Instagram cuando quieras desde la app o desde Instagram, y desconectar tu IA desde tu IA.
+    </li>
+    <li>
+      Puedes darte de baja y pedir el borrado de tu cuenta escribiendo a <a href={mail}>{SITE.contactEmail}</a> (mientras
+      no haya un botón en la app).
+    </li>
+    <li>
+      Al desconectar Instagram borramos el token al momento y los mensajes, comentarios, contactos y actividad de esa
+      cuenta en un máximo de 30 días. Al borrar tu cuenta borramos todos sus datos en un máximo de 30 días. Si quieres
+      conservar algo (por ejemplo, tus contactos), pídenos antes una copia.
+    </li>
+    <li>
+      Podemos cerrar tu cuenta por un incumplimiento grave o repetido de estos términos, o avisándote con 30 días de
+      antelación si dejamos de prestar el servicio.
+    </li>
+  </ul>
+
+  <h2>11. Cambios en estos términos</h2>
+  <p>
+    Si cambiamos estos términos de forma importante, te avisaremos por email o en la app al menos 15 días antes. Si no
+    estás de acuerdo, puedes darte de baja antes de que se apliquen.
+  </p>
+
+  <h2>12. Ley aplicable y juzgados</h2>
+  <p>
+    Estos términos se rigen por la ley española. Para cualquier conflicto, las partes se someten a los juzgados y
+    tribunales de Málaga (España), salvo que seas consumidor, en cuyo caso podrás acudir a los de tu domicilio.
+  </p>
+
+  <h2 id="encargo">Anexo: encargo del tratamiento (artículo 28 del RGPD)</h2>
+  <p>
+    Este anexo forma parte de los términos y se aplica a los datos personales de las personas que te escriben o
+    comentan en Instagram y de los contactos que gestionas con Kalmaa. Con esos datos tú eres el <strong>responsable del tratamiento</strong> y {SITE.company} («Kalmaa») el <strong>encargado</strong>.
+  </p>
+  <h3>A.1 Objeto, duración, naturaleza y finalidad</h3>
+  <p>
+    Kalmaa trata esos datos solo para prestarte el servicio descrito en estos términos: recibir y guardar mensajes y
+    comentarios, importar el historial que permite Instagram, ejecutar tus automatizaciones, enviar las respuestas que
+    configures o pidas a tu IA, mostrarte la actividad y ponerlos a disposición de la IA que conectes. El encargo dura
+    mientras tengas cuenta y hasta el borrado descrito en el punto 10.
+  </p>
+  <h3>A.2 Datos y personas afectadas</h3>
+  <p>
+    Personas: quienes te escriben por mensaje directo, comentan tus publicaciones o responden a tus historias.
+    Datos: identificador y nombre de usuario de Instagram, contenido de mensajes y comentarios, botones pulsados,
+    etiquetas y datos que tus automatizaciones guarden (como un email), y fechas. No están pensados para categorías
+    especiales de datos.
+  </p>
+  <h3>A.3 Obligaciones de Kalmaa</h3>
+  <ul>
+    <li>
+      Tratar los datos solo siguiendo tus instrucciones documentadas, que son estos términos y lo que configuras en la
+      app o pides a tu IA, también en cuanto a transferencias internacionales. Si una instrucción nos parece contraria
+      a la ley, te avisaremos.
+    </li>
+    <li>Garantizar que quien trata los datos en Kalmaa se ha comprometido a guardar confidencialidad.</li>
+    <li>
+      Aplicar medidas de seguridad adecuadas según el artículo 32 del RGPD: cifrado de los tokens y de las
+      comunicaciones, separación de los datos de cada cuenta, control de accesos y copias de seguridad.
+    </li>
+    <li>
+      Ayudarte, en la medida de lo posible, a responder a las personas que ejerzan sus derechos y a cumplir tus
+      obligaciones de seguridad, notificación de brechas, evaluaciones de impacto y consulta previa.
+    </li>
+    <li>
+      Avisarte sin dilación indebida, y en lo posible en 48 horas, si sufrimos una brecha de seguridad que afecte a
+      esos datos, con la información que tengamos para que puedas notificarla.
+    </li>
+    <li>
+      Al terminar el servicio, suprimir los datos en los plazos del punto 10, salvo que la ley nos obligue a
+      conservarlos. Antes puedes pedirnos una copia de lo que quieras conservar.
+    </li>
+    <li>
+      Poner a tu disposición la información necesaria para demostrar que cumplimos este anexo y permitir auditorías
+      razonables, con aviso previo, a tu cargo y sin acceso a datos de otros usuarios.
+    </li>
+  </ul>
+  <h3>A.4 Subencargados</h3>
+  <p>Nos autorizas a usar estos subencargados, con los que tenemos contratos con obligaciones equivalentes:</p>
+  <ul>
+    <li>
+      <strong>Vercel Inc.</strong> (EE. UU.; ejecución en Fráncfort): alojamiento de la app y recepción de avisos de
+      Instagram. Garantías: Marco de Privacidad de Datos UE-EE. UU. y cláusulas contractuales tipo.
+    </li>
+    <li>
+      <strong>Supabase Pte. Ltd.</strong> (Singapur; datos en Fráncfort): base de datos, autenticación y
+      almacenamiento. Garantía: cláusulas contractuales tipo.
+    </li>
+    <li>
+      <strong>Resend Inc.</strong> (EE. UU.; envío desde Irlanda): emails de la app. Garantías: Marco de Privacidad de
+      Datos UE-EE. UU. y cláusulas contractuales tipo.
+    </li>
+  </ul>
+  <p>
+    Te avisaremos con al menos 15 días de antelación, por email o en la app, antes de añadir o cambiar un subencargado.
+    Puedes oponerte por motivos razonables; si no llegamos a un acuerdo, podrás darte de baja.
+  </p>
+  <p>
+    Meta (Instagram) no es subencargado de Kalmaa: es la plataforma de la que proceden los datos y por la que se
+    envían las respuestas, y la usas con tu propia cuenta y sus condiciones. Tampoco lo es la IA que conectes (Claude
+    de Anthropic, ChatGPT de OpenAI u otra): la eliges y contratas tú, y eres tú quien le pide los datos.
+  </p>
+  <h3>A.5 Tus obligaciones como responsable</h3>
+  <p>
+    Tienes que contar con una base legal para tratar esos datos, informar a las personas (por ejemplo, en tu política
+    de privacidad) de que usas Kalmaa y, en su caso, tu IA, y darnos solo instrucciones conformes a la ley.
+  </p>
+</Legal>
