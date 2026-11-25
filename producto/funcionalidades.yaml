@@ -1,0 +1,591 @@
+# Catálogo de funcionalidades de Kalmaa · fuente única de verdad del producto
+#
+# De aquí salen la ficha de la KB (kalmaa/producto/funcionalidades.md), la skill de marca/producto,
+# los textos de la landing y el agente SEO/GEO. Si algo no está aquí como `activa`, no se promete como disponible.
+# Cómo mantenerlo: producto/README.md. Generar la ficha: python3 producto/generar_ficha.py
+#
+# PROVISIONAL: vive en kalmaa-landing porque la app no existe (kalmaa-app está vacío y el Brief dice que el MVP
+# no se empieza sin confirmar). Cuando arranque el MVP, se mueve a kalmaa-app/producto/ y aquí se deja un enlace.
+
+producto: Kalmaa
+web: https://kalmaa.io
+frase_entidad: Respuestas automáticas en Instagram con ChatGPT y Claude
+actualizado: 2026-11-15
+estado_producto: >-
+  En validación. La landing y la lista de espera están publicadas; la app no existe. Ninguna funcionalidad está activa.
+fuentes:
+  - Brief del 9 nov 2026, secciones 2–4 (https://docs.google.com/document/d/1Y-YqwjUME3KRhJArKGgxQTK8hxcMI1syQbhSU_y0ELw/edit)
+  - KB kalmaa/producto/README.md (MVP, orden posterior, reglas de Instagram, qué NO hacer)
+  - KB kalmaa/estrategia/posicionamiento.md (precios del 9 nov 2026)
+  - Skill kalmaa-branding, sección 0b (claims y prohibidos)
+
+# Valores permitidos
+estados: [en-desarrollo, beta, activa, oculta, retirada]
+estados_no_hace: [no-previsto, en-pausa]
+tipos_captura: [real, diseño]
+
+# Límites de Instagram que el producto debe respetar (aplican a todo)
+reglas_instagram:
+  - 1 respuesta privada por comentario, dentro de los 7 días siguientes al comentario.
+  - Ventana de 24 h desde el último mensaje de la persona para responder por DM.
+  - Máximo 750 respuestas privadas por hora.
+  - No se puede escribir primero ni enviar mensajes masivos.
+  - No hay webhook para escribir a quien empieza a seguirte (Follow to DM).
+  - Solo cuentas profesionales (empresa o creador).
+
+planes:
+  gratis:
+    precio: 0 €, sin tarjeta
+    incluye: Hasta 2 automatizaciones activas, hasta 1.000 DMs/mes, conector ChatGPT/Claude, plantillas, paso a WhatsApp, «Hecho con Kalmaa» en el DM
+  pro:
+    precio: 12 €/mes · 9 €/mes en anual (108 €) · sin IVA
+    incluye: Automatizaciones y DMs ilimitados (uso razonable), captura de email, exportar contactos, sin «Hecho con Kalmaa»
+  prueba: 14 días de Pro al registrarse; después pasa a Gratis
+  fundadores: 9 €/mes pagando mes a mes, primeras 100 cuentas que pasen a Pro, mientras sigan suscritas
+  latam: Pro 8 USD/mes (6 USD/mes en anual); moneda local cuando lo permita Stripe
+  no_anunciar: Pro + IA (~24 €) y Agencia (~59 €)
+
+funcionalidades:
+
+  # ── Conexión y onboarding ─────────────────────────────────────────────
+  - id: conectar-instagram
+    nombre: Conecta tu Instagram
+    que_hace: Conecta tu cuenta profesional de Instagram a Kalmaa con el inicio de sesión oficial, sin darnos tu contraseña.
+    estado: en-desarrollo
+    fase: mvp
+    planes: [gratis, pro]
+    limites:
+      - Solo cuentas profesionales (empresa o creador).
+      - Una cuenta de Instagram por cuenta de Kalmaa (varias cuentas = «Escríbenos», sin plan Agencia).
+    desde: null
+    pasos:
+      - Crea tu cuenta de Kalmaa.
+      - Pulsa «Conecta tu Instagram» e inicia sesión con Instagram.
+      - Acepta los permisos de mensajes y comentarios.
+    no_hace:
+      - No pide tu contraseña de Instagram.
+    claims:
+      permitidos:
+        - Integración oficial con Instagram.
+        - Inicio de sesión oficial de Instagram, nunca pedimos tu contraseña.
+        - Puedes quitar el acceso cuando quieras.
+      prohibidos:
+        - Meta Business Partner / Meta Tech Provider / partner oficial de Meta.
+        - Recomendado o aprobado por Meta (más allá de la revisión de apps).
+        - Tu cuenta nunca tendrá problemas.
+    bloqueos:
+      - Verificación del negocio en Meta.
+      - Renombrar la app de Meta (ID 538437435537013) a Kalmaa.
+      - Migrar al inicio de sesión unificado (hoy «heredado»).
+    capturas: []
+
+  - id: onboarding
+    nombre: Empieza en un minuto
+    que_hace: Registro en 3 pasos (cuenta, Instagram, activar la primera automatización); conectar la IA es la primera tarea del inicio.
+    estado: en-desarrollo
+    fase: mvp
+    planes: [gratis, pro]
+    limites: []
+    desde: null
+    pasos:
+      - Crea tu cuenta.
+      - Conecta tu Instagram.
+      - Activa tu primera automatización desde una plantilla.
+      - En el inicio, conecta tu ChatGPT o Claude.
+    no_hace:
+      - No obliga a conectar la IA para empezar.
+    claims:
+      permitidos:
+        - Empieza en un minuto con plantillas.
+      prohibidos: []
+    notas: Eventos desde el día 1 (registro, IG conectado, automatización activa con clics y minutos, IA conectada, primera petición, primer DM real, pago). Métrica norte, conversaciones atendidas por semana.
+    capturas:
+      - archivo: disenos/O-Onboarding.dc.html
+        tipo: diseño
+        fecha: 2026-11-11
+        version: lienzo 11 nov 2026
+      - archivo: disenos/O-Onboarding-movil.dc.html
+        tipo: diseño
+        fecha: 2026-11-11
+        version: lienzo 11 nov 2026
+
+  # ── Tu IA conectada (MCP, bajo demanda) ───────────────────────────────
+  - id: conector-ia
+    nombre: Conecta tu ChatGPT o Claude
+    que_hace: Añade Kalmaa a tu ChatGPT o a tu Claude (conector MCP) para pedirle cosas a tu Instagram hablando.
+    estado: en-desarrollo
+    fase: mvp
+    planes: [gratis, pro]
+    limites:
+      - "ChatGPT: hasta estar en su directorio de apps, un conector propio con escritura solo funciona en planes Business, Enterprise y Edu."
+      - "Claude: conector personalizado; funciona también en el plan gratis de Claude (verificar al lanzar)."
+      - Kalmaa no cobra por usar tu IA; el plan de ChatGPT o Claude lo pagas tú si hace falta.
+    desde: null
+    pasos:
+      - En el panel, abre «Conectar tu IA» y elige ChatGPT o Claude.
+      - "Claude: Conectores → añadir conector personalizado con la dirección de Kalmaa → inicia sesión con tu cuenta de Kalmaa."
+      - "ChatGPT: sigue la guía paso a paso del panel e inicia sesión con tu cuenta de Kalmaa."
+    no_hace:
+      - No es una IA ni un chatbot; es la conexión entre tu IA y tu Instagram.
+      - No está todavía en los directorios de apps de ChatGPT ni de Claude (ver directorio-apps).
+    claims:
+      permitidos:
+        - Conecta Instagram con ChatGPT / con Claude.
+        - Tu Instagram, desde tu ChatGPT.
+        - Sin aprender otra herramienta, usa la IA que ya usas.
+      prohibidos:
+        - Busca Kalmaa en Apps (de ChatGPT) / Busca Kalmaa (en Claude), hasta estar en el directorio.
+        - Gratis con ChatGPT (depende del plan del usuario y del directorio).
+        - KalmaaGPT, oficial de OpenAI o Anthropic.
+    capturas:
+      - archivo: src/assets/capturas/c2-conectar-ia.png
+        tipo: diseño
+        fecha: 2026-11-13
+        version: lienzo 11 nov 2026, ajustada 13 nov (sin «Busca Kalmaa»)
+      - archivo: src/assets/capturas/c2-conectar-ia-movil.png
+        tipo: diseño
+        fecha: 2026-11-13
+        version: lienzo 11 nov 2026, ajustada 13 nov
+
+  - id: ia-leer-y-responder
+    nombre: Pídele a tu IA que responda
+    que_hace: Desde ChatGPT o Claude lees comentarios y DMs y respondes por DM o en público, cuando se lo pides.
+    estado: en-desarrollo
+    fase: mvp
+    planes: [gratis, pro]
+    limites:
+      - Bajo demanda, solo mientras hablas con tu IA; no responde sola.
+      - Solo a quien te ha comentado o escrito; 1 respuesta privada por comentario en 7 días; DMs dentro de la ventana de 24 h.
+    desde: null
+    pasos:
+      - Con la IA conectada, pídele por ejemplo «Responde a quien ha comentado PRECIO en mi último Reel».
+    no_hace:
+      - No responde sola las 24 horas con IA (ver respuestas-ia-automaticas).
+      - No escribe primero ni a quien no te ha escrito.
+    claims:
+      permitidos:
+        - Responde Instagram con ChatGPT / con Claude.
+        - Pídeselo a tu IA. Kalmaa lo hace en tu Instagram.
+      prohibidos:
+        - Kalmaa responde sola con IA las 24 horas.
+        - Es un chatbot / una IA que atiende a tus clientes.
+    capturas:
+      - archivo: src/assets/capturas/c1-portada.png
+        tipo: diseño
+        fecha: 2026-11-13
+        version: lienzo 11 nov 2026, texto del anexo A
+      - archivo: src/assets/capturas/c1-portada-movil.png
+        tipo: diseño
+        fecha: 2026-11-13
+        version: lienzo 11 nov 2026
+
+  - id: ia-automatizaciones
+    nombre: Crea automatizaciones hablando
+    que_hace: Tu IA crea, edita, pausa y borra automatizaciones por palabra clave sin tocar el panel.
+    estado: en-desarrollo
+    fase: mvp
+    planes: [gratis, pro]
+    limites:
+      - Mismos límites de plan que las automatizaciones (Gratis, 2 activas).
+    desde: null
+    pasos:
+      - Pídele «Si alguien comenta GUÍA, envíale este PDF».
+    no_hace:
+      - No crea flujos con ramas ni secuencias.
+    claims:
+      permitidos:
+        - Automatiza Instagram con ChatGPT.
+        - Sin constructor de flujos.
+      prohibidos: []
+    capturas: []
+
+  - id: ia-resumen
+    nombre: Resumen de resultados
+    que_hace: Tu IA te dice qué te han preguntado y cuántas conversaciones ha atendido cada automatización.
+    estado: en-desarrollo
+    fase: mvp
+    planes: [gratis, pro]
+    limites: []
+    desde: null
+    pasos:
+      - Pídele «¿Qué me han preguntado hoy por DM?».
+    no_hace: []
+    claims:
+      permitidos: []
+      prohibidos:
+        - Cifras o resultados garantizados.
+    capturas: []
+
+  - id: ia-priorizar-bandeja
+    nombre: A quién contestar primero
+    que_hace: Tu IA ordena tus DMs por intención de compra, clientes y tiempo que queda para responder.
+    estado: en-desarrollo
+    fase: mvp
+    planes: [gratis, pro]
+    limites:
+      - La prioriza tu IA (ChatGPT/Claude) vía MCP, no una IA propia de Kalmaa.
+    desde: null
+    pasos:
+      - Pídele «¿A quién tengo que contestar primero hoy?».
+    no_hace:
+      - No prioriza dentro del panel con IA propia (en pausa hasta revisar términos de Meta y privacidad).
+    claims:
+      permitidos:
+        - Tu IA te dice a quién contestar primero.
+        - Prioriza tu bandeja de Instagram con ChatGPT.
+      prohibidos:
+        - Vendes más.
+    capturas: []
+
+  # ── Automatizaciones 24 h ─────────────────────────────────────────────
+  - id: disparador-comentario
+    nombre: Comenta una palabra
+    que_hace: Cuando alguien comenta una palabra clave en un post o Reel (uno o todos), recibe tu DM.
+    estado: en-desarrollo
+    fase: mvp
+    planes: [gratis, pro]
+    limites:
+      - 1 respuesta privada por comentario, dentro de 7 días.
+      - "Gratis: 2 automatizaciones activas y 1.000 DMs/mes; al llegar se pausan hasta el mes siguiente con aviso (según /precios; confirmar)."
+    desde: null
+    pasos:
+      - Elige una plantilla o crea la automatización.
+      - Escribe la palabra clave y elige un post o todos.
+      - Escribe el DM y actívala.
+    no_hace: []
+    claims:
+      permitidos:
+        - Comenta PRECIO. Kalmaa hace el resto.
+      prohibidos: []
+    capturas: []
+
+  - id: disparador-historia
+    nombre: Responde a tu historia
+    que_hace: Cada persona que responde a tu historia recibe tu DM.
+    estado: en-desarrollo
+    fase: mvp
+    planes: [gratis, pro]
+    limites:
+      - Ventana de 24 h para el DM.
+    desde: null
+    pasos:
+      - Activa la plantilla de sorteo o promoción, o crea una automatización de historia.
+    no_hace: []
+    claims:
+      permitidos: []
+      prohibidos: []
+    capturas: []
+
+  - id: disparador-dm
+    nombre: Palabra clave en DM
+    que_hace: Quien te escribe una palabra clave por DM recibe la respuesta.
+    estado: en-desarrollo
+    fase: mvp
+    planes: [gratis, pro]
+    limites:
+      - Ventana de 24 h desde su mensaje.
+    desde: null
+    pasos:
+      - Crea la automatización con la palabra clave del DM.
+    no_hace:
+      - No entiende intenciones con IA; salta por palabra clave.
+    claims:
+      permitidos: []
+      prohibidos: []
+    capturas: []
+
+  - id: dm-con-boton
+    nombre: DM con botón
+    que_hace: El DM automático lleva un botón a un enlace, un PDF o tu WhatsApp.
+    estado: en-desarrollo
+    fase: mvp
+    planes: [gratis, pro]
+    limites:
+      - "Gratis: lleva «Hecho con Kalmaa»."
+    desde: null
+    pasos:
+      - En la automatización, añade el botón y su destino.
+    no_hace: []
+    claims:
+      permitidos: []
+      prohibidos: []
+    capturas: []
+
+  - id: respuesta-publica
+    nombre: Respuesta pública que rota
+    que_hace: Además del DM, responde en público al comentario con mensajes que van rotando.
+    estado: en-desarrollo
+    fase: mvp
+    planes: [gratis, pro]
+    limites: []
+    desde: null
+    pasos:
+      - Activa «respuesta pública» y escribe varias versiones.
+    no_hace: []
+    claims:
+      permitidos: []
+      prohibidos: []
+    capturas: []
+
+  - id: captura-email
+    nombre: Pide el email
+    que_hace: El DM pide el email a la persona y lo guarda en tus contactos.
+    estado: en-desarrollo
+    fase: mvp
+    planes: [pro]
+    limites:
+      - Solo Pro (y durante los 14 días de prueba).
+    desde: null
+    pasos:
+      - En la automatización, activa «Pedir email».
+    no_hace:
+      - No envía emails ni newsletters.
+    claims:
+      permitidos: []
+      prohibidos:
+        - Presentarla como incluida en el plan Gratis.
+    capturas: []
+
+  - id: plantillas
+    nombre: Plantillas en un minuto
+    que_hace: 6 plantillas listas para activar, guía gratis, precio, clase, sorteo, código de descuento y cita por WhatsApp.
+    estado: en-desarrollo
+    fase: mvp
+    planes: [gratis, pro]
+    limites:
+      - En el MVP se rellenan (palabra, mensaje, botón) y se activan; editarlas a fondo llega después (ver plantillas-editables).
+      - La de guía pide email, que es de Pro.
+    desde: null
+    pasos:
+      - Abre Plantillas, elige una, rellena tu mensaje y actívala.
+    no_hace:
+      - No importa automatizaciones de ManyChat.
+    claims:
+      permitidos:
+        - Empieza en un minuto con plantillas.
+      prohibidos:
+        - «Más usada» o cualquier dato de uso mientras no haya datos.
+    capturas:
+      - archivo: src/assets/capturas/c3-plantillas.png
+        tipo: diseño
+        fecha: 2026-11-13
+        version: lienzo 11 nov 2026, «Seleccionada» en vez de «Más usada»
+      - archivo: src/assets/capturas/c3-plantillas-movil.png
+        tipo: diseño
+        fecha: 2026-11-13
+        version: lienzo 11 nov 2026
+
+  - id: paso-a-whatsapp
+    nombre: De Instagram a tu WhatsApp, gratis
+    que_hace: Un botón en el DM abre tu WhatsApp con un clic (enlace wa.me), sin API ni coste por mensaje.
+    estado: en-desarrollo
+    fase: mvp
+    planes: [gratis, pro]
+    limites:
+      - Solo abre el chat; la conversación en WhatsApp la llevas tú.
+    desde: null
+    pasos:
+      - Activa la plantilla de cita o añade un botón de WhatsApp con tu número.
+    no_hace:
+      - No envía mensajes dentro de WhatsApp ni usa la API de WhatsApp.
+    claims:
+      permitidos:
+        - De un comentario a tu WhatsApp, gratis.
+        - Sin pagar por mensaje.
+      prohibidos:
+        - Kalmaa responde o automatiza WhatsApp.
+    capturas:
+      - archivo: src/assets/capturas/c4-whatsapp.png
+        tipo: diseño
+        fecha: 2026-11-13
+        version: lienzo 11 nov 2026
+      - archivo: src/assets/capturas/c4-whatsapp-movil.png
+        tipo: diseño
+        fecha: 2026-11-13
+        version: lienzo 11 nov 2026, versión móvil nueva
+
+  # ── Panel ─────────────────────────────────────────────────────────────
+  - id: contactos
+    nombre: Contactos y exportar
+    que_hace: Lista de quien ha interactuado, con etiqueta «cliente», y exportación a CSV.
+    estado: en-desarrollo
+    fase: mvp
+    planes: [gratis, pro]
+    limites:
+      - Exportar a CSV, solo Pro.
+    desde: null
+    pasos:
+      - Panel → Contactos → Exportar CSV.
+    no_hace:
+      - No es un CRM ni envía campañas.
+    claims:
+      permitidos: []
+      prohibidos: []
+    capturas: []
+
+  - id: actividad-diagnostico
+    nombre: Actividad y por qué no saltó
+    que_hace: Muestra lo que han hecho tus automatizaciones y, si una no saltó, el motivo (palabra, post, 7 días, ya respondido…).
+    estado: en-desarrollo
+    fase: mvp
+    planes: [gratis, pro]
+    limites: []
+    desde: null
+    pasos:
+      - Panel → Actividad → abre la conversación.
+    no_hace: []
+    claims:
+      permitidos: []
+      prohibidos:
+        - Cifras reales de uso (las del diseño C5 son ilustrativas).
+    capturas:
+      - archivo: src/assets/capturas/c5-inicio.png
+        tipo: diseño
+        fecha: 2026-11-13
+        version: lienzo 11 nov 2026, cifras ilustrativas
+      - archivo: src/assets/capturas/c5-inicio-movil.png
+        tipo: diseño
+        fecha: 2026-11-13
+        version: lienzo 11 nov 2026, cifras ilustrativas
+
+  - id: cola-reels
+    nombre: Cola para Reels virales
+    que_hace: Si un Reel se hace viral, las respuestas se ponen en cola para no pasar el límite de Instagram.
+    estado: en-desarrollo
+    fase: mvp
+    planes: [gratis, pro]
+    limites:
+      - 750 respuestas privadas por hora; las que no entran esperan su turno (y caducan a los 7 días del comentario).
+    desde: null
+    pasos: []
+    no_hace: []
+    claims:
+      permitidos:
+        - Precio fijo, aunque te hagas viral.
+      prohibidos:
+        - Responde a todos al instante, sin límite.
+    capturas: []
+
+  - id: planes-y-pago
+    nombre: Planes y pago
+    que_hace: Plan Gratis sin tarjeta, Pro de pago con 14 días de prueba, precio de fundadores y cambio o baja desde el panel.
+    estado: en-desarrollo
+    fase: mvp
+    planes: [gratis, pro]
+    limites:
+      - Precios del bloque `planes`; sin IVA.
+      - Moneda local LATAM, pendiente de Stripe.
+    desde: null
+    pasos:
+      - Panel → Mejorar → elige mensual o anual → paga.
+    no_hace:
+      - No cobra por contacto ni por uso de la IA.
+    claims:
+      permitidos:
+        - Precio fijo, sin pagar por contacto.
+      prohibidos:
+        - Planes, descuentos o precios distintos a los del Brief.
+        - Pro + IA o Agencia.
+    capturas:
+      - archivo: disenos/Precios.dc.html
+        tipo: diseño
+        fecha: 2026-11-11
+        version: lienzo 11 nov 2026
+
+  # ── Después del MVP (orden del Brief) ─────────────────────────────────
+  - id: plantillas-editables
+    nombre: Plantillas editables
+    que_hace: Editar a fondo cualquier plantilla, incluida comentario → WhatsApp.
+    estado: en-desarrollo
+    fase: despues-mvp-1
+    planes: [gratis, pro]
+    limites: []
+    desde: null
+    pasos: []
+    no_hace: []
+    claims:
+      permitidos: []
+      prohibidos: []
+    capturas: []
+
+  - id: directorio-apps
+    nombre: Kalmaa en las apps de ChatGPT y Claude
+    que_hace: Kalmaa publicada en el directorio de apps de ChatGPT y de conectores de Claude, para añadirla con un clic.
+    estado: en-desarrollo
+    fase: despues-mvp-2
+    planes: [gratis, pro]
+    limites:
+      - Qué planes de ChatGPT permiten escritura desde el directorio, por confirmar al publicar.
+    desde: null
+    pasos:
+      - (Cuando exista) Busca Kalmaa en Apps de ChatGPT o en Conectores de Claude y pulsa Conectar.
+    no_hace: []
+    claims:
+      permitidos: []
+      prohibidos:
+        - Busca Kalmaa en Apps / Disponible en ChatGPT, hasta que esté publicada.
+    capturas: []
+
+  - id: respuestas-ia-automaticas
+    nombre: Respuestas automáticas con IA
+    que_hace: Que la IA responda sola, sin que se lo pidas.
+    estado: en-desarrollo
+    fase: despues-mvp-3
+    planes: [pro]
+    limites:
+      - Plan previsto Pro + IA (~24 €), no anunciar.
+    desde: null
+    pasos: []
+    no_hace: []
+    claims:
+      permitidos: []
+      prohibidos:
+        - Kalmaa responde sola con IA las 24 horas (hasta que esté activa).
+    capturas: []
+
+# Lo que Kalmaa no hace (y no está previsto). La web puede negarlo; nunca prometerlo.
+no_hace:
+  - id: whatsapp-api
+    nombre: Automatizar WhatsApp (API de WhatsApp)
+    estado: no-previsto
+    motivo: Fuera del Brief; solo se abre tu WhatsApp con wa.me.
+  - id: tiktok-otras-redes
+    nombre: TikTok, Messenger u otras redes
+    estado: no-previsto
+    motivo: Solo Instagram.
+  - id: envios-masivos
+    nombre: Envíos masivos o difusiones
+    estado: no-previsto
+    motivo: Instagram no lo permite.
+  - id: escribir-primero
+    nombre: Escribir primero a quien no te ha escrito
+    estado: no-previsto
+    motivo: Instagram no lo permite.
+  - id: follow-to-dm
+    nombre: Mensaje a quien te sigue (Follow to DM)
+    estado: no-previsto
+    motivo: Instagram no da webhook de nuevo seguidor.
+  - id: secuencias
+    nombre: Secuencias de varios días
+    estado: no-previsto
+    motivo: Fuera del Brief; además, ventana de 24 h.
+  - id: bandeja-equipo
+    nombre: Bandeja de equipo (varios agentes)
+    estado: no-previsto
+    motivo: Fuera del Brief.
+  - id: constructor-flujos
+    nombre: Constructor de flujos con bloques y ramas
+    estado: no-previsto
+    motivo: Diferencial, se pide hablando o con plantilla.
+  - id: importar-manychat
+    nombre: Importar automatizaciones de ManyChat
+    estado: no-previsto
+    motivo: Se recrean con plantilla o pidiéndoselo a la IA.
+  - id: priorizacion-ia-propia
+    nombre: Priorizar la bandeja con IA propia dentro del panel
+    estado: en-pausa
+    motivo: Hasta revisar términos de Meta y privacidad; hoy solo vía tu IA (ia-priorizar-bandeja).
+  - id: varias-cuentas
+    nombre: Varias cuentas de Instagram (plan Agencia)
+    estado: no-previsto
+    motivo: Solo «¿Gestionas varias cuentas? Escríbenos» hasta el plan Agencia.
