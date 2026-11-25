@@ -11,7 +11,7 @@ export const SITE = {
       'Registro Mercantil de Málaga, tomo 6027, libro 4934, folio 44, sección 8, hoja MA-160523',
   },
   ctaLabel: 'Conecta tu Instagram',
-  ctaHref: '/lista-de-espera',
+  ctaHref: 'https://app.kalmaa.io/entrar',
 };
 
 export const NAV = [

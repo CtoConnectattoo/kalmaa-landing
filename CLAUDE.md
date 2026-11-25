@@ -2,7 +2,7 @@ Este proyecto pertenece a la línea Kalmaa de Connectattoo S.L. Antes de trabaja
 
 # kalmaa-landing
 
-Landing de kalmaa.io (tarea 1 del Brief). Astro con salida estática y una única función de servidor (`src/pages/api/waitlist.ts`) para la lista de espera, desplegada en Vercel.
+Landing de kalmaa.io (tarea 1 del Brief). Astro con salida estática, desplegada en Vercel. La app vive en app.kalmaa.io (repo `kalmaa-app`).
 
 ## Reglas
 - Textos de la home y de precios: anexos A y B del Brief, tal cual. Claims y vocabulario: skill `kalmaa-branding` (sección 0b).
@@ -11,7 +11,7 @@ Landing de kalmaa.io (tarea 1 del Brief). Astro con salida estática y una únic
 - No prometer: escribir primero, envíos masivos, Follow to DM, ventas garantizadas, TikTok.
 - Sin logos de ChatGPT, Claude, Instagram ni WhatsApp como propios. Mantener el aviso de no afiliación del pie.
 - Ni cifras ni testimonios inventados. Lo que no esté comprobado va como `<span class="verify">[VERIFICAR]</span>`; antes de publicar en kalmaa.io no debe quedar ninguno (`grep -rn "VERIFICAR\|COMPLETAR\|CONFIRMAR" src`).
-- Todos los CTA «Conecta tu Instagram» llevan a `/lista-de-espera` hasta que exista la app.
+- Todos los CTA «Conecta tu Instagram» y «Entrar» llevan al registro de la app (`SITE.ctaHref` = `https://app.kalmaa.io/entrar`). No hay lista de espera.
 - No reutilizar código de Inkup.
 
 ## Comandos
