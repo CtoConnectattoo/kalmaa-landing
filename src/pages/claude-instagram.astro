@@ -24,7 +24,7 @@ const faqs = [
   eyebrow="Guía · Claude + Instagram"
   h1="Claude e Instagram: responde Instagram con Claude"
   answer="Claude puede trabajar con tu Instagram a través de un conector. Con Kalmaa, conectas tu cuenta profesional de Instagram, añades Kalmaa como conector en Claude y le pides que responda comentarios, historias y DMs o que cree automatizaciones por palabra clave. Funciona también en el plan gratis de Claude."
-  updated="2026-11-10"
+  updated="2026-11-26"
   faqs={faqs}
 >
   <h2>Qué le puedes pedir a Claude</h2>
@@ -49,6 +49,25 @@ const faqs = [
     <li><strong>Pídeselo a Claude</strong> con tus palabras.</li>
   </ol>
 
+  <h2 id="megaprompt">Paso a paso y megaprompt</h2>
+  <ol>
+    <li>En Claude, entra en <strong>Personalizar → Conectores</strong> y pulsa <strong>Añadir conector personalizado</strong>.</li>
+    <li>Ponle de nombre <strong>Kalmaa</strong> y pega este enlace: <code>https://app.kalmaa.io/api/mcp</code>. Pulsa <strong>Conectar</strong> y después <strong>Permitir</strong>.</li>
+    <li>Entra en Kalmaa (o crea tu cuenta gratis), conecta tu Instagram con el inicio de sesión oficial y vuelve a pulsar <strong>Permitir</strong>.</li>
+    <li>Abre un chat nuevo en Claude, copia este megaprompt, cambia <code>[TU ENLACE]</code> por tu web, tu WhatsApp o tu guía y pégalo:</li>
+  </ol>
+  <pre class="prompt"><code>Eres mi community manager de Instagram. Usa el conector de Kalmaa.
+1. Lee mis últimas 10 publicaciones y sus comentarios.
+2. Dime qué me preguntan más (precio, información, cómo empezar, dónde…) y en qué publicación, con el número de veces.
+3. Para la pregunta que más se repite, propón una respuesta automática: una palabra clave fácil de escribir, un DM corto con mi tono y un botón a este enlace: [TU ENLACE].
+4. Simúlala con 3 comentarios de ejemplo y enséñame la conversación que tendría la persona.
+5. Créala en borrador y actívala solo cuando yo te diga «OK».
+6. Después, enséñame los comentarios con una pregunta que sigan sin respuesta y propón una respuesta para cada uno con mi tono. No publiques ninguna sin mi visto bueno.</code></pre>
+  <p>
+    Desde que la actives, cada persona que comente la palabra recibe el DM al momento, también con Claude cerrado. Las
+    respuestas a los demás comentarios las publica Claude solo cuando tú se lo pides.
+  </p>
+
   <h2>Por qué Claude es buena opción para empezar</h2>
   <p>
     En Claude, los conectores propios funcionan también en el plan gratis (uno). Si todavía no pagas ninguna IA, es la
@@ -66,3 +85,16 @@ const faqs = [
 
   <p><a href={SITE.ctaHref}>Crea tu cuenta gratis y conecta tu Instagram con Claude</a>.</p>
 </Article>
+
+<style>
+  .prompt {
+    white-space: pre-wrap;
+    background: #1c1c1f;
+    color: #f4f4f5;
+    border-radius: 20px;
+    padding: 20px;
+    font-size: 15px;
+    line-height: 1.5;
+    overflow-x: auto;
+  }
+</style>
